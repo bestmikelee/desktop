@@ -1,0 +1,156 @@
+/* Handle info boxes */
+.aside-data {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: 1s ease-out 1s;
+
+    &-hide {
+        opacity: 0;
+    }
+
+    &-list {
+        padding-right: 0.3vw;
+    }
+
+    &-val {
+        margin: 0.5vw 0 0vw;
+        font-size: 1.2vw;
+        line-height: 1.1;
+
+        &-count {
+          float: left;
+          font-weight: 400;
+        }
+
+        &-percentage {
+          float: right;
+          font-weight: 100;
+        }
+    }
+
+
+    &-hr {
+        margin: 4px 0 0;
+        clear: both;
+    }
+
+    &-description {
+        padding-right: 0.4vw;
+        color: rgb(108,108,108);
+        font-style: italic;
+        clear: both;
+    }
+}
+
+/**
+ * Variable power
+ */
+// color stuff
+$c-baseColor: #333;
+$c-baseColorBright: #666;
+$c-border: #eee;
+$c-borderDark: $c-baseColor;
+$c-borderBright: rgb(208,208,208);
+$c-borderBrightPlus: rgb(188,188,188);
+$c-shadow: $c-baseColor;
+$c-dashedLine: rgb(198,198,198);
+$c-borderDivider: #ccc;
+$c-all-set: rgb(32, 90, 255);
+$c-90: rgb(255, 38, 0);
+$c-60: rgb(173, 23, 0);
+$c-30: rgb(84, 6, 0);
+$c-vacant: rgb(0,0,0);
+
+// font-stuff
+$f-family: sans-serif;
+
+// sizes
+$f-baseSize: 14px;
+$f-sizeHeadline: 2 * $f-baseSize;
+$f-sizeSubHeadline: $f-baseSize;
+$f-sizePieChartPercentage: 2.5 * $f-baseSize;
+$f-sizePieChartText: 2 * $f-baseSize;
+$f-sizeBubbleLabel: 0.9 * $f-baseSize;
+$f-sizeBubbleValue: 1.5 * $f-baseSize;
+
+// weights
+$f-weight: 100;
+$f-weightHeadline: $f-weight;
+$f-weightSubHeadline: 400;
+$f-weightPieChartPercentage: 100;
+
+// spacing
+$f-spacing: 1px;
+
+.chart--headline {
+    text-align: center;
+    position: relative;
+    margin-top: 0;
+    padding: 1em;
+    padding-top: 15px;
+    font-weight: $f-weightHeadline;
+    font-size: $f-sizeHeadline;
+    color: #444;
+}
+
+.pieChart--center--innerCircle {
+    fill: #fff;
+}
+
+.pieChart--center--text {
+    font-size: $f-sizePieChartText;
+}
+
+.pieChart--center--outerCircle {
+    fill: rgba( 255, 255, 255, 0.75 );
+}
+
+.pieChart--detail--divider {
+    stroke: $c-borderDivider;
+    stroke-width: 1;
+}
+
+.pieChart--detail--percentage {
+    font-size: $f-sizePieChartPercentage;
+    font-weight: $f-weightPieChartPercentage;
+    fill: $c-baseColor;
+    stroke-width: 1px;
+}
+
+.pieChart--detail--textContainer {
+    padding: 10px 0 0;
+    margin: 0;
+    opacity: 1 !important;
+    background-color: white;
+    color: $c-baseColorBright;
+    font-style: italic;
+}
+
+.pieChart--detail__left {
+    text-align: left;
+}
+
+.pieChart--detail__right {
+    text-align: right;
+}
+
+.pieChart__all_set {
+    fill: $c-all-set;
+}
+
+.pieChart__has90 {
+    fill: $c-90;
+}
+
+.pieChart__has60 {
+    fill: $c-60;
+}
+
+.pieChart__has30 {
+    fill: $c-30;
+}
+
+.pieChart__vacant {
+    fill: $c-vacant;
+}

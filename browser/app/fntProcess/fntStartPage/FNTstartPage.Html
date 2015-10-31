@@ -1,0 +1,13 @@
+
+<div class="fntStartPage Title">
+	<h3 class="fntStartPage Title Text">Please selet which apartments to initiate the New Tenant Process!</h3>
+</div>
+<fntapartment 
+	ng-repeat='fntChoose in fntStart'
+	building='fntChoose.building'
+	apartment='fntChoose.apartment'
+	newrent='fntChoose.newRent'
+	oldrent='fntChoose.oldRent'
+></fntapartment>
+
+<button class='btn fntStartPage submit' ng-click="submit()">Submit</button>

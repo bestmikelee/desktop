@@ -1,0 +1,13 @@
+<div class="brokerChoose Title">
+	<h1 class="brokerChoose Title Text">The following apartments have been choosen to intiate the replacement tenant process</h1>
+</div>
+
+
+<table class="fntTable">
+	<tr ng-repeat="apartment in startList">
+		<td>{{apartment.building}}</td>
+		<td>{{apartment.apartment}}</td>
+	</tr>
+</table>
+
+<button class="btn">Submit</button>

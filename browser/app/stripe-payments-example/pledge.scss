@@ -1,0 +1,39 @@
+#pledge {
+
+  padding-top: 10px;
+
+  .card-types {
+    img {
+      height: 30px;
+      opacity: 0.75;
+      -webkit-filter: grayscale(100%);
+
+    }
+    img.active {
+      opacity: 1.0;
+      filter: none;
+      -webkit-filter: none;
+
+    }
+  }
+
+  form {
+    margin-top: 20px;
+  }
+
+  .top-label {
+    color: #828587;
+  }
+
+  @media (min-width: 768px) {
+    .top-label {
+      padding-top: 5px;
+      margin-bottom: 0;
+      text-align: right;
+    }
+  }
+
+  .panel {
+    border-radius: 2px;
+  }
+}

@@ -1,0 +1,14 @@
+node_modules
+/node_modules
+/public
+.sass-cache
+/.sass-cache
+*/.DS_Store
+*.DS_Store
+build
+*development.js
+*AWSconfig.json
+*.jshintrc
+*.log
+public
+.idea

@@ -1,0 +1,44 @@
+div.alert {
+    border: none !important;
+    overflow: hidden;
+    text-align: center;
+    vertical-align: center;
+    margin: 10px;
+}
+
+.requestFrom {
+    ;
+    float: left;
+    text-align: center;
+    padding-bottom: 5px;
+    font-size: 1.25em;
+}
+
+.requestLabel {
+    font-size: 1.5em;
+    margin: 10px;
+    display: block;
+    background-color: $title-blue;
+}
+
+.alert p {
+    margin-bottom: 5px;
+    font-size: 1.2em;
+    color: $white;
+}
+
+.alert.alert-info.requestBox {
+    background-color: $alert-background;
+}
+
+.btn-success {
+    background-color: #00bfa5;
+}
+
+.btn-warning {
+    background-color: #ff6d00;
+}
+
+.btn-danger {
+    background-color: #d50000;
+}

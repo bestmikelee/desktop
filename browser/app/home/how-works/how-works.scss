@@ -1,0 +1,60 @@
+.how-works {
+    @include vend(background-size, cover);
+    position: absolute;
+    width: 100%;
+    height: calc(50vh - 50px);
+    text-align: center;
+    color: #fff;
+    background-image: url("/images/city-road-street-buildings.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    font-size: 65px;
+    
+    @media(max-width:$phone-max) {
+        & {
+            height: calc(100vh - 50px);
+        }
+    }
+}
+
+.step {
+    .number {
+        margin: 0 auto;
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        padding: 42px;
+        background-color: $main-color;
+        color: #fff;
+        text-align: center;
+        font-size: 48px;
+        font-weight: bold;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .description {
+        margin-top: 15px;
+        margin-bottom: 40px;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: 'Montserrat', sans-serif;
+        text-align: center;
+    }
+}
+
+.how-it-works-explanation {
+    height: 50vh;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    
+    h1 {
+        margin: 0 0 5vh;
+        font-size: 44px;
+    }
+
+    @media(max-width:$phone-max) {
+        & {
+            height: initial;
+        }
+    }
+}

@@ -1,0 +1,28 @@
+<button class="btn btn-success btn-outline pull-right" ng-click="toggleForm()">Free This Friend!</button>
+<section class="container form-fill login-form" ng-show="formShowing">
+    <h2>Pledge</h2>
+    <p ng-show="!error">&nbsp;</p>
+    <form stripe-form="stripeCardCallback">
+        <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <input type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" ng-model="cardAmount" placeholder="Amount" />
+        </div>
+        <div class="form-group">
+            <input class="form-control" ng-model="number" placeholder="Card Number" payments-format="card" payments-validate="card" name="card" />
+        </div>
+        <div class="form-group">
+            <input class="form-control" ng-model="expiry" placeholder="Expiration" payments-format="expiry" payments-validate="expiry" name="expiry" />
+        </div>
+        <div class="form-group">
+            <input class="form-control" ng-model="cvc" placeholder="CVC" payments-format="cvc" payments-validate="cvc" name="cvc" />
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</section>
+<!-- <form stripe-form="stripeBankCallback">
+    <input ng-model="bankAmount" placeholder="Amount"/>
+    <input ng-model="number" placeholder="Card Number" />
+    <input ng-model="expiry" placeholder="Expiration" />
+    <input ng-model="cvc" placeholder="CVC" />
+    <button type="submit">Submit</button>
+</form> -->

@@ -1,0 +1,19 @@
+<div class="container masterfntApartment">
+  <div class="alert alert-info col-lg-6">
+    <div class="fntApartment building">
+      {{ building }}
+    </div>
+    <div class="fntApartment apartment">
+      {{ apartment }}
+    </div>
+    <div class="fntApartment old-rent">
+      {{ oldrent }}
+    </div>
+    <div class="fntApartment new-rent">
+      {{ newrent }}
+    </div>
+    <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-success fntStart" ng-class="initiateClicked ? 'clicked': ''" ng-click="initiate(apartment)">Start!</button>
+        <button type="button" class="btn btn-warning fntStart"  ng-class="postponeClicked ? 'clicked': ''" ng-click="postpone()">Postpone</button>
+    </div>
+</div>  
