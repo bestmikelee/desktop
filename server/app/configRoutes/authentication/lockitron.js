@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var _ = require('lodash');
 var Request = Promise.promisifyAll(require('request'));
 var User = Promise.promisifyAll(mongoose.model('User'));
+var Landlord = Promise.promisifyAll(mongoose.model('Landlord'));
 
 module.exports = function(app) {
 
@@ -70,14 +71,23 @@ module.exports = function(app) {
                                 });
                             }
                         })
-                        .then(function(doc) {
+                        .then(function(user) {
                             // If they were created ask them what user type they want to be.
-                            if (doc) {
-                                // @TODO: should redirect to a page where the user can select what kind of user they are.
-                                req.session.user = doc;
+                            if (user) {
+                                req.session.user = user;
                                 req.session.access_token = access_token;
-                                res.status(200).redirect('/');
+                                // @TODO: should redirect to a page where the user can select what kind of user they are.
+                                // Automatically assigning new users as landlords
+                                return Landlord.createAsync({
+                                    user_id: user._id
+                                })
                             }
+                        })
+                        .then(function(llord){
+                            console.log('landlord help',llord)
+                            if (llord)                                
+                                res.status(200).redirect('/');
+
                         })
                         .catch(function(err) {
                             console.log(err);

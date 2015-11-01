@@ -12,23 +12,30 @@ var Building = Promise.promisifyAll(mongoose.model('Building'));
 
 var llHelper = require('../dbHelper')(Landlord);
 
-Router.get('/', function(req, res, next) {
+Router.get('/:user_id', function(req, res, next) {
+    console.log('user_id', req.params.user_id)
     //should be using ids
-    Landlord.find({}).exec(function(err, llord) {
-        Building.find({
-                landlord_id: llord[0]._id
-            }).populate('apartments')
-            .then(function(building) {
-                var options = {
-                    path: 'apartments.lease_ids',
-                    model: 'Lease'
-                };
-                Building.populate(building, options, function(err, bld) {
-                    var lluser = JSON.parse(JSON.stringify(llord[0]));
-                    lluser.building_ids = bld;
-                    res.json(lluser);
-                });
-            });
+    Landlord.find({user_id: req.params.user_id}).exec(function(err, llord) {
+        console.log('landlord',llord)
+        if (llord.length){
+            Building.find({
+                    landlord_id: llord[0]._id
+                }).populate('apartments')
+                .then(function(building) {
+                    var options = {
+                        path: 'apartments.lease_ids',
+                        model: 'Lease'
+                    };
+                    Building.populate(building, options, function(err, bld) {
+                        var lluser = JSON.parse(JSON.stringify(llord[0]));
+                        lluser.building_ids = bld;
+                        res.json(lluser);
+                    });
+                });    
+        }else{
+            res.json({})
+        }
+        
     });
 
 });
