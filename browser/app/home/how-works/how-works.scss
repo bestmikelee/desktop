@@ -10,12 +10,6 @@
     background-blend-mode: hard-light;
     font-size: 65px;
     
-    .imagine-header {
-        font-family: $theme-font;
-        color: #888;
-        font-weight: 100;
-    }
-
     @media(max-width:$phone-max) {
         & {
             height: calc(100vh - #{$nav-height/2});
@@ -80,6 +74,12 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
+    }
+
+    .imagine-header {
+        font-family: $theme-font;
+        color: #888;
+        font-weight: 100;
     }
 
     @media(max-width:$phone-max) {
