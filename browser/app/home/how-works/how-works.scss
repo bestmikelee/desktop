@@ -10,15 +10,17 @@
     background-blend-mode: hard-light;
     font-size: 65px;
     
+    .imagine-header {
+        font-family: $theme-font;
+        color: #888;
+        font-weight: 100;
+    }
+
     @media(max-width:$phone-max) {
         & {
             height: calc(100vh - #{$nav-height/2});
         }
     }
-}
-
-.imagine-container {
-    
 }
 
 .step {
@@ -56,10 +58,11 @@
 
     .description {
         margin-top: 15px;
-        margin-bottom: 40px;
         font-size: 18px;
         font-weight: bold;
-        font-family: 'Montserrat', sans-serif;
+        font-family: $theme-font;
+        color: #888;
+        font-weight: 300;
         text-align: center;
     }
 }
