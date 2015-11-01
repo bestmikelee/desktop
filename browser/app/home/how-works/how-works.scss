@@ -5,11 +5,11 @@
     height: calc(50vh - 50px);
     text-align: center;
     color: #fff;
-    background-image: url("/images/city-road-street-buildings.jpg");
+    background: #3A4E88 url("http://cdn.decoist.com/wp-content/uploads/2014/02/Lavish-bedroom-of-the-residence-at-One-Riverside-Park-with-New-York-City-view.jpg") no-repeat center 275px /cover;
     background-attachment: fixed;
-    background-position: center;
+    background-blend-mode: hard-light;
     font-size: 65px;
-    
+
     @media(max-width:$phone-max) {
         & {
             height: calc(100vh - 50px);
@@ -46,7 +46,7 @@
     height: 50vh;
     padding-top: 40px;
     padding-bottom: 40px;
-    
+
     h1 {
         margin: 0 0 5vh;
         font-size: 44px;

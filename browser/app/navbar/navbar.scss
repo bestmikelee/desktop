@@ -3,6 +3,7 @@
     border-bottom: solid 1px $border-color;
     padding-right: 15px;
     height: 80px;
+    background-color: $nav-background;
 
     &>* {
       position: relative;
@@ -145,7 +146,7 @@
     .navbar-brand,
     .navbar-brand:visited,
     .navbar-brand:focus {
-        color: $nav-text;
+        color: $nav-brand-text;
         font-size: 40px;
         font-weight: 200;
         margin-right: 52px;
@@ -159,13 +160,14 @@
 
         &:hover,
         &:focus:hover {
-            color: $nav-text-hover;
+            color: $nav-brand-text;
         }
     }
 
     .navbar-nav {
         li {
             cursor: pointer;
+            transition: color .3s ease-in-out;
 
             a:hover,
             a:focus {
