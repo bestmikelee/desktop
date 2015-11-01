@@ -30,7 +30,27 @@
         font-size: 48px;
         font-weight: bold;
         font-family: 'Montserrat', sans-serif;
+
+        .vacancies {
+          background: url('/images/building-icon.svg') center center /cover;
+          width: 16%;
+          height: 28%;
+          position: absolute;
+          transform: translateX(3.75%);
+        }
+
+        .repairs {
+          font-size: 66px;
+          transform: translateY(-3%);
+        }
+
+        .renewals {
+          font-size: 67px;
+          transform: translate(4%,.5%);
+        }
     }
+
+
 
     .description {
         margin-top: 15px;
