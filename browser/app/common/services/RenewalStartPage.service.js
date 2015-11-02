@@ -1,4 +1,5 @@
 app.service('RenewalStartPageService', ['$http','Session', function($http,Session){
+
 	var buildings = Session.user.data.building_ids;
 	var lxdCalendar = {};
 	buildings.forEach(function(building){
@@ -11,12 +12,33 @@ app.service('RenewalStartPageService', ['$http','Session', function($http,Sessio
 			lxdCalendar[address][apartment.unit_number]['brokers']
 		})
 	})
+	this.lxdCalendar = lxdCalendar
 
-	for(var key in lxdCalendar){
-		console.log(key)
-		for(var key2 in lxdCalendar.key){
-			console.log(lxdCalendar.key.key2)
+	var today = new Date();
+	var oneDay = 86400000
+
+	function dateOrganize(leftBound,rightBound,value){
+		var lxd = new Date(value)
+		var daysToExpiry = (lxd - today)/oneDay
+		console.log('test',lxd)
+		return value > leftBound && value < rightBound
+
+	}
+
+	var organizedLXD = {
+		hundred:[],
+		ninety:[],
+		seventyFive: [],
+		sixty:[]
+	}
+
+	for (var building in lxdCalendar){
+		for (var apartment in lxdCalendar[building]){
+			if (dateOrganize(0,105,lxdCalendar[building][apartment].lxd)) organizedLXD.hundred.push(lxdCalendar[building],lxdCalendar[building][apartment])
 		}
 	}
+
+
+	this.organizedLXD = organizedLXD
 
 }])

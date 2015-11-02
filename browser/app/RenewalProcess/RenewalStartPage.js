@@ -8,6 +8,6 @@ app.config(['$stateProvider',function($stateProvider) {
 
 app.controller('RenewalStartPageCtrl', ['$scope','$http','Session','RenewalStartPageService', function($scope,$http,Session,RenewalStartPageService){
 	var RSPService = RenewalStartPageService
-	console.log(RSPService.lxdCalendar)
+	console.log(RSPService.organizedLXD, RSPService.lxdCalendar)
 
 }])
