@@ -73,7 +73,8 @@
     .imagine-container {
         position: absolute;
         top: 50%;
-        transform: translateY(-50%);
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .imagine-header {
@@ -84,7 +85,7 @@
 
     @media(max-width:$phone-max) {
         & {
-            height: #{$nav-height/2};
+            height: calc(100vh - #{$nav-height/2});
         }
     }
 }

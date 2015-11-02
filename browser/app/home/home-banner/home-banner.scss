@@ -7,8 +7,8 @@
     min-height: auto;
     text-align: center;
     color: #fff;
-    background-image: url("/images/nyc_skyline_mobile.png");
-    background-position: center;
+    background: #000 url("/images/nyc_skyline.png") center center /cover;
+    background-blend-mode: hard-light;
 }
 
 .banner-header {
@@ -34,7 +34,7 @@
         width: 100%;
         
         .banner-header-landing {
-            @include text-trace(#07153D, 7px);
+            @include text-trace(#000, 7px);
         }
 
         hr {
@@ -59,10 +59,6 @@
     }
 
     .home-banner {
-        background-image: url("/images/nyc_skyline.png");
-        background-color: #000;
-        background-blend-mode: hard-light;
-        
         .header-content {
             .header-content-inner {
                 width: 85%;
