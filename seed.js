@@ -185,7 +185,7 @@ var visitSeed = function(config){
 };
 var leaseSeed = function(config){
     var leaseStart = moment(chance.date({
-        month: chance.integer({min: 8, max: 11}),
+        month: chance.integer({min: 0, max: 11}),
         year: chance.integer({min: 2014, max: 2015})
     }));
     var leaseEnd = leaseStart.clone().add(12, 'months');
