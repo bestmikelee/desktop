@@ -2,12 +2,13 @@
     border-radius: 0;
     border-bottom: solid 1px $border-color;
     padding-right: 15px;
-    height: 80px;
-
+    height: $nav-height;
+    background-color: $nav-background;
+    
     &>* {
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
     @media (min-width: 768px) and (max-width: 992px) {
@@ -43,7 +44,7 @@
         padding-top: 60px;
         z-index: 10;
         border-bottom: solid 1px $border-color;
-
+        
         a {
             color: black;
         }
@@ -52,7 +53,7 @@
     .search-result {
         width: 100%;
         font-size: 15px;
-
+        
         li {
             padding-left: 30px;
             padding-bottom: 5px;
@@ -120,14 +121,14 @@
     .navbar-toggle {
         background-color: #fff;
         border-color: #ddd;
-
+        
         &:hover {
             background-color: #ddd;
         }
 
         &:focus {
             background-color: #fff;
-
+            
             &:hover {
                 background-color: #ddd;
             }
@@ -145,28 +146,29 @@
     .navbar-brand,
     .navbar-brand:visited,
     .navbar-brand:focus {
-        color: $nav-text;
+        color: $nav-brand-text;
         font-size: 40px;
         font-weight: 200;
         margin-right: 52px;
         transition: 0.2s ease-in-out;
         font-family: $theme-font;
-
+        
         .navbar-brand-bolded {
-          font-weight: 500;
-          font-family: inherit;
+            font-weight: 500;
+            font-family: inherit;
         }
 
         &:hover,
         &:focus:hover {
-            color: $nav-text-hover;
+            color: $nav-brand-text;
         }
     }
 
     .navbar-nav {
         li {
             cursor: pointer;
-
+            transition: color 0.3s ease-in-out;
+            
             a:hover,
             a:focus {
                 color: $nav-text-hover !important;

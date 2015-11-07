@@ -6,7 +6,10 @@ $laptop-min: 992px;
 $main-color: #303083;
 $main-color-alt: #45458f;
 $nav-text: #e0e4e4;
-$nav-text-hover: #82A2FB;
+$nav-background: #000;
+$nav-brand-text: #a4b8e0;
+$nav-text-hover: #fff;
+$nav-height: 80px;
 $secondary-color: #e1ded9;
 $border-color: #7d8081;
 $theme-font: 'Dosis', sans-serif;
@@ -37,7 +40,7 @@ html,
 body {
     width: 100%;
     height: 100%;
-    background: #f7fafa;
+    background: #fff;
 }
 
 ul {
@@ -130,7 +133,7 @@ input[type=date]::-webkit-outer-spin-button {
 @function sqrt($r) {
     $x0: 1;
     $x1: $x0;
-
+    
     @for $i from 1 through 10 {
         $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
         $x0: $x1;

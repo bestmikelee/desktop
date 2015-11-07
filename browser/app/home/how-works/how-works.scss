@@ -2,17 +2,17 @@
     @include vend(background-size, cover);
     position: absolute;
     width: 100%;
-    height: calc(50vh - 50px);
+    height: calc(50vh - #{$nav-height/2});
     text-align: center;
     color: #fff;
-    background-image: url("/images/city-road-street-buildings.jpg");
+    background: #3a4e88 url("http://cdn.decoist.com/wp-content/uploads/2014/02/Lavish-bedroom-of-the-residence-at-One-Riverside-Park-with-New-York-City-view.jpg") no-repeat center 275px /cover;
     background-attachment: fixed;
-    background-position: center;
+    background-blend-mode: hard-light;
     font-size: 65px;
     
     @media(max-width:$phone-max) {
         & {
-            height: calc(100vh - 50px);
+            height: calc(100vh - #{$nav-height/2});
         }
     }
 }
@@ -30,31 +30,62 @@
         font-size: 48px;
         font-weight: bold;
         font-family: 'Montserrat', sans-serif;
+        
+        .vacancies {
+            background: url("/images/building-icon.svg") center center /cover;
+            width: 16%;
+            height: 28%;
+            position: absolute;
+            transform: translateX(3.75%);
+        }
+
+        .repairs {
+            font-size: 66px;
+            transform: translateY(-3%);
+        }
+
+        .renewals {
+            font-size: 67px;
+            transform: translate(4%,.5%);
+        }
     }
 
     .description {
         margin-top: 15px;
-        margin-bottom: 40px;
         font-size: 18px;
         font-weight: bold;
-        font-family: 'Montserrat', sans-serif;
+        font-family: $theme-font;
+        color: #888;
+        font-weight: 300;
         text-align: center;
     }
 }
 
 .how-it-works-explanation {
-    height: 50vh;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    height: calc(50vh - #{$nav-height/2});
+    position: relative;
     
     h1 {
         margin: 0 0 5vh;
         font-size: 44px;
     }
 
+    .imagine-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .imagine-header {
+        font-family: $theme-font;
+        color: #888;
+        font-weight: 100;
+    }
+
     @media(max-width:$phone-max) {
         & {
-            height: initial;
+            height: calc(100vh - #{$nav-height/2});
         }
     }
 }
