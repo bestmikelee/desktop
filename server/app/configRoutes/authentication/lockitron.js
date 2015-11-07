@@ -84,7 +84,7 @@ module.exports = function(app) {
                             }
                         })
                         .then(function(llord){
-                            console.log('landlord help',llord)
+                            console.log(llord)
                             if (llord)                                
                                 res.status(200).redirect('/');
 
