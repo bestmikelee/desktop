@@ -2,7 +2,7 @@ app.service('AuthService', function($http, Session, $rootScope, AUTH_EVENTS, $q)
 
     function onSuccessfulAuth(response) {
         var user = response.data.user;
-        console.log('user',user)
+        console.log('user',user);
         user.admin = response.data.admin;
         user.isLandlord = user.userType.indexOf('landlord') > -1;
         user.isBroker = user.userType.indexOf('broker') > -1;
@@ -12,7 +12,7 @@ app.service('AuthService', function($http, Session, $rootScope, AUTH_EVENTS, $q)
 		.then(function(buildingResponse){
              Session.create(response.data.id, user, buildingResponse.data, response.data.access_token);
              $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-			 return user;
+			 return user
 		});
     }
 
