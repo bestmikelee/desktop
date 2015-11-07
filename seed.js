@@ -111,17 +111,29 @@ var buildingSeed = function(llId) {
     });
 }
 
-var LLSeed = function(userId) {
+var TestLandlord = function(){
     return new Landlord({
-        user_id: userId,
-        company: chance.word() + " LL",
-        address: chance.street(),
-        city: chance.city(),
-        state: chance.state(),
-        gender: chance.gender(),
+        company: "Test Company",
+        address: "100 Grand Piano Ave.",
+        city: "New York",
+        state: "NY",
+        gender: "Male",
         building_ids: []
     })
 }
+
+var TestUser = function(){
+    return new User({
+        lockitronId: "faca0b63-7b03-4244-b4d9-1095d5466482",
+        firstName: "Test",
+        lastName: "Account",
+        userType: ["Landlord"],
+        email: "rwcbeaman@gmail.com",
+        phone: chance.phone()
+    });
+}
+
+
 
 var userSeed = function(config) {
     return new User({
@@ -201,7 +213,8 @@ var leaseSeed = function(config){
 
 var seedOneLandLord = function() {
 
-        var landlord = LLSeed();
+        var landlord = TestLandlord();
+        var masterUser = TestUser();
         var buildings = [];
         var apartments = [];
         var tenants = [];
@@ -210,6 +223,15 @@ var seedOneLandLord = function() {
         var brokerages = [];
         var visits = [];
         var leases = [];
+
+        masterUser.userTypeIds.landlord = landlord._id;
+        
+
+        masterUser.save(function(err){
+            if (err)
+                console.log("LANDLORD", err)
+            
+        })
 
         var saveModel = function(el){
             el.save(function(err){
@@ -346,10 +368,9 @@ var seedOneLandLord = function() {
         })
 
         //console.log(apartments)
-        var chanceLL = chance.pick(users)
-        landlord.user_id = chanceLL._id;
-        chanceLL.userTypeIds.landlord = landlord._id;
-        chanceLL.userType.push("Landlord");
+        // var chanceLL = chance.pick(users)
+        
+        landlord.user_id = masterUser._id;
         landlord.save(function(err){
             if (err)
                 console.log("LANDLORD", err)
@@ -377,7 +398,7 @@ var seedOneLandLord = function() {
             Brokerage.find({}).remove().exec();
             Broker.find({}).remove().exec();
             Visit.find({}).remove().exec();
-            User.find({email: {$ne: 'mike.sj.lee@gmail.com'}}).remove().exec();
+            User.find({}).remove().exec();
             Lease.find({}).remove().exec();
         }
 
