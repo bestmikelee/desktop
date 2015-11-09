@@ -1,282 +1,143 @@
-.home-banner {
-    @include vend(background-size, cover);
-    position: relative;
-    width: 100%;
-    height: calc(100vh - #{$nav-height});
-    padding-top: 30px;
-    min-height: auto;
-    text-align: center;
-    color: #fff;
-    background: #000 url("/images/nyc_skyline.png") center center /cover;
-    background-blend-mode: hard-light;
-}
-
-.banner-header {
-    margin-top: 0;
-    margin-bottom: 0;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 45px;
-    font-family: sans-serif;
-}
-
-.header-content {
+//shared
+.main-overlay {
     width: 100%;
     height: 100%;
     position: absolute;
     padding: 0 50px;
+    text-align: center;
+    color: $white;
+    font-family: sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
 
-    .header-content-inner {
+    .main-content {
         @include vend(transform, translate(-50%,-50%));
         position: absolute;
         top: 50%;
         left: 50%;
         width: 100%;
-
-        .banner-header-landing {
-            @include text-trace(#000, 7px);
-        }
-
-        hr {
-            max-width: 50px;
-            border-color: #f05f40;
-            border-width: 3px;
-            margin: 30px auto;
-        }
-
-        p {
-            margin-bottom: 50px;
-            font-size: 16px;
-            font-weight: 300;
-            color: rgba(255,255,255,.7);
+    }
+    .main-header {
+      font-size: 45px;
+      font-weight: 700;
+    }
+    @media(min-width:$tablet-min) {
+        .main-header {
+            font-size: 65px;
         }
     }
 }
 
-@media(min-width:$tablet-min) {
-    .banner-header {
-        font-size: 65px;
-    }
-
-    .home-banner {
-        .header-content {
-            .header-content-inner {
-                width: 85%;
-
-                p {
-                    font-size: 18px;
-                }
-            }
-        }
-    }
-}
-
-.btn-default {
-    border-color: #fff;
-    color: #222;
-    background-color: #eee;
-    -webkit-transition: all 0.35s;
-    -moz-transition: all 0.35s;
-    transition: all 0.35s;
-
-    .badge {
-        color: #fff;
-        background-color: #222;
-    }
-}
-
-.btn-default:hover,
-.btn-default:focus,
-.btn-default.focus,
-.btn-default:active,
-.btn-default.active,
-.open > .dropdown-toggle.btn-default {
-    border-color: #ededed;
-    color: #222;
-    background-color: #ccc;
-}
-
-.btn-default:active,
-.btn-default.active,
-.open > .dropdown-toggle.btn-default {
-    background-image: none;
-}
-
-.btn-default.disabled,
-.btn-default[disabled],
-fieldset[disabled] .btn-default,
-.btn-default.disabled:hover,
-.btn-default[disabled]:hover,
-fieldset[disabled] .btn-default:hover,
-.btn-default.disabled:focus,
-.btn-default[disabled]:focus,
-fieldset[disabled] .btn-default:focus,
-.btn-default.disabled.focus,
-.btn-default[disabled].focus,
-fieldset[disabled] .btn-default.focus,
-.btn-default.disabled:active,
-.btn-default[disabled]:active,
-fieldset[disabled] .btn-default:active,
-.btn-default.disabled.active,
-.btn-default[disabled].active,
-fieldset[disabled] .btn-default.active {
-    border-color: #fff;
-    background-color: #fff;
-}
-
-.btn-primary {
-    border-color: #f05f40;
-    color: #fff;
-    background-color: #f05f40;
-    -webkit-transition: all 0.35s;
-    -moz-transition: all 0.35s;
-    transition: all 0.35s;
-}
-
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary.focus,
-.btn-primary:active,
-.btn-primary.active,
-.open > .dropdown-toggle.btn-primary {
-    border-color: #ed431f;
-    color: #fff;
-    background-color: #ee4b28;
-}
-
-.btn-primary:active,
-.btn-primary.active,
-.open > .dropdown-toggle.btn-primary {
-    background-image: none;
-}
-
-.btn-primary.disabled,
-.btn-primary[disabled],
-fieldset[disabled] .btn-primary,
-.btn-primary.disabled:hover,
-.btn-primary[disabled]:hover,
-fieldset[disabled] .btn-primary:hover,
-.btn-primary.disabled:focus,
-.btn-primary[disabled]:focus,
-fieldset[disabled] .btn-primary:focus,
-.btn-primary.disabled.focus,
-.btn-primary[disabled].focus,
-fieldset[disabled] .btn-primary.focus,
-.btn-primary.disabled:active,
-.btn-primary[disabled]:active,
-fieldset[disabled] .btn-primary:active,
-.btn-primary.disabled.active,
-.btn-primary[disabled].active,
-fieldset[disabled] .btn-primary.active {
-    border-color: #f05f40;
-    background-color: #f05f40;
-}
-
-.btn-primary .badge {
-    color: #f05f40;
-    background-color: #fff;
-}
-
-.btn {
-    border: 0;
-    border-radius: 300px;
-    text-transform: uppercase;
-    font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
-    font-weight: 700;
-}
-
-.btn-xl {
-    padding: 15px 30px;
-}
-
-
-.how-works {
-    @include vend(background-size, cover);
-    position: absolute;
-    width: 100%;
-    height: calc(50vh - #{$nav-height/2});
-    text-align: center;
-    color: #fff;
-    background: #3a4e88 url("http://cdn.decoist.com/wp-content/uploads/2014/02/Lavish-bedroom-of-the-residence-at-One-Riverside-Park-with-New-York-City-view.jpg") no-repeat center 275px /cover;
-    background-attachment: fixed;
+// landing section
+.landing-img {
+    height: calc(100vh - #{$nav-height});
+    background: #000 url("/images/nyc_skyline.png") center center /cover;
     background-blend-mode: hard-light;
-    font-size: 65px;
-
-    @media(max-width:$phone-max) {
-        & {
-            height: calc(100vh - #{$nav-height/2});
-        }
+    .landing-header {
+        @include text-trace(#000, 7px);
+        padding-top: 10px;
+    }
+    .imagine-scroll {
+      .hr-imagine-scroll {
+        width: 50px;
+        border-color: #f05f40;
+        border-width: 3px;
+        margin: 30px auto;
+      }
+      .btn-imagine-scroll {
+          @include vend(transition, (all 0.35s))
+          border-color: #f05f40;
+          color: #fff;
+          background-color: #f05f40;
+          padding: 14px 29px;
+          border-radius: 300px;
+          text-transform: uppercase;
+          font-weight: 700;
+          &:hover {
+            color: inherit;
+            background-color: #D44324;
+          }
+      }
     }
 }
 
-.step {
-    .number {
-        margin: 0 auto;
-        border-radius: 50%;
-        width: 150px;
-        height: 150px;
-        padding: 42px;
-        background-color: $main-color;
-        color: #fff;
-        text-align: center;
-        font-size: 48px;
-        font-weight: bold;
-        font-family: 'Montserrat', sans-serif;
 
-        .vacancies {
-            background: url("/images/building-icon.svg") center center /cover;
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
-        .repairs {
-            font-size: 66px;
-            transform: translateY(-3%);
-        }
-
-        .renewals {
-            font-size: 67px;
-            transform: translate(4%,.5%);
-        }
-    }
-
-    .description {
-        margin-top: 15px;
-        font-size: 18px;
-        font-weight: bold;
-        font-family: $theme-font;
-        color: #888;
-        font-weight: 300;
-        text-align: center;
-    }
-}
-
-.how-it-works-explanation {
-    height: calc(50vh - #{$nav-height/2});
+// Bubbles Section
+.imagine-sect {
+    height: calc(100vh - #{$nav-height/2});
     position: relative;
-
-    h1 {
-        margin: 0 0 5vh;
-        font-size: 44px;
-    }
 
     .imagine-container {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-    }
-
-    .imagine-header {
-        font-family: $theme-font;
         color: #888;
-        font-weight: 100;
+
+        .imagine-bubbles-header {
+            font-family: $theme-font;
+            font-weight: 100;
+            text-align: center;
+            margin: 0 0 5vh;
+            font-size: 44px;
+        }
+        .bubbles {
+            .bubble {
+                margin: 0 auto;
+                border-radius: 50%;
+                width: 150px;
+                height: 150px;
+                padding: 42px;
+                background-color: $main-color;
+                color: #fff;
+                text-align: center;
+
+                .vacancies {
+                    background: url("/images/building-icon.svg") center center /cover;
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+                }
+
+                .repairs {
+                    font-size: 66px;
+                    transform: translateY(-3%);
+                }
+
+                .renewals {
+                    font-size: 67px;
+                    transform: translate(4%,.5%);
+                }
+            }
+
+            .description {
+                margin-top: 15px;
+                font-size: 18px;
+                font-family: $theme-font;
+                font-weight: 300;
+                text-align: center;
+            }
+        }
     }
 
-    @media(max-width:$phone-max) {
+    @media(min-width: $tablet-min) {
         & {
-            height: calc(100vh - #{$nav-height/2});
+            height: calc(50vh - #{$nav-height/2});
+        }
+    }
+}
+
+// bottom image
+.imagine-img {
+    height: calc(100vh - #{$nav-height/2});
+    background: #3a4e88 url("http://cdn.decoist.com/wp-content/uploads/2014/02/Lavish-bedroom-of-the-residence-at-One-Riverside-Park-with-New-York-City-view.jpg") no-repeat center 275px /cover;
+    background-attachment: fixed;
+    background-blend-mode: hard-light;
+    font-size: 65px;
+
+    @media(min-width: $tablet-min) {
+        & {
+            height: calc(50vh - #{$nav-height/2});
         }
     }
 }

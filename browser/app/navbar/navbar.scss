@@ -4,7 +4,7 @@
     padding-right: 15px;
     height: $nav-height;
     background-color: $nav-background;
-    
+
     &>* {
         position: relative;
         top: 50%;
@@ -31,10 +31,7 @@
     .navbar-form {
         border: none;
         padding-right: 0;
-    }
-
-    .list-unstyled {
-        margin-bottom: 0;
+        box-shadow: none;
     }
 
     .search-results {
@@ -44,7 +41,7 @@
         padding-top: 60px;
         z-index: 10;
         border-bottom: solid 1px $border-color;
-        
+
         a {
             color: black;
         }
@@ -53,7 +50,7 @@
     .search-result {
         width: 100%;
         font-size: 15px;
-        
+
         li {
             padding-left: 30px;
             padding-bottom: 5px;
@@ -119,28 +116,38 @@
     }
 
     .navbar-toggle {
-        background-color: #fff;
-        border-color: #ddd;
-        
-        &:hover {
-            background-color: #ddd;
-        }
+        background-color: inherit;
+        border: none;
 
-        &:focus {
-            background-color: #fff;
-            
-            &:hover {
-                background-color: #ddd;
+        &:hover, &:focus, &:focus:hover {
+            background-color: inherit;
+            .icon-bar {
+              background-color: $nav-text-hover;
             }
         }
 
         .icon-bar {
-            background-color: #888;
+            @include vend(transition, (all .35s ease-in-out));
+            background-color: $nav-text;
         }
     }
 
     .navbar-collapse {
         border-top: none;
+
+        &.in,
+        &.collapsing {
+            width: 100vw;
+            box-shadow: none;
+            top: 29px;
+            transform: initial;
+            background-color: inherit;
+            border-bottom: solid 1px $border-color;
+
+            .nav-button {
+                padding-left: 25px;
+            }
+        }
     }
 
     .navbar-brand,
@@ -152,7 +159,7 @@
         margin-right: 52px;
         transition: 0.2s ease-in-out;
         font-family: $theme-font;
-        
+
         .navbar-brand-bolded {
             font-weight: 500;
             font-family: inherit;
@@ -168,7 +175,7 @@
         li {
             cursor: pointer;
             transition: color 0.3s ease-in-out;
-            
+
             a:hover,
             a:focus {
                 color: $nav-text-hover !important;

@@ -20,7 +20,7 @@ app.config(['$stateProvider',function($stateProvider) {
             url: '',
             templateUrl: 'app/home/home.html',
             controller: function HomeCtrl($scope) {
-                $scope.goToHowWorks = function(){
+                $scope.goToWhatWeDo = function(){
                     var aboutTop = Math.ceil($('#about').offset().top);
                     $('html, body').animate({
                         scrollTop: aboutTop
