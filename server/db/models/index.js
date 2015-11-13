@@ -14,3 +14,4 @@ require('./admin');
 require('./invite');
 require('./request');
 require('./lease');
+require('./note');

@@ -1,6 +1,7 @@
 var crypto = require('crypto');
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Schema.Types.ObjectId;
+var note = mongoose.model('Note');
 
 var validators = require('./validation');
 
@@ -16,7 +17,8 @@ var UserSchema = new mongoose.Schema({
     lastName: String,
     photo: String,
     phone: String,
-    email: String
+    email: String,
+    notifications: [note]
 });
 
 UserSchema.path('email').validate(validators.email, 'Must be a valid email');
