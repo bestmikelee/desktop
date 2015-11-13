@@ -6,9 +6,11 @@ var NoteSchema = new Schema({
   to: {type: ObjectId, ref: 'User'},
   from: {type: ObjectId, ref: 'User'},
   date_created: { type: Date, default: Date.now },
-  content: String,
-  appt_date: Date,
-  status_new: Boolean,
+  title: String,
+  body: String,
+  start_date: Date,
+  end_date: Date,
+  status_new: { type: Boolean, default: true },
   status_archive: Boolean
 });
 
