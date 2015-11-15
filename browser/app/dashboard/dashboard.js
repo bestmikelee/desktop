@@ -1,3 +1,12 @@
+app.config(['$stateProvider',function($stateProvider) {
+    $stateProvider.state('home.dashboard', {
+            url: '',
+            templateUrl: 'app/dashboard/dashboard.html',
+            controller: 'dashboardCtrl'
+        });
+}]);
+
+
 app.controller('dashboardCtrl', ['$scope','$timeout', 'Session', 'llRestService', function ($scope, $timeout, Session, llRestService) {
 
     // set user's buildings
@@ -110,6 +119,7 @@ app.controller('dashboardCtrl', ['$scope','$timeout', 'Session', 'llRestService'
         });
     };
 }]);
+
 
 app.filter('presentableVals', function() {
     return function(obj) {

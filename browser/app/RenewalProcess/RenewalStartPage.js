@@ -6,8 +6,7 @@ app.config(['$stateProvider',function($stateProvider) {
 	})
 }])
 
-app.controller('RenewalStartPageCtrl', ['$scope','$http','Session','RenewalStartPageService', function($scope,$http,Session,RenewalStartPageService){
-	var RSPService = RenewalStartPageService
-	console.log(RSPService.organizedLXD, RSPService.lxdCalendar)
-
-}])
+app.controller('RenewalStartPageCtrl', ['$scope','$http','Session','expiration', function($scope,$http,Session,expiration){
+		$scope.renewalList = expiration.expiration().hundred
+	}
+])

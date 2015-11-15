@@ -65,19 +65,13 @@ a:focus {
 }
 
 #main {
-    position: absolute;
-    margin: 80px auto 0;
-    height: calc(100% - 80px);
+    margin: $nav-height 0 0;
+    height: 100%;
     width: 100%;
 }
 
 .hidden {
     display: none;
-}
-
-.pledge-form {
-    position: absolute;
-    z-index: 10;
 }
 
 //Turn off date/number form spinners
@@ -97,6 +91,17 @@ input[type=date]::-webkit-outer-spin-button {
 //     -webkit-box-shadow: 0 0 0 1000px white inset !important;
 //     box-shadow: 0 0 0 1000px white inset !important;
 // }
+
+// enables ng-cloak
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+    display: none !important;
+}
+
 
 @mixin clearfix {
     &:after {
@@ -133,7 +138,7 @@ input[type=date]::-webkit-outer-spin-button {
 @function sqrt($r) {
     $x0: 1;
     $x1: $x0;
-    
+
     @for $i from 1 through 10 {
         $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
         $x0: $x1;

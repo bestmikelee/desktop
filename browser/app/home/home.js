@@ -18,10 +18,14 @@ app.config(['$stateProvider',function($stateProvider) {
             }]
         }).state('home.landing', {
             url: '',
-            templateUrl: 'app/home/home.html'
-        }).state('home.dashboard', {
-            url: '',
-            templateUrl: 'app/dashboard/dashboard.html',
-            controller: 'dashboardCtrl'
+            templateUrl: 'app/home/home.html',
+            controller: function HomeCtrl($scope) {
+                $scope.goToWhatWeDo = function(){
+                    var aboutTop = Math.ceil($('#about').offset().top);
+                    $('html, body').animate({
+                        scrollTop: aboutTop
+                    }, aboutTop - $(window).scrollTop() * 0.8);
+                };
+            }
         });
 }]);
