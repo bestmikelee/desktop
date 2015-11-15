@@ -1,7 +1,7 @@
 /////////////// utility functions
 var chance = require('chance')();
 var _ = require('underscore');
-var bluebird = require('bluebird')
+var Promise = require('bluebird')
 var mongoose = require('mongoose');
 var moment = require('moment');
 var Schema = mongoose.Schema;
@@ -9,21 +9,27 @@ var ObjectId = Schema.Types.ObjectId;
 //////////require in db
 
 var db = require('./server/db');
-db.then(function(err){
-    if (err)
-        console.log('database message says = ',err)
-})
-/////////////// require models
-var Building = mongoose.model('Building');
-var Apartment = mongoose.model('Apartment');
-var Tenant = mongoose.model('Tenant');
-var Landlord = mongoose.model('Landlord');
-var User = mongoose.model('User');
-var Broker = mongoose.model('Broker');
-var Brokerage = mongoose.model('Brokerage');
-var Visit = mongoose.model('Visit');
-var Lease = mongoose.model('Lease');
 
+/////////////// require models
+var Building = Promise.promisifyAll(mongoose.model('Building'));
+var Apartment = Promise.promisifyAll(mongoose.model('Apartment'));
+var Tenant = Promise.promisifyAll(mongoose.model('Tenant'));
+var Landlord = Promise.promisifyAll(mongoose.model('Landlord'));
+var User = Promise.promisifyAll(mongoose.model('User'));
+var Broker = Promise.promisifyAll(mongoose.model('Broker'));
+var Brokerage = Promise.promisifyAll(mongoose.model('Brokerage'));
+var Visit = Promise.promisifyAll(mongoose.model('Visit'));
+var Lease = Promise.promisifyAll(mongoose.model('Lease'));
+
+Promise.promisifyAll(Building.prototype);
+Promise.promisifyAll(Apartment.prototype);
+Promise.promisifyAll(Tenant.prototype);
+Promise.promisifyAll(Landlord.prototype);
+Promise.promisifyAll(User.prototype);
+Promise.promisifyAll(Broker.prototype);
+Promise.promisifyAll(Brokerage.prototype);
+Promise.promisifyAll(Visit.prototype);
+Promise.promisifyAll(Lease.prototype);
 //////////connect to the database
 
 
@@ -185,8 +191,8 @@ var visitSeed = function(config){
 };
 var leaseSeed = function(config){
     var leaseStart = moment(chance.date({
-        month: chance.integer({min: 0, max: 11}),
-        year: chance.integer({min: 2014, max: 2015})
+        month: chance.integer({min: 0, max: 4}),
+        year: chance.integer({min: 2015, max: 2015})
     }));
     var leaseEnd = leaseStart.clone().add(12, 'months');
     var now = moment(),
@@ -225,18 +231,9 @@ var seedOneLandLord = function() {
         var leases = [];
 
         masterUser.userTypeIds.landlord = landlord._id;
-        
-
-        masterUser.save(function(err){
-            if (err)
-                console.log("LANDLORD", err)
-            
-        })
 
         var saveModel = function(el){
-            el.save(function(err){
-                if(err) throw err;
-            })
+            return el.saveAsync()
         }
 
         var randNumOfBuildings = chance.integer({
@@ -245,7 +242,7 @@ var seedOneLandLord = function() {
         });
 
         for (var i = 0; i < randNumOfBuildings; i++) {
-            buildings.push(buildingSeed(landlord._id))
+            buildings.push(Promise.promisifyAll(buildingSeed(landlord._id)))
         }
 
 
@@ -255,7 +252,7 @@ var seedOneLandLord = function() {
                 max: 60
             })
             for (var i = 0; i < randNumOfApartments; i++) {
-                apartments.push(apartmentSeed(null, blding._id, i))
+                apartments.push(Promise.promisifyAll(apartmentSeed(null, blding._id, i)))
             }
         })
 
@@ -267,15 +264,15 @@ var seedOneLandLord = function() {
                 max: 4
             })
             for (var i = 0; i < randNumOfTenants; i++) {
-                currentTenant = tenantSeed(apartment._id, apartment.building_id);
-                currentUser = userSeed({
+                currentTenant = Promise.promisifyAll(tenantSeed(apartment._id, apartment.building_id));
+                currentUser = Promise.promisifyAll(userSeed({
                     types: ['Tenant'],
                     typeIds: {
                         tenant: currentTenant._id,
                         landlord: null,
                         broker: null
                     }
-                })
+                }))
                 currentTenant.user_id = currentUser._id;
                 users.push(currentUser)
                 tenants.push(currentTenant);
@@ -319,7 +316,7 @@ var seedOneLandLord = function() {
                 user_ids: [chance.pick(users)._id],
                 building_ids: [chance.pick(buildings)._id]
             }
-            brokerages.push(brokerageSeed(config))
+            brokerages.push(Promise.promisifyAll(brokerageSeed(config)))
         }
 
         for (var i = 0; i < 20; i ++){
@@ -337,72 +334,82 @@ var seedOneLandLord = function() {
         }
 
 
-        apartments.forEach(function(apt){
-            var tempLeaseIds = [];
 
-            for (var i = 0; i < chance.integer({min: 1, max: 3}); i++){
-                var chanceBroker = chance.integer({ min: 0, max: brokers.length-1 })
-                apt.brokers = _.union(apt.brokers, [brokers[chanceBroker]._id]);
-                apt.brokerages = _.union(apt.brokerages, [brokers[chanceBroker].brokerage_id])
-                var config = {
-                    broker_id: brokers[chanceBroker]._id,
-                    tenant_id: chance.pick(tenants)._id,
-                    apartment_id: chance.pick(apartments)._id
-                }
-                var visit = visitSeed(config)
-                brokers[chanceBroker].showings.push(visit._id);
-                visits.push(visit)
-            }
-            var leaseConfig = {
-                    tenant_ids: [chance.pick(tenants)._id, chance.pick(tenants)._id],
-                    apartment_id: apt._id,
-                    landlord_id: landlord.user_id,
-                    broker_id: brokers[chanceBroker]._id
-                }
-                var lease = leaseSeed(leaseConfig)
-                lease.save(function(err){
-                    if(err) throw err;
-                })
-                apt.lease_ids = [lease._id]
-                apt.save(function(err){if(err) throw err})
-        })
 
         //console.log(apartments)
         // var chanceLL = chance.pick(users)
-        
-        landlord.user_id = masterUser._id;
-        landlord.save(function(err){
-            if (err)
-                console.log("LANDLORD", err)
+        return masterUser.saveAsync().then(function(savedMasterUser){
+            landlord.user_id = savedMasterUser[0]._id;
+            return landlord.saveAsync();
         })
-        buildings.forEach(saveModel.bind(this))
-        //apartments.forEach(saveModel.bind(this))
-        tenants.forEach(saveModel.bind(this))
-        users.forEach(saveModel.bind(this))
-        brokerages.forEach(saveModel.bind(this))
-        brokers.forEach(saveModel.bind(this))
-        //leases.forEach(saveModel.bind(this))
+        .then(function(llord){
+            return Promise.map(apartments,function(apt){
+                var tempLeaseIds = [];
 
-        visits.forEach(saveModel.bind(this))
-        //console.log(_.flatten(lease_ids))
+                for (var i = 0; i < chance.integer({min: 1, max: 3}); i++){
+                    var chanceBroker = chance.integer({ min: 0, max: brokers.length-1 })
+                    apt.brokers = _.union(apt.brokers, [brokers[chanceBroker]._id]);
+                    apt.brokerages = _.union(apt.brokerages, [brokers[chanceBroker].brokerage_id])
+                    var config = {
+                        broker_id: brokers[chanceBroker]._id,
+                        tenant_id: chance.pick(tenants)._id,
+                        apartment_id: chance.pick(apartments)._id
+                    }
+                    var visit = Promise.promisifyAll(visitSeed(config))
+                    brokers[chanceBroker].showings.push(visit._id);
+                    visits.push(visit)
+                }
+                var leaseConfig = {
+                        tenant_ids: [chance.pick(tenants)._id, chance.pick(tenants)._id],
+                        apartment_id: apt._id,
+                        landlord_id: landlord.user_id,
+                        broker_id: brokers[chanceBroker]._id
+                    }
+                    var lease = Promise.promisifyAll(leaseSeed(leaseConfig))
+                return lease.saveAsync()
+                    .then(function(savedLease){
+                        //console.log('saved Lease')
+                        apt.lease_ids = [savedLease[0]._id]
+                        //console.log(apt)
+                        return apt.saveAsync()
+                    });
+            })
 
-        console.log('done')
+        })
+        .then(function(llord){
+            return Promise.all([
+                    Promise.all(buildings.map(saveModel.bind(this))),
+                    Promise.all(tenants.map(saveModel.bind(this))),
+                    Promise.all(users.map(saveModel.bind(this))),
+                    Promise.all(brokerages.map(saveModel.bind(this))),
+                    Promise.all(brokers.map(saveModel.bind(this))),
+                    Promise.all(visits.map(saveModel.bind(this)))
+                    ])
+        }).then(function(all){
+            console.log("seed done")
+            mongoose.connection.close();
+        }).catch(function(err){
+            console.log(err)
+        })
+
     }
 
         var wipeDB = function() {
 
-            Landlord.find({}).remove().exec();
-            Building.find({}).remove().exec();
-            Apartment.find({}).remove().exec();
-            Tenant.find({}).remove().exec();
-            Brokerage.find({}).remove().exec();
-            Broker.find({}).remove().exec();
-            Visit.find({}).remove().exec();
-            User.find({}).remove().exec();
-            Lease.find({}).remove().exec();
+            return Promise.all([
+                Landlord.remove({}).exec(),
+                Building.remove({}).exec(),
+                Apartment.remove({}).exec(),
+                Tenant.remove({}).exec(),
+                Brokerage.remove({}).exec(),
+                Broker.remove({}).exec(),
+                Visit.remove({}).exec(),
+                User.remove({}).exec(),
+                Lease.remove({}).exec()
+            ]);
         }
 
-        wipeDB();
+
 
 
         var seedDatabase = function() {
@@ -412,4 +419,11 @@ var seedOneLandLord = function() {
             return;
         }
 
-        seedDatabase();
+    db.then(function(db){
+        return wipeDB()
+    }).then(function(){
+        console.log('DB wiped');
+        return seedDatabase(); // can't fingure out how to wait until the returned promise chain is done out here (vs inside there), but it works so whatev
+    }).catch(function(err){
+        console.log(err);
+    })

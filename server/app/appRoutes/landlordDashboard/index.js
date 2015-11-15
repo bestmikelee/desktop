@@ -13,9 +13,8 @@ var Building = Promise.promisifyAll(mongoose.model('Building'));
 var llHelper = require('../dbHelper')(Landlord);
 
 Router.get('/:user_id', function(req, res, next) {
-    console.log('user_id', req.params.user_id)
     //should be using ids
-    Landlord.find({user_id: req.params.user_id}).exec(function(err, llord) {
+    Landlord.find({company:"Test Company"}).exec(function(err, llord) {
         console.log('landlord',llord)
         if (llord.length){
             Building.find({

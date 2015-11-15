@@ -9,6 +9,7 @@ require('./tenant');
 require('./broker');
 require('./brokerage');
 require('./visit');
+require('./note');
 require('./user');
 require('./admin');
 require('./invite');
