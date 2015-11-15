@@ -5,6 +5,7 @@ var Request = Promise.promisifyAll(require('request'));
 var visit = Promise.promisifyAll(mongoose.model('Visit'));
 var async = require('async');
 var _ = require('lodash');
+//var io = require('../../../sockets')();
 // Requiring in all mongo models needed
 
 var Landlord = Promise.promisifyAll(mongoose.model('Landlord'));
@@ -15,7 +16,9 @@ var llHelper = require('../dbHelper')(Landlord);
 Router.get('/:user_id', function(req, res, next) {
     //should be using ids
     Landlord.find({company:"Test Company"}).exec(function(err, llord) {
-        console.log('landlord',llord)
+        //console.log('landlord',llord)
+        
+        //console.log(io)
         if (llord.length){
             Building.find({
                     landlord_id: llord[0]._id

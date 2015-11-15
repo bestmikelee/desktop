@@ -6,10 +6,11 @@ var startDb = require('./db');
 var app = require('./app');
 
 var server = require('http').createServer();
-var socket = require('./sockets');
+//var socket = require('./sockets');
 
 var createApplication = function() {
   server.on('request', app);
+  require('./sockets')(server)
 };
 
 var startServer = function () {
@@ -20,20 +21,20 @@ var startServer = function () {
     });
 };	
 
-var connectSocket = function(){
-	var io = socket(server);
-	// io.on('connection', function(sock){
-	// 	console.dir('sockets!!',);
-	// 	sock.emit('hi',{yo:'yo'})
-	// });
-}
+// var connectSocket = function(){
+// 	io = socket(server);
+// 	// io.on('connection', function(sock){
+// 	// 	console.dir('sockets!!',);
+// 	// 	sock.emit('hi',{yo:'yo'})
+// 	// });
+// }
 
 
 
 startDb
 	.then(createApplication)
 	.then(startServer)
-	.then(connectSocket)
+	//.then(connectSocket)
 	.catch(function(err){
 	  console.error(chalk.red(err.stack));
 	  process.kill(1);
