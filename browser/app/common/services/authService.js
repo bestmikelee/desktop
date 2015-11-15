@@ -1,4 +1,4 @@
-app.service('AuthService', function($http, Session, $rootScope, AUTH_EVENTS, $q) {
+app.service('AuthService', function($http, Session, $rootScope, AUTH_EVENTS, $q, $location) {
 
     function onSuccessfulAuth(response) {
         var user = response.data.user;
@@ -10,7 +10,8 @@ app.service('AuthService', function($http, Session, $rootScope, AUTH_EVENTS, $q)
         user.isContractor = user.userType.indexOf('contractor') > -1;
         return $http.get('api/landlord/' + user._id)
 		.then(function(buildingResponse){
-            var lordSocket = io.connect('localhost:5000/lordSocket/' + user._id)
+            var lordSocket = io.connect(location.host + '/lordSocket/' + user._id)
+            console.log(location.host)
             console.log(lordSocket)
             lordSocket.on('auth', function(data){
                 console.log(data);

@@ -6,7 +6,7 @@ app.service('Session', function($rootScope, $interval, AUTH_EVENTS) {
     $rootScope.$on(AUTH_EVENTS.notAuthenticated, function() {
         self.destroy();
     });
-    var test = io.connect('http://localhost:5000');
+    var test = io.connect(location.host + '/');
     test.on('hi', function(data){
         console.log(data)
     })
