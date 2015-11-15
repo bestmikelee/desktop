@@ -6,6 +6,7 @@ var path = require('path');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Admin = mongoose.model('Admin');
+var io = require('../../../sockets')();
 
 var ENABLED_AUTH_STRATEGIES = [
     // 'local',
@@ -16,11 +17,10 @@ var ENABLED_AUTH_STRATEGIES = [
 ];
 
 module.exports = function(app) {
-
     // First, our session middleware will set/read sessions from the request.
     // Our sessions will get stored in Mongo using the same connection from
     // mongoose. Check out the sessions collection in your MongoCLI.
-    app.use(session({
+    var sessionMiddleware = session({
         secret: app.getValue('env').SESSION_SECRET,
         store: new MongoStore({
             mongooseConnection: mongoose.connection
@@ -30,12 +30,14 @@ module.exports = function(app) {
         }
         // resave: true
         // saveUninitialized: true
-    }));
+    })
+    app.use(sessionMiddleware);
 
     // Initialize passport and also allow it to read
     // the request session information.
     app.use(passport.initialize());
     app.use(passport.session());
+
     // When we give a cookie to the browser, it is just the userId (encrypted with our secret).
     passport.serializeUser(function(user, done) {
         done(null, user.id);
@@ -53,8 +55,16 @@ module.exports = function(app) {
     // This is used by the browser application (Angular) to determine if a user is
     // logged in already.
     app.get('/session', function(req, res) {
+
         if (req.session.user) {
             Admin.isAdmin(req.session.user).then(function(isAnAdmin) {
+                
+                var nsp = io
+                .of('/lordSocket/' + req.session.user._id)
+                .on('connection', function(socket){
+                    console.log('lordSocket namespace worked')
+                    socket.emit('auth', {yes: 'my-lord'})
+                })
                 res.status(200).json({
                     user: req.session.user,
                     admin: isAnAdmin,

@@ -9,6 +9,7 @@ var express = require('express'),
 
 var app = express();
 
+
 // setValue and getValue are merely alias
 // for app.set and app.get used in the less
 // common way of setting application variables.  // Taken from FSG
@@ -71,5 +72,6 @@ app.use('/api', require('./appRoutes'));
 app.get('/*', function(req, res) {
     res.render('index');
 });
+
 
 module.exports = app;
