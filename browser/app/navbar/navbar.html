@@ -11,16 +11,11 @@
         </a>
     </div>
     <div class="navbar-collapse collapse" id="navbar">
-        <div class="input-group nav navbar-nav navbar-form navbar-left navbar-search-form" role="search">
-            <span class="input-group-btn navbar-search">
-                <button class="btn btn-default navbar-search" type="submit">
-                    <i ng-class="loading? 'fa fa-spinner fa-pulse' : 'glyphicon glyphicon-search'"></i>
-                </button>
-            </span>
-            <input class="form-control navbar-search" id="srch-term" name="srch-term" ng-change="runSearch()" ng-model="search" placeholder="Search Name" type="text">
+        <div class="input-group navbar-left search-form" role="search">
+            <i class="search-icon" ng-class="loading? 'fa fa-spinner fa-pulse' : 'glyphicon glyphicon-search'"></i>
+            <input class="search search-input" id="srch-term" name="srch-term" ng-change="runSearch()" ng-model="search" placeholder="Search Name" type="text">
         </div>
         <ul class="nav navbar-nav navbar-right">
-
             <li>
                 <a class="nav-buttons" ng-click="collapseNav()" ng-href="/lockitron-redirect?state=login" ng-show="!user" target="_self">LOG IN</a>
             </li>
@@ -44,10 +39,8 @@
 <!-- <div class="search-results" ng-show="searchResults[0] && search">
         <ul class="list-unstyled">
             <a class="search-result" href="/campaign/{{searchResult._id}}" ng-click="collapseSearch()" ng-repeat="searchResult in searchResults | limitTo: 5">
-                <li class="search-result">
-                    {{searchResult.firstName}}
-                    {{searchResult.lastName}}
-                </li>
+                {{searchResult.firstName}}
+                {{searchResult.lastName}}
             </a>
         </ul>
     </div> -->

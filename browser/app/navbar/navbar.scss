@@ -24,72 +24,150 @@
         }
     }
 
-    .navbar-left {
-        width: 100%;
+    .navbar {
+      &-toggle {
+          background-color: inherit;
+          border: none;
+
+          &:hover, &:focus, &:focus:hover {
+              background-color: inherit;
+              .icon-bar {
+                background-color: $nav-text-hover;
+              }
+          }
+
+          .icon-bar {
+              @include vend(transition, (all .35s ease-in-out));
+              background-color: $nav-text;
+          }
+      }
+
+      &-collapse {
+          border-top: none;
+
+          &.in,
+          &.collapsing {
+              width: 100vw;
+              box-shadow: none;
+              top: 29px;
+              transform: initial;
+              background-color: inherit;
+              border-bottom: solid 1px $border-color;
+
+              .nav-button {
+                  padding-left: 25px;
+              }
+          }
+      }
+
+      &-brand, &-brand:visited, &-brand:focus {
+          color: $nav-brand-text;
+          font-size: 40px;
+          font-weight: 200;
+          margin-right: 52px;
+          transition: 0.2s ease-in-out;
+          font-family: $theme-font;
+
+          .navbar-brand-bolded {
+              font-weight: 500;
+              font-family: inherit;
+          }
+
+          &:hover,
+          &:focus:hover {
+              color: $nav-brand-text;
+          }
+      }
+
+      &-nav {
+          li {
+              cursor: pointer;
+              transition: color 0.3s ease-in-out;
+
+              a:hover,
+              a:focus {
+                  color: $nav-text-hover !important;
+              }
+
+              a {
+                  color: $nav-text !important;
+                  font-size: 14px;
+              }
+          }
+      }
+
+      &-button {
+          float: right;
+          border: 1px solid black;
+          margin-top: 10px;
+          background: none;
+          outline: none !important;
+      }
+
+      &-left {
+          width: 100%;
+      }
+
+      &-form {
+          border: none;
+          padding-right: 0;
+          box-shadow: none;
+      }
     }
 
-    .navbar-form {
-        border: none;
-        padding-right: 0;
-        box-shadow: none;
-    }
+    .search {
+      &, &:focus, &:hover, &:active, &:active:focus, &:active:hover {
+          color: $nav-text;
+          border: none;
+          -webkit-box-shadow: none;
+          box-shadow: none;
+          outline: 0;
+          background-color: initial;
+          box-shadow: none;
+      }
 
-    .search-results {
-        background-color: white;
-        position: fixed;
-        width: 100%;
-        padding-top: 60px;
-        z-index: 10;
-        border-bottom: solid 1px $border-color;
-
-        a {
-            color: black;
-        }
-    }
-
-    .search-result {
-        width: 100%;
-        font-size: 15px;
-
-        li {
-            padding-left: 30px;
-            padding-bottom: 5px;
-        }
-
-        &:hover {
-            background-color: #f7fafa;
-            text-decoration: none;
-        }
-    }
-
-    #srch-term {
-        font-weight: 500;
-    }
-
-    .navbar-search-form {
-        min-width: 157px;
-        width: calc(100% - 700px) !important;
-        overflow: hidden;
-        margin-bottom: 0 !important;
-    }
-
-    .navbar-search.btn {
-        cursor: default;
-    }
-
-    .navbar-search,
-    .navbar-search:focus,
-    .navbar-search:hover,
-    .navbar-search:active,
-    .navbar-search:active:focus,
-    .navbar-search:active:hover {
+      &-icon {
         color: $nav-text;
-        border: none;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-        outline: 0;
-        background-color: initial;
-        box-shadow: none;
+        width: 1%;
+        vertical-align: middle;
+        display: table-cell;
+        padding: 6px 12px;
+        font-size: 15px;
+      }
+
+      &-form {
+          min-width: 157px;
+          width: calc(100% - 700px) !important;
+          overflow: hidden;
+          padding: 10px 0;
+      }
+
+      &-input {
+        font-weight: 200;
+        width: 100%;
+        padding: 6px 12px;
+      }
+
+      &-results {
+          background-color: white;
+          position: fixed;
+          width: 100%;
+          padding-top: 60px;
+          z-index: 10;
+          border-bottom: solid 1px $border-color;
+      }
+
+      &-result {
+          width: 100%;
+          font-size: 15px;
+          padding-left: 30px;
+          padding-bottom: 5px;
+
+          &:hover {
+              background-color: #f7fafa;
+              text-decoration: none;
+          }
+      }
     }
 
     .user-photo-link {
@@ -104,95 +182,5 @@
         border-radius: 50%;
         border: 1px solid $nav-text;
         background: #000 no-repeat center /contain;
-    }
-
-    .form-control.navbar-search {
-        width: 100%;
-        padding-right: 0;
-    }
-
-    .glyphicon {
-        color: $nav-text;
-    }
-
-    .navbar-toggle {
-        background-color: inherit;
-        border: none;
-
-        &:hover, &:focus, &:focus:hover {
-            background-color: inherit;
-            .icon-bar {
-              background-color: $nav-text-hover;
-            }
-        }
-
-        .icon-bar {
-            @include vend(transition, (all .35s ease-in-out));
-            background-color: $nav-text;
-        }
-    }
-
-    .navbar-collapse {
-        border-top: none;
-
-        &.in,
-        &.collapsing {
-            width: 100vw;
-            box-shadow: none;
-            top: 29px;
-            transform: initial;
-            background-color: inherit;
-            border-bottom: solid 1px $border-color;
-
-            .nav-button {
-                padding-left: 25px;
-            }
-        }
-    }
-
-    .navbar-brand,
-    .navbar-brand:visited,
-    .navbar-brand:focus {
-        color: $nav-brand-text;
-        font-size: 40px;
-        font-weight: 200;
-        margin-right: 52px;
-        transition: 0.2s ease-in-out;
-        font-family: $theme-font;
-
-        .navbar-brand-bolded {
-            font-weight: 500;
-            font-family: inherit;
-        }
-
-        &:hover,
-        &:focus:hover {
-            color: $nav-brand-text;
-        }
-    }
-
-    .navbar-nav {
-        li {
-            cursor: pointer;
-            transition: color 0.3s ease-in-out;
-
-            a:hover,
-            a:focus {
-                color: $nav-text-hover !important;
-            }
-
-            a {
-                color: $nav-text !important;
-                font-size: 14px;
-            }
-        }
-    }
-
-    .login-button {
-        float: right;
-        border: 1px solid black;
-        margin-top: 10px;
-        background: none;
-        outline: none !important;
     }
 }
