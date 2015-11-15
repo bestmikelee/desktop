@@ -17,19 +17,19 @@
         </div>
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a class="nav-buttons" ng-click="collapseNav()" ng-href="/lockitron-redirect?state=login" ng-show="!user" target="_self">LOG IN</a>
+                <a class="nav-button" ng-click="collapseNav()" ng-href="/lockitron-redirect?state=login" ng-show="!user" target="_self">LOG IN</a>
             </li>
 
             <li>
-                <a class="nav-buttons" ng-click="collapseNav()" ng-href="https://lockitron.com/account/register" ng-show="!user">SIGN UP</a>
+                <a class="nav-button" ng-click="collapseNav()" ng-href="https://lockitron.com/account/register" ng-show="!user">SIGN UP</a>
             </li>
 
             <li>
-                <a class="nav-buttons" href="#" ng-click="logout(); collapseNav()" ng-show="user">LOG OUT</a>
+                <a class="nav-button" href="#" ng-click="logout(); collapseNav()" ng-show="user">LOG OUT</a>
             </li>
 
             <li>
-                <a class="nav-buttons" href="#" ng-class="{'user-photo-link': user && user.photo}" ng-show="user" ui-sref="user-account">
+                <a class="nav-button" href="#" ng-class="{'user-photo-link': user && user.photo}" ng-show="user" ui-sref="user-account">
                     <i ng-class="user && user.photo ? 'nav user-photo' : 'fa fa-cog'" ng-style="{'background-image': user && user.photo? 'url(' + user.photo + ')' : ''}"></i>
                 </a>
             </li>

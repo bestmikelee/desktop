@@ -53,53 +53,6 @@
     }
 }
 
-.dash--container {
-    height: 100%;
-    transition: all 0.75s ease-in-out;
-    overflow: hidden;
-
-    &.ng-enter {
-        transition: all 0.5s ease-in-out;
-        opacity: 0;
-    }
-
-    &.ng-enter.ng-enter-active {
-        opacity: 1;
-    }
-
-    &.ng-leave,
-    &.apartment-info.ng-enter {
-        transition: all 0.5s ease-in-out;
-        opacity: 1;
-    }
-
-    &.ng-leave.ng-leave-active,
-    &.apartment-info.ng-enter.ng-enter-active {
-        opacity: 0;
-    }
-
-    ul {
-        height: 100%;
-
-        .chart {
-            padding: 0;
-            min-height: 255px;
-            height: 46%;
-
-            //height: calc(50vh - 25px);
-            padding: 0;
-
-            svg:not(:root) {
-                overflow: visible;
-            }
-
-            .pieChart--detailedInformation > g {
-                background-color: #fff;
-            }
-        }
-    }
-}
-
 .building-accordion {
     padding: 0;
     margin: 0;
@@ -111,6 +64,7 @@
 
     .panel-group {
       height: 100%;
+      margin-bottom: 0;
     }
 
     .panel,
@@ -172,41 +126,24 @@
     }
 }
 
-.scroll-y {
-    overflow-y: scroll;
-    height: 100%;
-}
-
 .building-accordion,
-.notifications-list {
-    overflow: hidden;
+.notifications {
     height: 100%;
     box-shadow: 2px -1px 5px 0 rgba(0,0,0,.4);
     padding: 0;
 }
 
-.collapse-all-button {
-    @include vend(transition, (background-color, 0.2s ease-in-out, height 0.5s ease-in-out));
-    text-align: center;
-    width: 100%;
-    background-color: $portfolio-button;
-    transition: 0.25s ease-in-out;
-    color: white;
-    font-weight: 500;
-
-    &:hover {
-        background-color: $portfolio-button-hover;
-    }
-
-    &.expand {
-        height: auto;
-    }
+.accordion-list,
+.notifications-list {
+    overflow-y: auto;
+    height: calc(100% - 35px);
 }
 
-.center-button {
+.list-header {
     background-color: #801010;
     text-align: center;
     font-size: 25px;
+    height: 35px;
     color: white;
     font-weight: 200;
     font-family: $theme-font;
