@@ -6,7 +6,7 @@ var path = require('path');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Admin = mongoose.model('Admin');
-var io = require('../../../sockets')();
+var sio = require('../../../sockets');
 
 var ENABLED_AUTH_STRATEGIES = [
     // 'local',
@@ -58,13 +58,14 @@ module.exports = function(app) {
 
         if (req.session.user) {
             Admin.isAdmin(req.session.user).then(function(isAnAdmin) {
-                
+                var io = sio();
+                console.log(io)
+
                 io.of('/lordSocket/' + req.session.user._id)
                 .on('connection', function(socket){
-                    console.log('lordSocket namespace worked')
-                    socket.emit('auth', {yes: 'my-lord'})
+                    //console.log('lordSocket namespace worked',socket)
+                    socket.emit('auth', {yes: 'my-lord', leak: 'memory leak on reload'})
                 })
-                console.log(io)
                 res.status(200).json({
                     user: req.session.user,
                     admin: isAnAdmin,

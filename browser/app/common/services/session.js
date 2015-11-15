@@ -6,10 +6,10 @@ app.service('Session', function($rootScope, $interval, AUTH_EVENTS) {
     $rootScope.$on(AUTH_EVENTS.notAuthenticated, function() {
         self.destroy();
     });
-    // var test = io.connect('http://localhost:5000');
-    // test.on('hi', function(data){
-    //     console.log(data)
-    // })
+    var test = io.connect(location.host + '/');
+    test.on('hi', function(data){
+        console.log(data)
+    })
     $rootScope.$on(AUTH_EVENTS.sessionTimeout, function() {
         console.log('Im happening');
         self.destroy();

@@ -1,16 +1,20 @@
+'use strict';
 var socketio = require('socket.io');
-// socket io singleton to be used in other routes
+var io = null;
 
-module.exports = function(server){
-	var io;
-	function createSocket(){
-		return socketio(server);
-	}
+module.exports = function (server) {
 
-	return (function(){
-		if (!io) {
-			io = createSocket();
-		}
-		return io;
-	})()
-}
+    if (io) return io;
+
+    io = socketio(server);
+
+    io.on('connection', function (socket) {
+        // Now have access to socket, wowzers!
+        socket.emit('hi',{yo:'yo'})
+    });
+    
+    
+    return io;
+
+};
+
