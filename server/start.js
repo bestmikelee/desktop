@@ -22,10 +22,10 @@ var startServer = function () {
 
 var connectSocket = function(){
 	var io = socket(server);
-	io.on('connection', function(sock){
-		console.dir('sockets!!');
-		sock.emit('hi',{yo:'yo'})
-	});
+	// io.on('connection', function(sock){
+	// 	console.dir('sockets!!',);
+	// 	sock.emit('hi',{yo:'yo'})
+	// });
 }
 
 

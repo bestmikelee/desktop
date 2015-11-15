@@ -59,12 +59,12 @@ module.exports = function(app) {
         if (req.session.user) {
             Admin.isAdmin(req.session.user).then(function(isAnAdmin) {
                 
-                var nsp = io
-                .of('/lordSocket/' + req.session.user._id)
+                io.of('/lordSocket/' + req.session.user._id)
                 .on('connection', function(socket){
                     console.log('lordSocket namespace worked')
                     socket.emit('auth', {yes: 'my-lord'})
                 })
+                console.log(io)
                 res.status(200).json({
                     user: req.session.user,
                     admin: isAnAdmin,
