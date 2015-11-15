@@ -1,4 +1,4 @@
-app.service('AuthService', function($http, Session, $rootScope, AUTH_EVENTS, $q, $location) {
+app.service('AuthService', function($http, Session, $rootScope, AUTH_EVENTS, $q) {
 
     function onSuccessfulAuth(response) {
         var user = response.data.user;
