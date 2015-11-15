@@ -3,11 +3,13 @@ var globalVar;
 app.service('Session', function($rootScope, $interval, AUTH_EVENTS) {
 
     var self = this;
-
     $rootScope.$on(AUTH_EVENTS.notAuthenticated, function() {
         self.destroy();
     });
-
+    // var test = io.connect('http://localhost:5000');
+    // test.on('hi', function(data){
+    //     console.log(data)
+    // })
     $rootScope.$on(AUTH_EVENTS.sessionTimeout, function() {
         console.log('Im happening');
         self.destroy();
@@ -17,6 +19,7 @@ app.service('Session', function($rootScope, $interval, AUTH_EVENTS) {
     this.user = null;
 
     this.create = function(sessionId, user, data, access_token) {
+
         this.id = sessionId;
         this.user = user;
         this.user.data = data;
