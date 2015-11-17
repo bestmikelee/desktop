@@ -6,7 +6,7 @@ var LeaseSchema = new mongoose.Schema({
 	link: String,
 	name: String,
 	rent: Number,
-  renewal_status: String,
+  	status: String,
 	end_date: {type: Date, default: '1/1/2000'},
 	start_date: {type: Date, default: '1/1/2000'},
 	tenant_ids: [{type: ObjectId, ref: 'Tenant'}],
