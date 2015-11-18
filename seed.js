@@ -197,15 +197,11 @@ var leaseSeed = function(config){
     var leaseEnd = leaseStart.clone().add(12, 'months');
     var now = moment(),
         status;
-    if (leaseEnd.diff(now, 'days') > 75)
-        status = 'inactive';
-    else
-        status = chance.pick(['renewed','pending','declined']);
 
     return new Lease({
         pdf: chance.word(),
         rent: chance.integer({min: 1000, max: 5000}),
-        renewal_status: status,
+        status: chance.pick(['renewed','pending','declined']),
         end_date: leaseEnd,
         start_date: leaseStart,
         tenant_ids: config.tenantIds,
@@ -416,6 +412,7 @@ var seedOneLandLord = function() {
             for (var i = 0; i < numOfSeededLandlords; i++) {
                 seedOneLandLord();
             }
+            console.log("DATABASE SEEDED!!")
             return;
         }
 
