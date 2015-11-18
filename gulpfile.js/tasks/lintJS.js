@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
     eslint = require('gulp-eslint');
 
-gulp.task('lintJS', () => {
+gulp.task('lintJS', function() {
 
     return gulp.src(['./browser/**/*.js', './server/**/*.js'])
         .pipe(eslint())

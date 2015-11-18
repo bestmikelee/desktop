@@ -2,7 +2,7 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload'),
     runSeq = require('run-sequence');
 
-gulp.task('default', () => {
+gulp.task('default', function() {
 
     livereload.listen();
     gulp.start('build');

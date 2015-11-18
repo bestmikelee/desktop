@@ -3,7 +3,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     sourcemaps = require('gulp-sourcemaps');
 
-gulp.task('buildJS', ['lintJS'], () => {
+gulp.task('buildJS', ['lintJS'], function() {
     return gulp.src(['./browser/app.js', './browser/**/*.js'])
         .pipe(plumber())
         .pipe(sourcemaps.init())

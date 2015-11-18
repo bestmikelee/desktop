@@ -4,7 +4,7 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     minifyCSS = require('gulp-minify-css');
 
-gulp.task('buildCSSProduction', () => {
+gulp.task('buildCSSProduction', function() {
   return gulp.src('./browser/universal.scss')
       .pipe(globbing({
           // Configure it to use SCSS files

@@ -3,7 +3,7 @@ var gulp = require('gulp'),
     ngAnnotate = require('gulp-ng-annotate'),
     uglify = require('gulp-uglify');
 
-gulp.task('buildJSProduction', () => {
+gulp.task('buildJSProduction', function() {
     return gulp.src('./browser/**/*.js')
         .pipe(concat('main.js'))
         .pipe(ngAnnotate())

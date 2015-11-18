@@ -10,7 +10,7 @@ gulp.task('webpack', function(cb) {
     function(err, stats) {
       //log stuff to console
       logger(err, stats);
-      cb();
+      cb();      
   });
 
 });
