@@ -3,7 +3,7 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     sass = require('gulp-sass');
 
-gulp.task('buildCSS', () => {
+gulp.task('buildCSS', function() {
     return gulp.src('./browser/universal.scss')
         .pipe(globbing({
             // Configure it to use SCSS files
