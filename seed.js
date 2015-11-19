@@ -201,7 +201,7 @@ var leaseSeed = function(config){
     return new Lease({
         pdf: chance.word(),
         rent: chance.integer({min: 1000, max: 5000}),
-        status: chance.pick(['renewed','pending','declined']),
+        status: chance.pick(['rented','renewal','fnt']),
         end_date: leaseEnd,
         start_date: leaseStart,
         tenant_ids: config.tenantIds,

@@ -7,11 +7,11 @@ gulp.task('default', function() {
     livereload.listen();
     gulp.start('build');
 
-    gulp.watch(['browser/**/*.js', 'browser/**/*.html'], () => {
+    gulp.watch(['browser/**/*.js', 'browser/**/*.html'], function() {
         runSeq('buildJS','webpack', 'reload');
     });
 
-    gulp.watch('browser/**/*.scss', () => {
+    gulp.watch('browser/**/*.scss', function() {
         runSeq('buildCSS', 'reloadCSS');
     });
 

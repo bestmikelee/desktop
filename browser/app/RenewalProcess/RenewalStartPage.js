@@ -7,6 +7,7 @@ app.config(['$stateProvider',function($stateProvider) {
 }])
 
 app.controller('RenewalStartPageCtrl', ['$scope','$http','Session','expiration', function($scope,$http,Session,expiration){
-		$scope.renewalList = expiration.expiration().hundred
+		$scope.renewalList = expiration.portAptFilter(function(apt){
+			return apt.daysToLxd < 100 && apt.lease_ids[0].status == "rented"})
 	}
 ])
