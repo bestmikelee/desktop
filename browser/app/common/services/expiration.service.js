@@ -17,6 +17,8 @@ app.service('expiration', ['Session', function(Session) {
         if (typeof building.apartments !== 'object') return console.log("No apartments provided for ", building.streetNumber, " ", building.streetName);
         building.apartments.forEach(function(apartment) {
             apartment['daysToLxd'] = apartment.lease_ids[0] ? daysToExpiration(apartment.lease_ids[0].end_date) : undefined
+            apartment['buildingName'] = building.street_number + " " + building.street_name;
+            apartment['buildingID'] = building._id;
         })
     });
 

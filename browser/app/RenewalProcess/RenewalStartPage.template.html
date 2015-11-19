@@ -1,7 +1,4 @@
 <div>Renewal Start Dashboard. There are currently {{renewalList.count}} apartments that are within the renewal threshold.</div>
 
 
-<renewalapartment></renewalapartment>
-<div ng-repeat="apt in renewalList">
-	{{apt.unit_number}}
-</div>
+<renewalapartment ng-repeat="apt in renewalList" apartment="apt"></renewalapartment>
