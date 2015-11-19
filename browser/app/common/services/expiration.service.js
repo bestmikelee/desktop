@@ -31,6 +31,18 @@ app.service('expiration', ['Session', function(Session) {
                 filteredArray.push(obj)
             })
         })
-        return filteredArray
+        return filteredArray;
     }
-}])
+
+    //if object put that object's properties onto resulting array
+    this.portAptFilterFuncArr = function(funcArr) {
+        if(typeof funcArr !=='object') throw new Error('argument should be an object/array');
+        var filteredArray = Array.isArray(funcArr) ? [] : new Map();
+        portfolio.forEach(function(building) {
+            building.apartments.filter(funcArr).forEach(function(obj) {
+                filteredArray.push(obj);
+            });
+        });
+        return filteredArray;
+    };
+}]);

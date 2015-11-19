@@ -1,6 +1,5 @@
 // create app, configurations and api routes
 var express = require('express'),
-    swig = require('swig'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     logger = require('morgan'),
@@ -34,9 +33,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 // Set view render engine
-app.engine('html', swig.renderFile);
-app.setValue('view engine', 'html');
 app.setValue('views', __dirname + '/views');
+app.setValue('view engine', 'jade');
 
 // Set favicon
 app.use(favicon(app.getValue('faviconPath')));
@@ -48,10 +46,7 @@ app.use(express.static(path.join(root, './public')));
 app.use(express.static(path.join(root, './browser')));
 
 // Views cache
-app.setValue('view cache', false);
-swig.setDefaults({
-    cache: false
-});
+app.setValue('view cache', true);
 
 // Set cors
 app.use(function(req, res, next) {
