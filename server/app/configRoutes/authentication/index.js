@@ -58,14 +58,14 @@ module.exports = function(app) {
 
         if (req.session.user) {
             Admin.isAdmin(req.session.user).then(function(isAnAdmin) {
-                var io = sio();
-                console.log(io)
+                
+                
 
-                io.of('/lordSocket/' + req.session.user._id)
-                .on('connection', function(socket){
+                var nsp = sio().useNamespace('/lordSocket/' + req.session.user._id ,function(socket){
                     //console.log('lordSocket namespace worked',socket)
-                    socket.emit('auth', {yes: 'my-lord', leak: 'memory leak on reload'})
+                    socket.emit('auth', {yes: 'my-lord', leak: 'am i leaking'})
                 })
+                console.log(nsp)
                 res.status(200).json({
                     user: req.session.user,
                     admin: isAnAdmin,
