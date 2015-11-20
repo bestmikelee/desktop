@@ -65,7 +65,7 @@ a:focus {
 }
 
 #main {
-    margin: $nav-height 0 0;
+    padding: $nav-height 0 0;
     height: 100%;
     width: 100%;
 }
@@ -91,17 +91,6 @@ input[type=date]::-webkit-outer-spin-button {
 //     -webkit-box-shadow: 0 0 0 1000px white inset !important;
 //     box-shadow: 0 0 0 1000px white inset !important;
 // }
-
-// enables ng-cloak
-[ng\:cloak],
-[ng-cloak],
-[data-ng-cloak],
-[x-ng-cloak],
-.ng-cloak,
-.x-ng-cloak {
-    display: none !important;
-}
-
 
 @mixin clearfix {
     &:after {

@@ -197,15 +197,11 @@ var leaseSeed = function(config){
     var leaseEnd = leaseStart.clone().add(12, 'months');
     var now = moment(),
         status;
-    if (leaseEnd.diff(now, 'days') > 75)
-        status = 'inactive';
-    else
-        status = chance.pick(['renewed','pending','declined']);
 
     return new Lease({
         pdf: chance.word(),
         rent: chance.integer({min: 1000, max: 5000}),
-        renewal_status: status,
+        status: chance.pick(['rented','renewal','fnt']),
         end_date: leaseEnd,
         start_date: leaseStart,
         tenant_ids: config.tenantIds,
@@ -231,9 +227,6 @@ var seedOneLandLord = function() {
         var leases = [];
 
         masterUser.userTypeIds.landlord = landlord._id;
-        
-
-        
 
         var saveModel = function(el){
             return el.saveAsync()
@@ -337,17 +330,15 @@ var seedOneLandLord = function() {
         }
 
 
-        
+
 
         //console.log(apartments)
         // var chanceLL = chance.pick(users)
         return masterUser.saveAsync().then(function(savedMasterUser){
-            console.log('roger saved')
             landlord.user_id = savedMasterUser[0]._id;
-            return landlord.saveAsync(); 
+            return landlord.saveAsync();
         })
         .then(function(llord){
-            console.log('made it')
             return Promise.map(apartments,function(apt){
                 var tempLeaseIds = [];
 
@@ -382,7 +373,6 @@ var seedOneLandLord = function() {
 
         })
         .then(function(llord){
-            console.log('everything else')
             return Promise.all([
                     Promise.all(buildings.map(saveModel.bind(this))),
                     Promise.all(tenants.map(saveModel.bind(this))),
@@ -392,11 +382,12 @@ var seedOneLandLord = function() {
                     Promise.all(visits.map(saveModel.bind(this)))
                     ])
         }).then(function(all){
-            console.log('im done')
+            console.log("seed done")
+            mongoose.connection.close();
         }).catch(function(err){
             console.log(err)
         })
-        
+
     }
 
         var wipeDB = function() {
@@ -414,27 +405,22 @@ var seedOneLandLord = function() {
             ]);
         }
 
-        
+
 
 
         var seedDatabase = function() {
             for (var i = 0; i < numOfSeededLandlords; i++) {
                 seedOneLandLord();
             }
+            console.log("DATABASE SEEDED!!")
             return;
         }
 
-    db.then(function(err){
-        if (err)
-            console.log('database message says = ',err)
-    }).then(function(db){
-        console.log('getting to wipe');
+    db.then(function(db){
         return wipeDB()
     }).then(function(){
-        console.log('getting to seedDB');
-        return seedDatabase();
-    }).then(function(){
-        console.log('getting to done')
+        console.log('DB wiped');
+        return seedDatabase(); // can't fingure out how to wait until the returned promise chain is done out here (vs inside there), but it works so whatev
     }).catch(function(err){
         console.log(err);
     })

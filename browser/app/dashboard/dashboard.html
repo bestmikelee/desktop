@@ -1,11 +1,9 @@
 <renewal-notice-notification></renewal-notice-notification>
-
-
-<div class="col-xs-2 building-accordion">
-    <div class="center-button">
+<aside class="col-xs-2 building-accordion">
+    <div class="list-header">
         Properties
     </div>
-    <div class="scroll-y">
+    <div class="accordion-list">
         <accordion close-others="oneAtATime" id="dashboardAccordion">
             <accordion-group heading="{{ building.street_number + ' ' + building.street_name }}" is-disabled="status.isFirstDisabled" is-open="building.open" ng-repeat="building in buildings">
                 <span class="btn-apartment" ng-click="selectApartment(apartment)" ng-repeat="apartment in building.apartments">
@@ -16,102 +14,16 @@
             </accordion-group>
         </accordion>
     </div>
-</div>
+</aside>
 <div class="col-xs-7 portfolio-profile">
-    <div class="dash--container col-xs-12 col-md-2 selection-info" ng-class="!!buildingSelected ? 'col-md-4': 'col-md-2'">
-<!--building-level desc-->
-        <div class="prop-info" ng-class="!!buildingSelected && !apartmentSelected ? 'prop-info-delay fade-in-info' : ''" ng-style="{'transition': '.75s ease-in-out '+ (!!buildingSelected ? '.75s': '')}">
-            <h3>Building Info</h3>
-            <ul class="amenities">
-                <li><i class="fa fa-map-marker"></i> <b>Address:</b> {{ buildingSelected.street_number | capitalize}} {{ buildingSelected.street_name | capitalize}}</li>
-                <li><i class="fa fa-flag"></i> <b>City and State:</b> {{ buildingSelected.city | capitalize}}, {{ buildingSelected.state | capitalize}}</li>
-                <li><i class="fa fa-fire"></i> <b>Heat Type:</b> {{ buildingSelected.heat_type | capitalize}}</li>
-                <li><i class="fa fa-caret-square-o-up"></i> <b>Elevator:</b> {{ buildingSelected.elevator | capitalize}}</li>
-                <li><i class="fa fa-key"></i> <b>Doorman:</b> {{ buildingSelected.doorman | capitalize}}</li>
-                <li><i class="fa fa-male"></i> <b>Gym:</b> {{ buildingSelected.gym | capitalize}}</li>
-                <li><i class="fa fa-map-o"></i> <b>Pool:</b> {{ buildingSelected.pool | capitalize}}</li>
-                <li><i class="fa fa-car"></i> <b>Parking:</b> {{ buildingSelected.parking | capitalize}}</li>
-                <li><i class="fa fa-users"></i> <b>Common Roof:</b> {{ buildingSelected.common_roof | capitalize}}</li>
-                <li><i class="fa fa-female"></i> <b>Laundry:</b> {{ buildingSelected.laundry | capitalize}}</li>
-                <li><i class="fa fa-paw"></i> <b>Pets Allowed:</b> {{ buildingSelected.pet_allowed | capitalize}}</li>
-                <li><i class="fa fa-folder-open-o"></i> <b>Open:</b> {{ buildingSelected.open | capitalize}}</li>
-            </ul>
-        </div>
-<!--apartment-level desc-->
-        <div class="prop-info apt-info" ng-class="!!apartmentSelected ? 'prop-info-delay fade-in-info' : ''">
-            <h3>Apartment info <span class="lock-container"><i
-                ng-class="apartmentSelected.spinner? 'fa fa-spinner fa-pulse' : apartmentSelected.lockInfo.state==='lock'? 'fa fa-lock' : 'fa fa-unlock'"
-                ng-click="apartmentSelected.lockInfo && lockAction(apartmentSelected)"></i></span></h3>
-            <ul>
-                <li class="{{iconMap[key]}}" ng-repeat="(key, value) in apartmentSelected | presentableVals">
-                    {{key | capitalize}}:
-                    {{value | capitalize}}
-                </li>
-            </ul>
-            <h3>Lease Info</h3>
-            <ul>
-                <li ng-repeat="(key, value) in apartmentSelected.lease_ids[0] | presentableVals">
-                    {{key | capitalize}}:
-                    {{value | capitalize}}
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="dash--container col-xs-12 col-md-8" ng-if="!apartmentSelected">
-        <ul>
-            <li class="chart col-xs-12">
-                <h2 class="chart--headline">{{leaseStatusData.pieChart.length ? currentAddress : 'No Buildings Added'}}</h2>
-                <hollow-pie passed-data="leaseStatusData.pieChart" pie-id="'rentBurnDown'" show-this="!apartmentSelected && leaseStatusData.pieChart.length"></hollow-pie>
-            </li>
-            <li class="chart col-xs-12">
-                <h2 class="chart--headline">{{leaseStatusData.renewalStatuses.length ? 'Current Renewals' : 'No Current Renewals'}}</h2>
-                <hollow-pie passed-data="leaseStatusData.renewalStatuses" pie-id="'renewalStatuses'" show-this="!apartmentSelected && leaseStatusData.renewalStatuses.length"></hollow-pie>
-            </li>
-        </ul>
-    </div>
-    <div class="dash--container col-xs-12 col-md-8 apartment-info" ng-if="apartmentSelected">
-        <ul>
-            <li class="col-xs-12 entrant-form-container">
-                <h2 class="entrant-form-head">Permit Entrant</h2><h2 ng-show="!entrant.role.length && !entrantForm.$valid && entrant.submitted" class="entrant-error">Error</h2>
-                <form class="col-xs-12 floating-form" id="entrant-form" name="entrantForm" ng-submit="entrant.role.length && entrantForm.$valid && addEntrant(entrant)" novalidate>
-                    <div class="form-group">
-                        <input class="form-control" id="email" name="email" ng-model="entrant.email" placeholder="Enter email" required type="email">
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" id="check-email" name="checkEmail" ng-pattern="entrantForm.email.$viewValue" placeholder="Re-enter email" required type="email">
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control entrant-select" ng-model="entrant.role" id="building-select">  <!--ng-options="building.street_name for building in buildings"-->
-                            <option value="">Select Role</option>
-                            <option value="guest">Guest</option>
-                            <option value="admin">Admin</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" name="start" ng-model="entrant.start_date" placeholder="Start" required type="date"/>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" name="expiry" ng-model="entrant.expiration_date" placeholder="Expiration" required type="date"/>
-                    </div>
-                    <button class="btn btn-default login-btn" ng-click="entrant.submitted=true" type="submit">Submit</button>
-                </form>
-            </li>
-            <h2 class="col-xs-12 existing-entrant-head" ng-if="apartmentSelected.permitted_entrants.length">Existing Entrants</h2>
-            <li class="col-xs-12 existing-entrant-container">
-                <div class="col-xs-12 existing-entrant" ng-repeat="existingEntrant in apartmentSelected.permitted_entrants">
-                    <h4 class="entrant-header">{{existingEntrant.email}} - {{existingEntrant.role | capitalize}} <span ng-click="removeEntrant(existingEntrant)"><i class="glyphicon glyphicon-remove"></i></span></h4>
-                    <span>{{existingEntrant.start_date | dateSlashes}} - {{existingEntrant.expiration_date | dateSlashes}}</span>
-                </div>
-            </li>
-    </ul>
+  <dash-center-content></dash-center-content>
 </div>
-</div>
-<div class="col-xs-3 notifications-list" ng-controller="requestCtrl">
-<div class="center-button">
-    Notifications
-</div>
-<div class="scroll-y">
-    <lock-request accept="onAccept()" job="request.job" name="request.name" ng-repeat="request in requests" where="request.where"></lock-request>
-</div>
-</div>
+<aside class="col-xs-3 notifications" ng-controller="requestCtrl">
+  <div class="list-header">
+      Notifications
+  </div>
+  <div class="notifications-list">
+      <lock-request accept="onAccept()" job="request.job" name="request.name" ng-repeat="request in requests" where="request.where"></lock-request>
+  </div>
+</aside>
 <modal></modal>
