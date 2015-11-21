@@ -23,7 +23,8 @@
             ng-class="apartmentSelected.spinner? 'fa fa-spinner fa-pulse' : apartmentSelected.lockInfo.state==='lock'? 'fa fa-lock' : 'fa fa-unlock'"
             ng-click="apartmentSelected.lockInfo && lockAction(apartmentSelected)"></i></span></h3>
         <ul>
-            <li class="{{iconMap[key]}}" ng-repeat="(key, value) in apartmentSelected | presentableVals">
+            <li class="{{iconMap[key]}}"
+                ng-repeat="(key, value) in apartmentSelected | presentableVals">
                 {{key | capitalize}}:
                 {{value | capitalize}}
             </li>
@@ -37,16 +38,9 @@
         </ul>
     </div>
 </div>
-<div class="dash-container col-xs-12 col-md-8" ng-if="!apartmentSelected">
-    <ul>
-        <li class="chart col-xs-12">
-            <h2 class="chart--headline">{{leaseStatusData.pieChart.length ? currentAddress : 'No Buildings Added'}}</h2>
-            <hollow-pie passed-data="leaseStatusData.pieChart" pie-id="'rentBurnDown'" show-this="!apartmentSelected && leaseStatusData.pieChart.length"></hollow-pie>
-        </li>
-        <li class="chart col-xs-12">
-            <h2 class="chart--headline">{{leaseStatusData.renewalStatuses.length ? 'Current Renewals' : 'No Current Renewals'}}</h2>
-            <hollow-pie passed-data="leaseStatusData.renewalStatuses" pie-id="'renewalStatuses'" show-this="!apartmentSelected && leaseStatusData.renewalStatuses.length"></hollow-pie>
-        </li>
-    </ul>
-</div>
-<apt-permissioning apartment-selected="apartmentSelected"></apt-permissioning>
+<apt-permissioning
+    show-elem="!!apartmentSelected"></apt-permissioning>
+<pie-container
+    show-elem="!apartmentSelected"
+    pie-data="leaseStatusData"
+    address="currentAddress"></pie-container>
