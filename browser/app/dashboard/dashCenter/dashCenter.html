@@ -6,12 +6,12 @@
 </d3-visuals-container>
 
 <building-view
-    class="dash-container prop-info selection-info col-md-4 col-xs-12"
+    class="dash-container selection-info col-md-4 col-xs-12"
     individually-selected-building="!apartmentSelected && buildingSelected">
 </building-view>
 
 <apt-view
     class="dash-container selection-info col-xs-12"
-    ng-if="!!individuallySelectedApartment"
+    ng-if="!!apartmentSelected"
     individually-selected-apartment="apartmentSelected">
 </apt-view>
