@@ -1,0 +1,7 @@
+<h2 class="col-xs-12 existing-entrant-head" ng-if="individuallySelectedApartment.permitted_entrants.length">Existing Entrants</h2>
+<ul class="col-xs-12 existing-entrant-container">
+    <li class="col-xs-12 existing-entrant" ng-repeat="existingEntrant in individuallySelectedApartment.permitted_entrants">
+        <h4 class="entrant-header">{{existingEntrant.email}} - {{existingEntrant.role | capitalize}} <span ng-click="removeEntrant(existingEntrant)"><i class="glyphicon glyphicon-remove"></i></span></h4>
+        <span>{{existingEntrant.start_date | dateSlashes}} - {{existingEntrant.expiration_date | dateSlashes}}</span>
+    </li>
+</ul>

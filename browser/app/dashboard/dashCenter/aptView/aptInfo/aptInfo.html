@@ -1,0 +1,19 @@
+<div class="prop-info apt-info" ng-class="!!individuallySelectedApartment ? 'prop-info-delay fade-in-info' : ''">
+    <h3>Apartment info <span class="lock-container"><i
+        ng-class="individuallySelectedApartment.spinner? 'fa fa-spinner fa-pulse' : individuallySelectedApartment.lockInfo.state==='lock'? 'fa fa-lock' : 'fa fa-unlock'"
+        ng-click="individuallySelectedApartment.lockInfo && lockAction(individuallySelectedApartment)"></i></span></h3>
+    <ul>
+        <li class="{{iconMap[key]}}"
+            ng-repeat="(key, value) in individuallySelectedApartment | presentableVals">
+            {{key | capitalize}}:
+            {{value | capitalize}}
+        </li>
+    </ul>
+    <h3>Lease Info</h3>
+    <ul>
+        <li ng-repeat="(key, value) in individuallySelectedApartment.lease_ids[0] | presentableVals">
+            {{key | capitalize}}:
+            {{value | capitalize}}
+        </li>
+    </ul>
+</div>

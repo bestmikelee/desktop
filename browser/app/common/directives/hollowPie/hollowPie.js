@@ -1,5 +1,3 @@
-var tehGlobe;
-
 app.directive('hollowPie', function($timeout, $interval, $rootScope) {
 
     var hollowPieLink = function(scope, element, attrs) {
@@ -131,10 +129,8 @@ app.directive('hollowPie', function($timeout, $interval, $rootScope) {
         // Build chart
         function ಠ_ಠ() {
             // hide if specific apartment is selected
-            scope.asideDataHide = true;
-            if (scope.showElem && scope.passedData.length) {
+            if (scope.passedData.length) {
                 drawPieChart(scope.pieId, scope.passedData);
-                scope.asideDataHide = false;
                 percentClimber();
             }
         }
@@ -143,7 +139,6 @@ app.directive('hollowPie', function($timeout, $interval, $rootScope) {
         scope.$watch('passedData', function(newVal, oldVal) {
             $timeout(function(){
                 ಠ_ಠ();
-                tehGlobe = scope.passedData;
             });
         },true);
     };
@@ -152,16 +147,13 @@ app.directive('hollowPie', function($timeout, $interval, $rootScope) {
         restrict: 'E',
         scope: {
             passedData: '=',
-            showElem: '=',
             pieId: '='
         },
         templateUrl: 'app/common/directives/hollowPie/hollowPie.html',
         link: hollowPieLink,
         controller: function($scope){
-            console.log($scope);
             //allow Math in interpolation
             $scope.Math = window.Math;
-            $scope.asideDataHide = true;
         }
     };
 });

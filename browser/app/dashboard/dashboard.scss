@@ -5,54 +5,6 @@
     height: 100%;
 }
 
-.floating-form {
-    padding: 0 3px;
-    background-color: rgba(0,0,0,0);
-
-    .form-group {
-        background-color: rgba(0,0,0,0);
-    }
-
-    .form-control {
-        color: #888;
-        border: 0;
-        background-color: rgba(0,0,0,0);
-    }
-
-    &-inverse {
-        color: #ddd;
-
-        .form-control {
-            color: #ddd;
-            border: 0;
-            background-color: rgba(0,0,0,0);
-        }
-
-        input, input:focus,
-        select, select:focus {
-            color: #ddd;
-        }
-    }
-
-    input,
-    input:focus,
-    select,
-    select:focus {
-        @include vend(box-shadow, none);
-        background-color: rgba(0,0,0,0);
-        border: 0;
-        border-bottom: 1px solid #ccc;
-        border-radius: 0;
-    }
-
-    select,
-    select:focus {
-        border: none;
-        outline: 3px inset #ccc;
-        outline-offset: -2px;
-    }
-}
-
 .building-accordion {
     padding: 0;
     margin: 0;
@@ -74,6 +26,7 @@
     }
 
     .panel-body {
+        text-align: center;
         padding: 0 3%;
         background-color: #fff;
 
