@@ -1,0 +1,14 @@
+<div class="chart col-md-6 col-xs-12" ng-if="showElem">
+    <h2 class="chart-headline">{{pieData.pieChart.length ? address : 'No Buildings Added'}}</h2>
+    <hollow-pie
+        ng-if="!!pieData.pieChart.length"
+        pie-id="'rentBurnDown'"
+        passed-data="pieData.pieChart"></hollow-pie>
+</div>
+<div class="chart col-md-6 col-xs-12" ng-if="showElem">
+    <h2 class="chart-headline">{{pieData.renewalStatuses.length ? 'Current Renewals' : 'No Current Renewals'}}</h2>
+    <hollow-pie
+        ng-if="!!pieData.renewalStatuses.length"
+        pie-id="'renewalStatuses'"
+        passed-data="pieData.renewalStatuses"></hollow-pie>
+</div>

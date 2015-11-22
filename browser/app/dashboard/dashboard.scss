@@ -5,66 +5,18 @@
     height: 100%;
 }
 
-.floating-form {
-    padding: 0 3px;
-    background-color: rgba(0,0,0,0);
-
-    .form-group {
-        background-color: rgba(0,0,0,0);
-    }
-
-    .form-control {
-        color: #888;
-        border: 0;
-        background-color: rgba(0,0,0,0);
-    }
-
-    &-inverse {
-        color: #ddd;
-
-        .form-control {
-            color: #ddd;
-            border: 0;
-            background-color: rgba(0,0,0,0);
-        }
-
-        input, input:focus,
-        select, select:focus {
-            color: #ddd;
-        }
-    }
-
-    input,
-    input:focus,
-    select,
-    select:focus {
-        @include vend(box-shadow, none);
-        background-color: rgba(0,0,0,0);
-        border: 0;
-        border-bottom: 1px solid #ccc;
-        border-radius: 0;
-    }
-
-    select,
-    select:focus {
-        border: none;
-        outline: 3px inset #ccc;
-        outline-offset: -2px;
-    }
-}
-
 .building-accordion {
     padding: 0;
     margin: 0;
     z-index: 1;
-
+    
     #dashboardAccordion {
-      height: 100%;
+        height: 100%;
     }
 
     .panel-group {
-      height: 100%;
-      margin-bottom: 0;
+        height: 100%;
+        margin-bottom: 0;
     }
 
     .panel,
@@ -74,9 +26,10 @@
     }
 
     .panel-body {
+        text-align: center;
         padding: 0 3%;
         background-color: #fff;
-
+        
         .btn-apartment {
             border-radius: 50%;
             width: 35px;
@@ -87,7 +40,7 @@
             display: -webkit-inline-box;
             position: relative;
             cursor: pointer;
-
+            
             &:hover {
                 background-color: #444;
             }
@@ -105,7 +58,7 @@
 
     .panel-default {
         border: none;
-
+        
         &+.panel-default {
             margin: 0;
             border-top: 5px white solid;
@@ -118,7 +71,7 @@
             color: white !important;
             width: 100%;
             transition: 0.25s ease-in-out;
-
+            
             &:hover {
                 background-color: $building-button-hover;
             }
@@ -151,9 +104,8 @@
 
 .prop-info {
     opacity: 0;
-    width: 100%;
-    position: absolute;
-
+    position: relative;
+    
     h3,
     ul {
         opacity: 0;
@@ -162,7 +114,7 @@
 
     &.apt-info {
         z-index: 1;
-
+        
         .lock-container {
             display: inline-block;
             width: 23px;
@@ -172,7 +124,7 @@
         .fa {
             color: rgba(0,0,0,.63);
             transition: 0.3s ease-in-out;
-
+            
             &.fa-spinner {
                 font-size: 10px;
             }
@@ -180,7 +132,7 @@
             &.fa-lock,
             &.fa-unlock {
                 cursor: pointer;
-
+                
                 &:hover {
                     color: rgba(0,0,0,.4);
                 }
@@ -197,7 +149,7 @@
 
     &.fade-in-info {
         opacity: 1;
-
+        
         h3,
         ul {
             opacity: 1;
@@ -213,7 +165,7 @@
 
 .entrant-form-container {
     height: 53.5%;
-
+    
     .entrant-form-head {
         padding-left: 2.5px;
         float: left;
@@ -228,7 +180,7 @@
 
     .entrant-select {
         margin-top: 19px;
-
+        
          :first-child {
             color: #ddd;
         }
@@ -245,13 +197,13 @@
     top: calc(54% + 60px);
     bottom: 0;
     overflow-y: auto;
-
+    
     .existing-entrant {
         border-top: 1px solid #ccc;
         padding: 7px 15px;
         padding-right: 8px;
         width: calc(100% - 48px);
-
+        
         .entrant-header {
             margin-top: 0;
         }
@@ -262,7 +214,7 @@
             font-size: 18px;
             transition: 0.3s ease-in-out;
             cursor: pointer;
-
+            
             &:hover {
                 color: #bbb;
             }
@@ -273,7 +225,7 @@
 .existing-entrant,
 .existing-entrant-head {
     padding: 7px 15px;
-
+    
     &,
     &.ng-move {
         transition: 0.5s ease-in-out;
@@ -291,7 +243,7 @@
 
 .amenities {
     padding: 10px;
-
+    
     li {
         margin-right: 10px;
         padding: 10px 2px 10px 0;
