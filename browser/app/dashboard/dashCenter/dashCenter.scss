@@ -1,41 +1,33 @@
 .dash-container {
     position: relative;
-    transition: all 0.75s ease-in-out;
-    
-    .chart {
-        padding: 0;
-        min-height: 255px;
-        height: 46%;
-        
-        //height: calc(50vh - 25px);
-        padding: 0;
-        
-        svg:not(:root) {
-            overflow: visible;
-        }
+    padding: 0;
 
-        .pieChart--detailedInformation > g {
-            background-color: #fff;
-        }
+    &.ng-enter {
+        transition: opacity 0.5s ease-in-out;
     }
 
     &.ng-enter {
-        transition: all 0.5s ease-in-out;
         opacity: 0;
     }
 
-    &.ng-enter.ng-enter-active {
+    &.ng-enter-active{
         opacity: 1;
     }
 
-    &.ng-leave,
-    &.apartment-info.ng-enter {
-        transition: all 0.5s ease-in-out;
-        opacity: 1;
-    }
+    .prop-info {
+        position: relative;
+        padding: 0;
 
-    &.ng-leave.ng-leave-active,
-    &.apartment-info.ng-enter.ng-enter-active {
-        opacity: 0;
+        &-head {}
+
+        &-list {
+            padding: 3px;
+
+            &-item {
+                margin-right: 10px;
+                padding: 10px 2px 10px 0;
+                border-bottom: 1px solid #000;
+            }
+        }
     }
 }

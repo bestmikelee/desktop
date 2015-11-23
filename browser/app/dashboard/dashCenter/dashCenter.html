@@ -1,13 +1,16 @@
+<renewal-notice-notification></renewal-notice-notification>
+
 <d3-visuals-container
     class="dash-container col-xs-12"
-    show-elem="!apartmentSelected"
+    ng-if="!apartmentSelected"
     pie-data="leaseStatusData"
     address="currentAddress">
 </d3-visuals-container>
 
 <building-view
     class="dash-container selection-info col-md-4 col-xs-12"
-    individually-selected-building="!apartmentSelected && buildingSelected">
+    ng-if="!apartmentSelected && buildingSelected"
+    individually-selected-building="buildingSelected">
 </building-view>
 
 <apt-view

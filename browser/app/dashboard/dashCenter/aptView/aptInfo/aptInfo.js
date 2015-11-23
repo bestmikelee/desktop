@@ -16,4 +16,7 @@ app.controller('aptInfoCtrl', ['$scope', 'llRestService', function ($scope, llRe
         });
     };
 
+		// @TODO create map of apt/lease properties to icons
+		$scope.iconMap = {};
+
 }]);

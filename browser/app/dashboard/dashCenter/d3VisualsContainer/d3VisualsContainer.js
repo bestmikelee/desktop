@@ -4,8 +4,7 @@ app.directive('d3VisualsContainer', function(){
 		templateUrl: 'app/dashboard/dashCenter/d3VisualsContainer/d3VisualsContainer.html',
 		scope: {
 			pieData: '=',
-			address: '=',
-			showElem: '='
+			address: '='
 		},
 		controller: function($scope){
 			console.log('d3VisualsContainer pieData data show: ', JSON.stringify(!!$scope.pieData.pieChart.length));

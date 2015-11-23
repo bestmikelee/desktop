@@ -1,17 +1,17 @@
-<div ng-if="!!individuallySelectedBuilding" class="col-xs-12 prop-info" ng-class="!!individuallySelectedBuilding? 'prop-info-delay fade-in-info' : ''" ng-style="{'transition': '.75s ease-in-out '+ (!!individuallySelectedBuilding ? '.75s': '')}">
-    <h3>Building Info</h3>
-    <ul class="amenities">
-        <li><i class="fa fa-map-marker"></i> <b>Address:</b> {{ individuallySelectedBuilding.street_number | capitalize}} {{ individuallySelectedBuilding.street_name | capitalize}}</li>
-        <li><i class="fa fa-flag"></i> <b>City and State:</b> {{ individuallySelectedBuilding.city | capitalize}}, {{ individuallySelectedBuilding.state | capitalize}}</li>
-        <li><i class="fa fa-fire"></i> <b>Heat Type:</b> {{ individuallySelectedBuilding.heat_type | capitalize}}</li>
-        <li><i class="fa fa-caret-square-o-up"></i> <b>Elevator:</b> {{ individuallySelectedBuilding.elevator | capitalize}}</li>
-        <li><i class="fa fa-key"></i> <b>Doorman:</b> {{ individuallySelectedBuilding.doorman | capitalize}}</li>
-        <li><i class="fa fa-male"></i> <b>Gym:</b> {{ individuallySelectedBuilding.gym | capitalize}}</li>
-        <li><i class="fa fa-map-o"></i> <b>Pool:</b> {{ individuallySelectedBuilding.pool | capitalize}}</li>
-        <li><i class="fa fa-car"></i> <b>Parking:</b> {{ individuallySelectedBuilding.parking | capitalize}}</li>
-        <li><i class="fa fa-users"></i> <b>Common Roof:</b> {{ individuallySelectedBuilding.common_roof | capitalize}}</li>
-        <li><i class="fa fa-female"></i> <b>Laundry:</b> {{ individuallySelectedBuilding.laundry | capitalize}}</li>
-        <li><i class="fa fa-paw"></i> <b>Pets Allowed:</b> {{ individuallySelectedBuilding.pet_allowed | capitalize}}</li>
-        <li><i class="fa fa-folder-open-o"></i> <b>Open:</b> {{ individuallySelectedBuilding.open | capitalize}}</li>
+<div class="col-xs-12 prop-info">
+    <h3 class="prop-info-head">Building Info</h3>
+    <ul class="prop-info-list">
+        <li class="prop-info-list-item"><i class="fa fa-map-marker"></i> <b>Address:</b> {{ individuallySelectedBuilding.street_number | capitalize}} {{ individuallySelectedBuilding.street_name | capitalize}}</li>
+        <li class="prop-info-list-item"><i class="fa fa-flag"></i> <b>City and State:</b> {{ individuallySelectedBuilding.city | capitalize}}, {{ individuallySelectedBuilding.state | capitalize}}</li>
+        <li class="prop-info-list-item"><i class="fa fa-fire"></i> <b>Heat Type:</b> {{ individuallySelectedBuilding.heat_type | capitalize}}</li>
+        <li class="prop-info-list-item"><i class="fa fa-caret-square-o-up"></i> <b>Elevator:</b> {{ individuallySelectedBuilding.elevator | capitalize}}</li>
+        <li class="prop-info-list-item"><i class="fa fa-key"></i> <b>Doorman:</b> {{ individuallySelectedBuilding.doorman | capitalize}}</li>
+        <li class="prop-info-list-item"><i class="fa fa-male"></i> <b>Gym:</b> {{ individuallySelectedBuilding.gym | capitalize}}</li>
+        <li class="prop-info-list-item"><i class="fa fa-map-o"></i> <b>Pool:</b> {{ individuallySelectedBuilding.pool | capitalize}}</li>
+        <li class="prop-info-list-item"><i class="fa fa-car"></i> <b>Parking:</b> {{ individuallySelectedBuilding.parking | capitalize}}</li>
+        <li class="prop-info-list-item"><i class="fa fa-users"></i> <b>Common Roof:</b> {{ individuallySelectedBuilding.common_roof | capitalize}}</li>
+        <li class="prop-info-list-item"><i class="fa fa-female"></i> <b>Laundry:</b> {{ individuallySelectedBuilding.laundry | capitalize}}</li>
+        <li class="prop-info-list-item"><i class="fa fa-paw"></i> <b>Pets Allowed:</b> {{ individuallySelectedBuilding.pet_allowed | capitalize}}</li>
+        <li class="prop-info-list-item"><i class="fa fa-folder-open-o"></i> <b>Open:</b> {{ individuallySelectedBuilding.open | capitalize}}</li>
     </ul>
 </div>
