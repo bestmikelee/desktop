@@ -1,4 +1,4 @@
-app.service('AuthService', function($http, Session, $rootScope, AUTH_EVENTS, $q) {
+app.service('AuthService', function($http, Session, $rootScope, AUTH_EVENTS, $q, socketFactory) {
 
     function onSuccessfulAuth(response) {
         var user = response.data.user;
@@ -8,14 +8,52 @@ app.service('AuthService', function($http, Session, $rootScope, AUTH_EVENTS, $q)
         user.isBroker = user.userType.indexOf('broker') > -1;
         user.isTenant = user.userType.indexOf('tenant') > -1;
         user.isContractor = user.userType.indexOf('contractor') > -1;
-        return $http.get('api/landlord/' + user._id)
-		.then(function(buildingResponse){
-            var lordSocket = io.connect(location.host + '/lordSocket/' + user._id)
-            console.log(location.host)
-            console.log(lordSocket)
-            lordSocket.on('auth', function(data){
+
+            var testSocket = socketFactory({
+                ioSocket: io.connect(location.host + '/' + user._id)
+            })
+            console.log(testSocket)
+            // testSocket.on('connection', function(socket){
+                
+            // })
+            
+            testSocket.on('another', function(data){
+                console.log(data);
+            }) 
+
+            testSocket.on('auth', function(data){
                 console.log(data);
             })
+            testSocket.emit('hello', {mydata: 'mydata'})
+            // testSocket.on('call', function(data){
+            //     console.log(data);
+            // })
+            //console.log(testSocket)
+
+            // var lordtestSocket = io(location.host + '/' + user._id)
+            // console.log(lordtestSocket)
+            // lordtestSocket.on('connect', function(testSocket){
+            //     console.log(testSocket)
+            //     testSocket.on('auth', function(data){
+            //         console.log(data);
+            //     })
+
+            //     testSocket.emit('hello', {mydata: 'mydata'})
+            // })
+            
+            
+
+        return $http.get('api/landlord/' + user._id)
+		.then(function(buildingResponse){
+            
+            
+            // lordSocket.on('call', function(data){
+            //     console.log(data);
+            // })
+            // lordSocket.on('another', function(data){
+            //     console.log(data)
+            // })
+            // console.log(lordSocket)
              Session.create(response.data.id, user, buildingResponse.data, response.data.access_token);
              $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
 			 return user;

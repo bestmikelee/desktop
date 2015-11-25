@@ -1,34 +1,45 @@
-'use strict';
-var socketio = require('socket.io');
+var io = require('socket.io');
+var emitter = require('socket.io-emitter');
+// var socketio = require("socket.io")
+var redis = require('redis');
+var path = require('path');
 
-var sockets = {
-	io: null,
-	nsps: {},
-	useNamespace: function(path, cb){
-		if (this.nsps[path]) {
-			return this.nsps[path];
-		}
-		this.nsps[path] = this.io.of(path)
-		this.nsps[path].on('connection', cb)
-		return this.nsps[path];
-	}
+var env = require(path.join(__dirname,
+	'../env/' + (process.env.NODE_ENV === 'production'? 'production.js' : 'development.js')));
+var sock;
+
+
+function socketCreator(server, redisCli){
+	this.client;
+	this.io = io(server)//.adapter(redisCli);
+	this.emitter;
+	this.nsps = {};
 }
 
-module.exports = function (server) {
+// socketCreator.prototype.nsps = {};
 
-    if (sockets.io) return sockets;
+socketCreator.prototype.getNamespace = function(userId,cb) {
+	var that = this;
+	if (this.nsps[userId]) 
+			return this.nsps[userId]
+	this.nsps[userId] = this.io.of('/' + userId).on('connection',cb)
+	return this.nsps[userId]
+};	
 
-    sockets.io = socketio(server);
 
-    sockets.io.on('connection', function (socket) {
-        // Now have access to socket, wowzers!
-        socket.emit('hi',{yo:'yo'})
-    });
+
+module.exports = function(server){
+	var redisClient;
+	if (sock) return sock
+	redisClient = redis.createClient(env.REDIS.url);
+
+	sock = new socketCreator(server,redisClient)
+	sock.client = redisClient
+	sock.emitter = emitter(env.REDIS.url)
+	console.log(env.REDIS.url)
+
+    return sock
     
-    
-    return sockets;
 
-};
-
-
+}
 

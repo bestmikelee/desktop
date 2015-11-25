@@ -10,7 +10,7 @@ var server = require('http').createServer();
 
 var createApplication = function() {
   server.on('request', app);
-  require('./sockets')(server)
+  
 };
 
 var startServer = function () {
@@ -19,6 +19,7 @@ var startServer = function () {
     server.listen(PORT, function () {
         console.log(chalk.green('Server started on port', chalk.blue(PORT)));
     });
+    require('./sockets')(server)
 };	
 
 // var connectSocket = function(){

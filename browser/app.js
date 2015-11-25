@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('effektiv', ['ui.router', 'ui.bootstrap', 'ngAnimate']);
+var app = angular.module('effektiv', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'btford.socket-io']);
 
 app.config(function($urlRouterProvider, $locationProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
