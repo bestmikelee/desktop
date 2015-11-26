@@ -1,4 +1,20 @@
+<button ng-click="printScope()">Print Scope</button>
 <div>Renewal Start Dashboard. There are currently {{renewalList.count}} apartments that are within the renewal threshold.</div>
 
 
-<renewalapartment ng-repeat="apt in renewalList" apartment="apt"></renewalapartment>
+<div class="col-sm-6">
+	<renewalapartment ng-repeat="apt in renewalList" apartment="apt"></renewalapartment>
+</div>
+
+
+<div class="col-sm-6">
+	<div ng-repeat="apt2 in aptSelected">
+		{{apt2.buildingName + " " + apt2.unit_number + " " + apt2.newRent}}
+		<span class="glyphicon glyphicon-trash" ng-click="removeApt(apt2)"></span>
+
+	</div>
+</div>
+
+<button ng-click="submit()">Initiate Renewal Process</button>
+
+

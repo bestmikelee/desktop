@@ -12,10 +12,15 @@ app.directive('renewalapartment', ['renewalStorage',function(renewalStorage){
 		controller: function($scope, $element, $attrs, $transclude) {
 			$scope.renewed = false;
 			$scope.initiateRenewal = function(apt){
-				apt['newRent'] = $scope.newRent
-				$scope.renewed = true;
-				renewalStorage.initiateRenewalArr.push(apt);
-				console.log(renewalStorage.initiateRenewalArr)
+				console.log(apt);	
+				if($scope.newRent < 0 || $scope.newRent > 9999 || $scope.newRent === undefined) 
+					{$scope.wrongRent = true}
+				else {
+					apt['newRent'] = $scope.newRent
+					$scope.wrongRent = false;
+					$scope.renewed = true;
+					$scope.$emit("renewalCommunication",apt)
+				}
 			}
 		},
 		// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
