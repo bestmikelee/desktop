@@ -73,7 +73,7 @@ function leaseExpireGen() {
     return month + "/1/" + year
 };
 
-var apartmentSeed = function(tenantId, buildingId, counter) {
+var apartmentSeed = function(llId, tenantId, buildingId, counter) {
     return new Apartment({
         unit_number: counter + chance.pick(arryOfAptLetters),
         tenant_ids: [],
@@ -90,7 +90,8 @@ var apartmentSeed = function(tenantId, buildingId, counter) {
         sq_ft: chance.pick(arryOfSquareFootage),
         lease_ids: [],
         brokers: [],
-        brokerages: []
+        brokerages: [],
+        landlord_id: llId
     });
 };
 /////////////////////////////////////// Building Utilities /////////////////////////////////////////
@@ -176,7 +177,8 @@ var brokerageSeed = function(config){
         city: chance.city(),
         state: chance.state(),
         buildings: config.building_ids,
-        brokers: []
+        brokers: [],
+        landlords: []
     });
 };
 
@@ -248,7 +250,7 @@ var seedOneLandLord = function() {
                 max: 60
             })
             for (var i = 0; i < randNumOfApartments; i++) {
-                apartments.push(Promise.promisifyAll(apartmentSeed(null, blding._id, i)))
+                apartments.push(Promise.promisifyAll(apartmentSeed(masterUser.userTypeIds.landlord, null, blding._id, i)))
             }
         })
 
@@ -310,7 +312,8 @@ var seedOneLandLord = function() {
         for (var i = 1; i <= randomNumberOfBrokerages; i++){
             var config = {
                 user_ids: [chance.pick(users)._id],
-                building_ids: [chance.pick(buildings)._id]
+                building_ids: [chance.pick(buildings)._id],
+                landlords: [masterUser.userTypeIds.landlord]
             }
             brokerages.push(Promise.promisifyAll(brokerageSeed(config)))
         }
