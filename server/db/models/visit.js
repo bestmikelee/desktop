@@ -4,7 +4,7 @@ var VisitSchema = new mongoose.Schema({
 	apartment_id: {type: mongoose.Schema.Types.ObjectId, ref: 'Apartment'},
 	tenant_id: {type: mongoose.Schema.Types.ObjectId, ref: 'Tenant'},
 	broker_id: {type: mongoose.Schema.Types.ObjectId, ref: 'Broker'},
-	landlord_id: {type: mongoose.Scheman.Types.ObjectId, ref: 'Landlord'},
+	landlord_id: {type: mongoose.Schema.Types.ObjectId, ref: 'Landlord'},
 	date: Date
 });
 
