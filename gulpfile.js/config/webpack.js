@@ -1,11 +1,17 @@
 var webpack = require('webpack'),
-    config = require('./'),
-    glob = require("glob");
+    config = require('./');
 
 module.exports = {
     context: config.vendorBundleDir,
-    plugins: process.env !== 'production' ? [] : [
-      new webpack.optimize.UglifyJsPlugin()
+    plugins: process.env.NODE_ENV !== 'production' ? [] :  [
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false
+        },
+        minimize: true,
+        output: {
+          comments: false
+        }})
     ],
     entry: './vendor.js',
     output: {

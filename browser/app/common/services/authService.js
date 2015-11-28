@@ -9,38 +9,19 @@ app.service('AuthService', function($http, Session, $rootScope, AUTH_EVENTS, $q,
         user.isTenant = user.userType.indexOf('tenant') > -1;
         user.isContractor = user.userType.indexOf('contractor') > -1;
 
-            var testSocket = socketFactory({
-                ioSocket: io.connect(location.host + '/' + user._id)
-            })
-            console.log(testSocket)
-            // testSocket.on('connection', function(socket){
-                
-            // })
-            
-            testSocket.on('another', function(data){
-                console.log(data);
-            }) 
+        var testSocket = socketFactory({
+            ioSocket: io.connect(location.host + '/' + user._id)
+        })
+        console.log(testSocket)
+        
+        testSocket.on('another', function(data){
+            console.log(data);
+        }) 
 
-            testSocket.on('auth', function(data){
-                console.log(data);
-            })
-            testSocket.emit('hello', {mydata: 'mydata'})
-            // testSocket.on('call', function(data){
-            //     console.log(data);
-            // })
-            //console.log(testSocket)
-
-            // var lordtestSocket = io(location.host + '/' + user._id)
-            // console.log(lordtestSocket)
-            // lordtestSocket.on('connect', function(testSocket){
-            //     console.log(testSocket)
-            //     testSocket.on('auth', function(data){
-            //         console.log(data);
-            //     })
-
-            //     testSocket.emit('hello', {mydata: 'mydata'})
-            // })
-            
+        testSocket.on('auth', function(data){
+            console.log(data);
+        })
+        testSocket.emit('hello', {mydata: 'mydata'})
             
 
         return $http.get('api/landlord/' + user._id)

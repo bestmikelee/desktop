@@ -1,5 +1,8 @@
 'use strict';
 
+//enables es6 in all files except this one
+require('babel-core/register');
+
 var chalk = require('chalk');
 
 var startDb = require('./db');
@@ -19,8 +22,12 @@ var startServer = function () {
     server.listen(PORT, function () {
         console.log(chalk.green('Server started on port', chalk.blue(PORT)));
     });
+<<<<<<< HEAD
     require('./sockets')(server)
 };	
+=======
+};
+>>>>>>> f39ee0e34bc3c1651c2d42a7b43a2138c31b21d9
 
 // var connectSocket = function(){
 // 	io = socket(server);

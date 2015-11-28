@@ -1,0 +1,73 @@
+.building-accordion {
+    padding: 0;
+    margin: 0;
+    z-index: 1;
+
+    #dashboardAccordion {
+        height: 100%;
+    }
+
+    .panel-group {
+        height: 100%;
+        margin-bottom: 0;
+    }
+
+    .panel,
+    .panel-heading {
+        border-radius: 0;
+        margin: 0;
+    }
+
+    .panel-body {
+        text-align: center;
+        padding: 0 3%;
+        background-color: #fff;
+
+        .btn-apartment {
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            margin: 3px;
+            background-color: #222;
+            display: inline-block;
+            display: -webkit-inline-box;
+            position: relative;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #444;
+            }
+
+            .btn-apartment-inside {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                display: block;
+                transform: translate(-50%,-50%);
+                color: white;
+            }
+        }
+    }
+
+    .panel-default {
+        border: none;
+
+        &+.panel-default {
+            margin: 0;
+            border-top: 5px white solid;
+        }
+
+        .panel-heading {
+            text-align: center;
+            background-color: $building-button;
+            opacity: 0.9;
+            color: white !important;
+            width: 100%;
+            transition: 0.25s ease-in-out;
+
+            &:hover {
+                background-color: $building-button-hover;
+            }
+        }
+    }
+}

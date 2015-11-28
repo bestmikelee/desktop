@@ -11,7 +11,7 @@ app.directive('lockRequest', function() {
             reject: '&',
             info: '&'
         },
-        templateUrl:'app/dashboard/lockRequest/lockRequestSingle.html',
+        templateUrl:'app/dashboard/notificationsAside/lockRequest/lockRequestSingle.html',
         // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
         restrict: 'E',
         // replace: true,

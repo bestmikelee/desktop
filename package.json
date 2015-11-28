@@ -87,8 +87,12 @@
     "shortid": "^2.2.2",
     "socket.io": "^1.3.7",
     "socket.io-client": "^1.3.7",
+<<<<<<< HEAD
     "socket.io-emitter": "^0.2.0",
     "socket.io-redis": "^0.1.4",
+=======
+    "underscore": "^1.8.3",
+>>>>>>> f39ee0e34bc3c1651c2d42a7b43a2138c31b21d9
     "webpack": "^1.12.6"
   },
   "devDependencies": {

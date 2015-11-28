@@ -408,15 +408,10 @@ var seedOneLandLord = function() {
             ]);
         }
 
-
-
-
         var seedDatabase = function() {
             for (var i = 0; i < numOfSeededLandlords; i++) {
                 seedOneLandLord();
             }
-            console.log("DATABASE SEEDED!!")
-            return;
         }
 
     db.then(function(db){

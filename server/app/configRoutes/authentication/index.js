@@ -62,10 +62,9 @@ module.exports = function(app) {
         if (req.session.user) {
             Admin.isAdmin(req.session.user).then(function(isAnAdmin) {
                 var example;
-                //console.log(sio())
+
                 var test = sio().getNamespace(req.session.user._id, function(socket){
-                    //socket.join('thisroom')
-                    //console.log('session connected', socket)
+
                         socket.emit('another',{example: 'hello'})
                     socket.on('disconnect', function(){
                         console.log('disconnected')
@@ -74,19 +73,8 @@ module.exports = function(app) {
                     socket.on('hello', function(data){
                         console.log('from client', data)
                     })
-                    //console.log(socket)
-                })
-                // console.log(sio().emitter.of('/'+ req.session.user._id))
-                // sio().emitter.of('/'+ req.session.user._id).emit('auth',{newdata:'data'})
 
-                //console.log(test) 
-                // test.sockets.forEach(function(el){
-                //     //console.log(el)
-                // })
-                // var test = sio().getNamespace(req.session.user._id).on('connection', function(socket){
-                //         socket.emit('another',{example: 'hello'})
-                //     })
-                // test.emit('call',{yourself: 'mike'})
+                })
 
                 res.status(200).json({
                     user: req.session.user,
