@@ -5,7 +5,6 @@ app.directive('buildingAccordionAside', () => ({
 
 app.animation('.accordion-collapse-show', ['$animateCss', ($animateCss) => ({
 	addClass: function(element, doneFn) {
-		console.log('element', element);
 		return $animateCss(element, {
 			from: { 'max-height': '0px' },
 			to: { 'max-height': element[0].scrollHeight + 'px' },

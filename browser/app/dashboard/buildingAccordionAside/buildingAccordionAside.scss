@@ -39,6 +39,7 @@
             &-caret {
                 float: right;
                 top: 2.5px;
+                position: relative;
                 transition: 200ms ease;
                 
                 &.active {
