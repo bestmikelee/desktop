@@ -1,14 +1,18 @@
-<div class="dash-aside-header">
+<header class="dash-aside-header">
     Properties
-</div>
-<div class="dash-aside-list accordion-list">
-    <accordion close-others="oneAtATime" id="dashboardAccordion">
-        <accordion-group heading="{{ building.street_number + ' ' + building.street_name }}" is-disabled="status.isFirstDisabled" is-open="building.open" ng-repeat="building in buildings">
-            <span class="btn-apartment" ng-click="selectApartment(apartment)" ng-repeat="apartment in building.apartments">
+</header>
+<ul class="dash-aside-list accordion-list">
+    <li class="accordion-list-building ng-isolate-scope" ng-repeat="building in buildings">
+        <header class="accordion-list-building-header" ng-class="!building.open ? '' : 'active'" ng-click="selectBuilding(building)">
+            <i class="glyphicon glyphicon-chevron-down accordion-list-building-header-caret" ng-class="!building.open ? '' : 'active'"></i>
+            <span class="accordion-list-building-header-text"> {{ building.street_number + ' ' + building.street_name }} </span>
+        </header>
+        <ul class="accordion-sublist-apartments accordion-collapse" ng-class="!building.open ? '' : 'accordion-collapse-show'">
+            <li class="btn-apartment" ng-click="selectApartment(apartment)" ng-repeat="apartment in building.apartments">
                 <span class="btn-apartment-inside">
                     {{ apartment.unit_number }}
                 </span>
-            </span>
-        </accordion-group>
-    </accordion>
-</div>
+            </li>
+        </ul>
+    </li>
+</ul>

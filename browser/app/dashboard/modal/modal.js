@@ -28,7 +28,7 @@ app.controller('modalController',['$scope','Session','$http','$timeout', functio
   $scope.leaseName = '';
 
   var reader = new FileReader();
-  
+
   reader.onloadend = function(e) {
       newLease.file = e.target.result.split(',').pop();
   };

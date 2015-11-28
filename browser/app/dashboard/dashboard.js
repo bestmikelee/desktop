@@ -36,27 +36,18 @@ app.controller('dashboardCtrl', ['$scope','$timeout', 'Session', 'llRestService'
         $scope.updatePies();
     };
 
-    // watch each building for its accordion being open, if all building accordions are closed go to portfolio view
-    $scope.buildings.forEach(function(building, index, buildingsArr) {
-        $scope.$watch('buildings[' + index + '].open', function(isOpen) {
-            // if a building is expanded, include it in graphic
-            if (isOpen) {
-                $scope.buildingSelected = building;
-                $scope.currentAddress = building.street_number + ' ' + building.street_name;
-                $scope.updatePies(building._id);
-            } else {
-                var total = 0;
-                buildingsArr.forEach(function(val) {
-                    if (val.open) total++;
-                });
-                if (!total) {
-                    $scope.buildingSelected = null;
-                    $scope.currentAddress = 'Portfolio';
-                    $scope.updatePies();
-                }
-            }
-        });
-    });
+    function getAddress(building) {
+        return building.street_number + ' ' + building.street_name;
+    }
+
+    // select a specific building
+    $scope.selectBuilding = function(building) {
+        $scope.buildings.forEach((val)=> val.open = val._id === building._id && !building.open); // set all "open" on all buildings except selected building to false
+        building = building.open ? building : undefined;
+        $scope.currentAddress = building && getAddress(building) || 'Portfolio';
+        $scope.updatePies(building && building._id);
+        $scope.buildingSelected = building;
+    };
 
     // select a specific apartment
     $scope.selectApartment = function(apartment) {

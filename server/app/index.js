@@ -6,47 +6,32 @@ var express = require('express'),
     path = require('path'),
     favicon = require('serve-favicon');
 
+// instantiate app
 var app = express();
-
 
 // setValue and getValue are merely alias
 // for app.set and app.get used in the less
 // common way of setting application variables.  // Taken from FSG
 app.setValue = app.set.bind(app);
-app.getValue = function(mypath) {
-    return app.get(mypath);
-};
+app.getValue = (mypath) => app.get(mypath);
 
 // Get environmental variables
 require('../env')(app);
 
-
-// Set middlewares
-//// Show activity in console
+// Log to console
 app.use(logger('dev'));
-//// Parse cookies
+
+// Parse cookies
 app.use(cookieParser());
-//// Parse our POST and PUT bodies.
+
+// Parse our POST and PUT bodies.
 app.use(bodyParser({limit: '50mb'}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 // Set view render engine
-app.setValue('views', __dirname + '/views');
+app.setValue('views', path.join(app.getValue('root'), 'server', 'app', 'views'));
 app.setValue('view engine', 'jade');
-
-// Set favicon
-app.use(favicon(app.getValue('faviconPath')));
-
-// Allowing 'index.html' to access files in the following folders
-var root = app.getValue('root');
-app.use(express.static(path.join(root, './node_modules')));
-app.use(express.static(path.join(root, './public')));
-app.use(express.static(path.join(root, './browser')));
-
-// Views cache
-app.setValue('view cache', true);
 
 // Set cors
 app.use(function(req, res, next) {
@@ -55,6 +40,17 @@ app.use(function(req, res, next) {
     next();
 });
 
+// Views cache
+app.setValue('view cache', true);
+
+// Set favicon
+app.use(favicon(app.getValue('faviconPath')));
+
+// Allowing 'index.html' to access files in the following folders
+var oneDay = 1000 * 60 * 60 * 24;
+app.use(express.static(path.join(app.getValue('root'), 'node_modules'), {maxAge: oneDay}));
+app.use(express.static(path.join(app.getValue('root'), 'public'), {maxAge: oneDay}));
+app.use(express.static(path.join(app.getValue('root'), 'browser'), {maxAge: oneDay}));
 
 // Pass our express application pipeline into the configuration
 // function located at server/app/configure/index.js
@@ -64,9 +60,6 @@ require('./configRoutes')(app);
 app.use('/api', require('./appRoutes'));
 
 // All get routes that go through the pipeline, past /api, will get the single page layout
-app.get('/*', function(req, res) {
-    res.render('index');
-});
-
+app.get('/*', (req, res) => res.render('index'));
 
 module.exports = app;

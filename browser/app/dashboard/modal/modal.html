@@ -218,7 +218,7 @@
                                     <span class="lease-btn btn-file">
                                         Upload Lease PDF<input id="photo" name="lease" onchange="angular.element(this).scope().readFile(this)" type="file"/>
                                     </span>&nbsp;
-                                    <span class="pdf-name" ng-if="leaseName">&nbsp;<i class="fa fa-file-pdf-o"></i>&nbsp;{{leaseName}}&nbsp;</span>
+                                    <span class="input-file" ng-if="leaseName">&nbsp;<i class="fa fa-file-pdf-o"></i>&nbsp;{{leaseName}}&nbsp;</span>
                                 </div>
                             </div>
 
@@ -226,9 +226,6 @@
                         </form>
                     </div>
                 </div>
-                <!-- <div class="form-group">
-                    <input name="building-select" placeholder="name" type="text" value="name">
-                </div> -->
             </div>
         </div>
     </div>

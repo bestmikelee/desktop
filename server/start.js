@@ -5,15 +5,15 @@ require('babel-core/register');
 
 var chalk = require('chalk');
 
-var startDb = require('./db');
-var app = require('./app');
+var startDb = require('./db'),
+    app = require('./app');
 
 var server = require('http').createServer();
 //var socket = require('./sockets');
 
 var createApplication = function() {
   server.on('request', app);
-  require('./sockets')(server)
+  require('./sockets')(server);
 };
 
 var startServer = function () {

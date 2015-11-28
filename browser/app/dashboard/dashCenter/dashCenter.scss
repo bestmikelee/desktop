@@ -1,7 +1,7 @@
 .dash-container {
     position: relative;
     padding: 0;
-
+    
     &.ng-enter {
         transition: opacity 0.5s ease-in-out;
     }
@@ -10,23 +10,28 @@
         opacity: 0;
     }
 
-    &.ng-enter-active{
+    &.ng-enter-active {
         opacity: 1;
     }
 
     .prop-info {
         position: relative;
         padding: 0;
-
-        &-head {}
-
+        
+        &-head {
+            
+        }
+        
         &-list {
             padding: 3px;
-
+            
             &-item {
                 margin-right: 10px;
                 padding: 10px 2px 10px 0;
-                border-bottom: 1px solid #000;
+                
+                & + .prop-info-list-item {
+                    border-top: 1px solid #000;
+                }
             }
         }
     }
