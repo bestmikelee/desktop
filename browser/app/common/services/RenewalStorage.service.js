@@ -1,3 +1,3 @@
 app.service('renewalStorage', function(){
-this.initiateRenewalArr = []	
+this.initiateRenewalArr = [];
 })
