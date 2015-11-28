@@ -45,7 +45,7 @@ app.service('Session', function($rootScope, $interval, AUTH_EVENTS) {
 
         var renewalSchedule = {
             pieChart: [{
-                color: 'all_set',
+                color: 'rented',
                 description: 'Rented',
                 value: 0,
                 count: 0
@@ -143,7 +143,7 @@ app.service('Session', function($rootScope, $interval, AUTH_EVENTS) {
         // Sample output
         // return  {
         //          pieChart: [{
-        //              color: 'all_set',
+        //              color: 'rented',
         //              description: 'Rented',
         //              value: 0.3
         //          }, {

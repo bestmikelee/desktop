@@ -1,20 +1,18 @@
-<div id="{{pieId}}">
-    <aside class="aside-data" ng-class="asideDataHide? 'aside-data-hide' : ''">
-        <ul class="aside-data-list">
-            <li class="aside-data-list-item" ng-repeat="pieDatum in percentageData">
-                <span class="aside-data-val aside-data-val-count">
-                    {{pieDatum.count}}
-                </span>
-                <span class="aside-data-val aside-data-val-percentage">
-                    {{Math.round(pieDatum.value)}}%
-                </span>
-                <hr class="aside-data-hr">
-                <small class="aside-data-description">
-                    {{pieDatum.description}}
-                </small>
-            </li>
-        </ul>
-    </aside>
+<div id="{{pieId}}" class="pie-container">
+    <ul class="aside-data" ng-class="asideDataHide? 'aside-data-hide' : ''">
+        <li class="aside-data-list-item" ng-repeat="pieDatum in percentageData">
+            <span class="aside-data-val aside-data-val-count">
+                {{pieDatum.count}}
+            </span>
+            <span class="aside-data-val aside-data-val-percentage">
+                {{Math.round(pieDatum.value)}}%
+            </span>
+            <hr class="aside-data-hr">
+            <small class="aside-data-description">
+                {{pieDatum.description}}
+            </small>
+        </li>
+    </ul>
     <svg id="{{pieId + 'SVG'}}" preserveAspectRatio="xMidYMid">
         <defs>
             <filter id="{{pieId + 'InsetShadow'}}">
