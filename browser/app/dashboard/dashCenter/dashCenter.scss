@@ -2,18 +2,6 @@
     position: relative;
     padding: 0;
     
-    &.ng-enter {
-        transition: opacity 0.5s ease-in-out;
-    }
-
-    &.ng-enter {
-        opacity: 0;
-    }
-
-    &.ng-enter-active {
-        opacity: 1;
-    }
-
     .prop-info {
         position: relative;
         padding: 0;

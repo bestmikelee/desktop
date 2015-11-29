@@ -1,7 +1,7 @@
 app.directive('hollowPie', function($timeout, $interval, $rootScope) {
 
     var DURATION = 1500;
-    var DELAY = 500;
+    var INNER_CIRCLE_DELAY = DURATION*1/3;
 
     function hollowPieLink(scope, element, attrs) {
         // store percentages in array
@@ -10,7 +10,7 @@ app.directive('hollowPie', function($timeout, $interval, $rootScope) {
         // Re-draw pies upon changes to 'passedData'
         scope.$watch('passedData', (newVal, oldVal) =>
             $timeout(() =>
-            ಠ_ಠ(scope.pieId, scope.passedData, scope.percentageData)),true);
+            ಠ_ಠ(scope)),true);
     }
 
     function drawPieChart(elementId, data) {
@@ -52,7 +52,7 @@ app.directive('hollowPie', function($timeout, $interval, $rootScope) {
             .attr('class', (d) =>  'pie_chart_' + d.data.color)
             .attr('d', arc)
             .each(function() {
-                this._current = {
+                this._current = this._current || { //to make transition work need to figure out how to include previous values here
                     startAngle: 0,
                     endAngle: 0
                 };
@@ -61,7 +61,7 @@ app.directive('hollowPie', function($timeout, $interval, $rootScope) {
             .duration(DURATION)
             .attrTween('d', function(d) {
                 var interpolate = d3.interpolate(this._current, d);
-                this._current = interpolate(0);
+                this._current = interpolate(d);
                 return (t) => arc(interpolate(t));
             });
 
@@ -71,35 +71,33 @@ app.directive('hollowPie', function($timeout, $interval, $rootScope) {
 
     // Handles "hollowing" the pie
     function drawChartCenter(pie, radius) {
-        var centerContainer = pie.append('g');
-
-        centerContainer.append('circle')
+        pie.append('g').append('circle')
             .attr('class', 'pie_chart_inner_circle')
             .attr('r', 0)
             .transition()
-            .delay(DELAY)
+            .delay(INNER_CIRCLE_DELAY)
             .duration(DURATION)
             .attr('r', Math.max(radius - 30, radius * 0.35));
     }
 
     // Handles incrementing values+percentages
-    function percentClimber(pieId, passedData, percentageData) {
-        const start = !percentageData.length;
+    function percentClimber(pieId, newData, currentData) {
+        const start = !currentData.length;
         if(start) {
-            for (var i = 0; i < passedData.length; i++) {
-                percentageData.push({
+            for (var i = 0; i < newData.length; i++) {
+                currentData.push({
                     value: 0,
                     count: 0,
-                    description: passedData[i].description
+                    description: newData[i].description
                 });
             }
         }
         $timeout(() => {
-            for (var i = 0; i < percentageData.length; i++) {
-                incrementTo(percentageData[i], passedData[i], 'count');
-                incrementTo(percentageData[i], passedData[i], 'value');
+            for (var i = 0; i < currentData.length; i++) {
+                incrementTo(currentData[i], newData[i], 'count');
+                incrementTo(currentData[i], newData[i], 'value');
             }
-        }, start ? DURATION/2 : 200); //wait 1 second on initial load, .2 seconds when moving between buildings
+        }, start ? 800 : 200); //wait 1 second on initial load, .2 seconds when moving between buildings
     }
 
     // Manages actual incrementing
@@ -110,15 +108,17 @@ app.directive('hollowPie', function($timeout, $interval, $rootScope) {
             startVal[prop] > endVal[prop] ?
             startVal[prop]-- :
             $interval.cancel(interval),
-            300/Math.abs(startVal[prop]-endVal[prop])); //make full increment time = 500ms
+            300/Math.abs(startVal[prop] - endVal[prop])); //make full increment time = 500ms
     }
 
     // Build chart
-    function ಠ_ಠ(pieId, passedData, currentData) {
+    function ಠ_ಠ(scope) {
         // hide if specific apartment is selected
-        if (passedData.length) {
-            drawPieChart(pieId, passedData);
-            percentClimber(pieId, passedData, currentData);
+        scope.asideDataHide = true;
+        if (scope.passedData.length) {
+            drawPieChart(scope.pieId, scope.passedData);
+            scope.asideDataHide = false;
+            percentClimber(scope.pieId, scope.passedData, scope.percentageData);
         }
     }
 
@@ -132,8 +132,11 @@ app.directive('hollowPie', function($timeout, $interval, $rootScope) {
         templateUrl: 'app/common/directives/hollowPie/hollowPie.html',
         link: hollowPieLink,
         controller: function($scope){
-            //allow Math in interpolation
+            // allow Math in interpolation
             $scope.Math = window.Math;
+
+            // initialize with aside data hidden
+            $scope.asideDataHide = true;
         }
     };
 });

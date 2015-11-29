@@ -85,28 +85,24 @@
         }
 
         &-nav {
-            li {
+            &-list-item {
                 cursor: pointer;
                 transition: color 0.3s ease-in-out;
                 
-                a:hover,
-                a:focus {
+                &-link:hover,
+                &-link:focus {
                     color: $nav-text-hover !important;
                 }
 
-                a {
+                &-link {
                     color: $nav-text !important;
                     font-size: 14px;
+                    float: right;
+                    border: 1px solid black;
+                    background: none;
+                    outline: none !important;
                 }
             }
-        }
-
-        &-button {
-            float: right;
-            border: 1px solid black;
-            margin-top: 10px;
-            background: none;
-            outline: none !important;
         }
 
         &-left {
@@ -158,26 +154,27 @@
             padding: 6px 12px;
         }
 
-        &-results {
-            background-color: white;
-            position: fixed;
-            width: 100%;
-            padding-top: 60px;
-            z-index: 10;
-            border-bottom: solid 1px $border-color;
-        }
-
-        &-result {
-            width: 100%;
-            font-size: 15px;
-            padding-left: 30px;
-            padding-bottom: 5px;
-            
-            &:hover {
-                background-color: #f7fafa;
-                text-decoration: none;
-            }
-        }
+        //// for search results
+        // &-results {
+        //     background-color: white;
+        //     position: fixed;
+        //     width: 100%;
+        //     padding-top: 60px;
+        //     z-index: 10;
+        //     border-bottom: solid 1px $border-color;
+        // }
+        //
+        // &-result {
+        //     width: 100%;
+        //     font-size: 15px;
+        //     padding-left: 30px;
+        //     padding-bottom: 5px;
+        //
+        //     &:hover {
+        //         background-color: #f7fafa;
+        //         text-decoration: none;
+        //     }
+        // }
     }
 
     .user-photo-link {

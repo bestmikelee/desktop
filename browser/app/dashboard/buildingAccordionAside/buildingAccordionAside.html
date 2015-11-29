@@ -1,7 +1,9 @@
-<header class="dash-aside-header">
+<header ng-cloak
+    class="dash-aside-header">
     Properties
 </header>
-<ul class="dash-aside-list accordion-list">
+<ul ng-cloak
+    class="dash-aside-list accordion-list">
     <li class="accordion-list-building ng-isolate-scope" ng-repeat="building in buildings">
         <header class="accordion-list-building-header" ng-class="!building.open ? '' : 'active'" ng-click="selectBuilding(building)">
             <i class="fa fa-chevron-down accordion-list-building-header-caret" ng-class="!building.open ? '' : 'active'"></i>
