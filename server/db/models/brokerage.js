@@ -9,7 +9,8 @@ var BrokerageSchema = new mongoose.Schema({
 	city: String,
 	state: String,
 	buildings:[{type: ObjectId, ref: 'Building'}],
-	brokers:[{type: ObjectId, ref: 'Broker'}]
+	brokers:[{type: ObjectId, ref: 'Broker'}],
+	landlords: [{type: ObjectId, ref: 'Landlord'}]
 });
 
 mongoose.model('Brokerage', BrokerageSchema);
