@@ -1,3 +1,8 @@
+.chart_headline {
+    padding: 16px 0;
+    font-size: 28px;
+}
+
 .chart_headline,
 .chart_sub_headline {
     text-align: center;
@@ -7,17 +12,12 @@
     color: #444;
 }
 
-.chart_headline {
-    padding: 16px 0;
-    font-size: 28px;
-}
-
 .chart_callout_container {
-    padding: 0 2%;
+    padding: 0 2% 1.75%;
     
     .chart_callout {
         text-align: center;
-        padding-bottom: 1.75%;
+        padding: 0;
         
         .val {
             font-size: 150%;
