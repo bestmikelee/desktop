@@ -1,3 +1,12 @@
+// Font weights
+$light: 100;
+$normal: 400;
+$bold: 600;
+
+// Colors
+$white: #fff;
+$black: #000;
+
 // Stored values
 $phone-max: 767px;
 $tablet-min: 768px;
@@ -5,6 +14,8 @@ $tablet-max: 991px;
 $laptop-min: 992px;
 $main-color: #303083;
 $main-color-alt: #45458f;
+$main-text-color: #333;
+$alt-text: rgb(108,108,108);
 $nav-height: 80px;
 $nav-text: #e0e4e4;
 $nav-background: #000;
@@ -20,14 +31,6 @@ $aside-header: #801010;
 $aside-header-hover: rgba(69,90,100,1);
 $aside-sect: rgba(69, 90, 100, 0.75);
 $aside-sect-hover: rgba(69,90,100,.9);
-
-// Font weights
-$light: 100;
-$normal: 400;
-$bold: 600;
-
-// Colors
-$white: #fff;
 
 * {
     box-sizing: border-box;

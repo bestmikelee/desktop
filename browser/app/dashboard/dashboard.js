@@ -20,19 +20,18 @@ app.controller('dashboardCtrl', ['$scope','$timeout', 'Session', 'llRestService'
     // get pie data from Session
     $scope.leaseStatusData = Session.getRenewalsData();
 
+    // set pie chart header default value
+    $scope.currentAddress = 'Portfolio';
+
     // update pie data with building
     $scope.updatePies = function(buildingID) {
         $scope.leaseStatusData = Session.getRenewalsData(buildingID);
         $scope.apartmentSelected = null;
     };
 
-    // set pie chart header value
-    $scope.currentAddress = 'Portfolio';
-
-    $scope.closeAll = function() {
-        $scope.buildings.map(function(val) {
-            val.open = false;
-        });
+    $scope.selectPortfolio = function() {
+        $scope.buildings.forEach((val) => val.open = false);
+        $scope.currentAddress = 'Portfolio';
         $scope.updatePies();
     };
 
@@ -42,7 +41,7 @@ app.controller('dashboardCtrl', ['$scope','$timeout', 'Session', 'llRestService'
 
     // select a specific building
     $scope.selectBuilding = function(building) {
-        $scope.buildings.forEach((val)=> val.open = val._id === building._id && !building.open); // set all "open" on all buildings except selected building to false
+        $scope.buildings.forEach((val) => val.open = val._id === building._id && !building.open); // set all "open" on all buildings except selected building to false
         building = building.open ? building : undefined;
         $scope.currentAddress = building && getAddress(building) || 'Portfolio';
         $scope.updatePies(building && building._id);

@@ -1,15 +1,33 @@
 <header class="chart_headline col-xs-12">{{pieData.pieChart.length ? address : 'No Buildings Added'}}</header>
-<header class="chart_sub_headline col-md-6 col-xs-12">Renewal Status</header>
-<header class="chart_sub_headline col-md-6 col-xs-12">Lease Timeline</header>
-<div class="chart col-md-6 col-xs-12">
-    <hollow-pie
-        ng-if="!!pieData.renewalStatuses.length"
-        pie-id="'renewalStatuses'"
-        passed-data="pieData.renewalStatuses"></hollow-pie>
+<div class="chart_callout_container col-xs-12">
+    <header class="chart_callout col-xs-4">
+        <span class="val">10%</span>
+        <span class="text">Number 1</span>
+    </header>
+    <header class="chart_callout col-xs-4">
+        <span class="val">20%</span>
+        <span class="text">Number 2</span>
+    </header>
+    <header class="chart_callout col-xs-4">
+        <span class="val">30%</span>
+        <span class="text">Number 3</span>
+    </header>
 </div>
 <div class="chart col-md-6 col-xs-12">
-    <hollow-pie
-        ng-if="!!pieData.pieChart.length"
-        pie-id="'rentBurnDown'"
-        passed-data="pieData.pieChart"></hollow-pie>
+    <header class="chart_sub_headline col-xs-12">Renewal Status</header>
+    <div class="chart_container col-xs-12">
+        <hollow-pie
+            ng-if="!!pieData.renewalStatuses.length"
+            pie-id="'renewalStatuses'"
+            passed-data="pieData.renewalStatuses"></hollow-pie>
+    </div>
+</div>
+<div class="chart col-md-6 col-xs-12">
+    <header class="chart_sub_headline col-xs-12">Lease Timeline</header>
+    <div class="chart_container col-xs-12">
+        <hollow-pie
+            ng-if="!!pieData.pieChart.length"
+            pie-id="'rentBurnDown'"
+            passed-data="pieData.pieChart"></hollow-pie>
+    </div>
 </div>

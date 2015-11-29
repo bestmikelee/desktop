@@ -13,6 +13,15 @@ $list-header-height: 36px;
         color: white;
         font-weight: 200;
         font-family: $theme-font;
+        
+        // if hover class is added, change colors on hover
+        &.hover {
+            transition: background-color 0.3s ease-in-out;
+            
+            &:hover {
+                background-color: $aside-header-hover;
+            }
+        }
     }
 
     &-list {
