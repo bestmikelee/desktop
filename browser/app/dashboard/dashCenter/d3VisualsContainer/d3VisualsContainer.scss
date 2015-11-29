@@ -1,17 +1,25 @@
-.chart_headline {
+.chart_headline,
+.chart_sub_headline {
     text-align: center;
     position: relative;
     margin-top: 0;
+    font-weight: 100;
+    color: #444;
+}
+
+.chart_headline {
     padding: 1em;
     padding-top: 15px;
-    font-weight: 100;
     font-size: 28px;
-    color: #444;
+}
+
+.chart_sub_headline {
+    padding: 0 0 0 20px;
+    font-size: 18px;
 }
 
 .chart {
     padding: 0 0 0 20px;
-    min-height: 255px;
     
     svg:not(:root) {
         overflow: visible;
