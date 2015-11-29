@@ -5,5 +5,6 @@ require('angular-ui-bootstrap');
 require('d3');
 require('lodash');
 
-// require("socket.io");
+require('angular-socket-io')
+//require("socket.io");
 io = require("socket.io-client");

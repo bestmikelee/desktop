@@ -10,6 +10,7 @@ app.service('Session', function($rootScope, $interval, AUTH_EVENTS) {
     test.on('hi', function(data){
         console.log(data)
     })
+
     $rootScope.$on(AUTH_EVENTS.sessionTimeout, function() {
         console.log('Im happening');
         self.destroy();
@@ -24,7 +25,7 @@ app.service('Session', function($rootScope, $interval, AUTH_EVENTS) {
         this.user = user;
         this.user.data = data;
         this.user.access_token = access_token;
-        console.log(this.user);
+        //console.log(this.user);
     };
 
     this.destroy = function() {
