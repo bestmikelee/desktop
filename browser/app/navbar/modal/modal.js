@@ -1,4 +1,4 @@
-app.directive('modal',['Session', function(Session) {
+app.directive('modal',function() {
     // Runs during compile
     return {
         scope: {},
@@ -6,7 +6,7 @@ app.directive('modal',['Session', function(Session) {
         restrict: 'E',
         controller: 'modalController'
     };
-}]);
+});
 
 app.controller('modalController',['$scope','Session','$http','$timeout', function($scope, Session, $http, $timeout){
 
