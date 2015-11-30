@@ -15,6 +15,7 @@ var ApartmentSchema = new mongoose.Schema({
 	brokers: [{type: ObjectId, ref: 'Broker'}],
 	brokerages: [{type: ObjectId, ref: 'Brokerage'}],
 	tenant_ids: [{type: ObjectId, ref: 'Tenant'}],
+	landlord_id: {type: ObjectId, ref: 'Landlord'},
 	permitted_entrants: [{
 		email: String,
 		role: String,

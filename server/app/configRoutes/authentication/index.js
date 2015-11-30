@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Admin = mongoose.model('Admin');
 var sio = require('../../../sockets');
+// var emitter = require('socket.io-emitter');
 
 var ENABLED_AUTH_STRATEGIES = [
     // 'local',
@@ -16,7 +17,9 @@ var ENABLED_AUTH_STRATEGIES = [
     'lockitron'
 ];
 
+
 module.exports = function(app) {
+   
     // First, our session middleware will set/read sessions from the request.
     // Our sessions will get stored in Mongo using the same connection from
     // mongoose. Check out the sessions collection in your MongoCLI.
@@ -58,14 +61,21 @@ module.exports = function(app) {
 
         if (req.session.user) {
             Admin.isAdmin(req.session.user).then(function(isAnAdmin) {
-                var io = sio();
-                console.log(io)
+                var example;
 
-                io.of('/lordSocket/' + req.session.user._id)
-                .on('connection', function(socket){
-                    //console.log('lordSocket namespace worked',socket)
-                    socket.emit('auth', {yes: 'my-lord', leak: 'memory leak on reload'})
+                var test = sio().getNamespace(req.session.user._id, function(socket){
+
+                        socket.emit('another',{example: 'hello'})
+                    socket.on('disconnect', function(){
+                        console.log('disconnected')
+                    })
+
+                    socket.on('hello', function(data){
+                        console.log('from client', data)
+                    })
+
                 })
+
                 res.status(200).json({
                     user: req.session.user,
                     admin: isAnAdmin,
@@ -80,6 +90,24 @@ module.exports = function(app) {
 
     // Simple /logout route.
     app.get('/logout', function(req, res) {
+
+        var second = sio().getNamespace(req.session.user._id)
+         //, function(socket){
+            // socket.emit('call', {me: 'maybe'})
+        //})
+
+        second.sockets.forEach(function(el){
+            //console.log(el)
+            el.emit('call',{me: 'maybe'})
+        }) 
+        // var second = sio().getNamespace(req.session.user._id).on('connection', function(socket){
+        //     socket.emit('call', {me: 'maybe'})
+        // })
+
+        // second.sockets.forEach(function(el){
+        //     console.log(el)
+        //     el.emit('call',{me: 'maybe'})
+        // })
         req.session.destroy();
         res.status(200).end();
     });

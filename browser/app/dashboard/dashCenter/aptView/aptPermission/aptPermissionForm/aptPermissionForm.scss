@@ -1,0 +1,28 @@
+.entrant-container {
+    position: absolute;
+    opacity: 0;
+}
+
+.entrant-form-container {
+    height: 53.5%;
+
+    .entrant-form-head {
+        padding-left: 2.5px;
+        float: left;
+        display: inline;
+    }
+
+    .entrant-error {
+        color: red;
+        float: right;
+        display: inline;
+    }
+
+    .entrant-select {
+        margin-top: 19px;
+
+         :first-child {
+            color: #ddd;
+        }
+    }
+}

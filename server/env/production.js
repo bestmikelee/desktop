@@ -31,5 +31,8 @@ module.exports = {
         "clientID": process.env.LOCKITRON_ID,
         "clientSecret": process.env.LOCKITRON_CLIENT_SECRET,
         "callbackURL": process.env.LOCKITRON_CALLBACK_URL
+    },
+    "REDIS": {
+        "url": process.env.REDISCLOUD_URL
     }
 };

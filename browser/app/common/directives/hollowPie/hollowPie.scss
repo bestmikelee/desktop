@@ -1,0 +1,80 @@
+// data displayed to the left of pie
+.aside-data {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition-duration: 0.5s;
+    
+    &-hide {
+        opacity: 0;
+    }
+
+    &-list-item {
+        margin: 4% 0 0;
+    }
+
+    &-val {
+        font-size: 95%;
+        line-height: 1.1;
+        
+        &-count {
+            float: left;
+            font-weight: 400;
+        }
+
+        &-percentage {
+            float: right;
+            font-weight: 100;
+        }
+    }
+
+    &-hr {
+        margin: 4px 0 0;
+        clear: both;
+    }
+
+    &-description {
+        padding-right: 3%;
+        font-size: 80%;
+        color: rgb(108,108,108);
+        font-style: italic;
+        clear: both;
+    }
+}
+
+// pie colors
+$c-rented: rgb(32, 90, 255);
+$c-90: rgb(255, 38, 0);
+$c-60: rgb(173, 23, 0);
+$c-30: rgb(84, 6, 0);
+$c-vacant: rgb(0,0,0);
+
+// Actual pie classes
+.pie-container {
+    position: relative;
+    
+    // inner circle color
+    .pie_chart_inner_circle {
+        fill: #fff;
+    }
+
+    .pie_chart_rented {
+        fill: $c-rented;
+    }
+
+    .pie_chart_has90 {
+        fill: $c-90;
+    }
+
+    .pie_chart_has60 {
+        fill: $c-60;
+    }
+
+    .pie_chart_has30 {
+        fill: $c-30;
+    }
+
+    .pie_chart_vacant {
+        fill: $c-vacant;
+    }
+}

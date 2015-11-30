@@ -1,0 +1,27 @@
+.dash-container {
+    height: auto;
+    padding: 0;
+    position: relative;
+    
+    .prop-info {
+        padding: 0;
+        position: relative;
+        
+        // &-head {
+        //
+        // }
+        
+        &-list {
+            padding: 3px;
+            
+            &-item {
+                margin-right: 10px;
+                padding: 10px 2px 10px 0;
+                
+                & + .prop-info-list-item {
+                    border-top: 1px solid #000;
+                }
+            }
+        }
+    }
+}

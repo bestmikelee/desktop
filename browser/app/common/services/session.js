@@ -1,5 +1,3 @@
-var globalVar;
-
 app.service('Session', function($rootScope, $interval, AUTH_EVENTS) {
 
     var self = this;
@@ -10,6 +8,7 @@ app.service('Session', function($rootScope, $interval, AUTH_EVENTS) {
     test.on('hi', function(data){
         console.log(data)
     })
+
     $rootScope.$on(AUTH_EVENTS.sessionTimeout, function() {
         console.log('Im happening');
         self.destroy();
@@ -24,7 +23,7 @@ app.service('Session', function($rootScope, $interval, AUTH_EVENTS) {
         this.user = user;
         this.user.data = data;
         this.user.access_token = access_token;
-        console.log(this.user);
+        //console.log(this.user);
     };
 
     this.destroy = function() {
@@ -45,7 +44,7 @@ app.service('Session', function($rootScope, $interval, AUTH_EVENTS) {
 
         var renewalSchedule = {
             pieChart: [{
-                color: 'all_set',
+                color: 'rented',
                 description: 'Rented',
                 value: 0,
                 count: 0
@@ -143,7 +142,7 @@ app.service('Session', function($rootScope, $interval, AUTH_EVENTS) {
         // Sample output
         // return  {
         //          pieChart: [{
-        //              color: 'all_set',
+        //              color: 'rented',
         //              description: 'Rented',
         //              value: 0.3
         //          }, {

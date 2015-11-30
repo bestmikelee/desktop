@@ -1,0 +1,20 @@
+<renewal-notice-notification></renewal-notice-notification>
+
+<d3-visuals-container
+    class="dash-container fade-in col-xs-12"
+    ng-if="!apartmentSelected"
+    pie-data="leaseStatusData"
+    address="currentAddress">
+</d3-visuals-container>
+
+<building-view
+    class="dash-container selection-info fade-in col-md-6 col-xs-12"
+    ng-if="!apartmentSelected && buildingSelected"
+    individually-selected-building="buildingSelected">
+</building-view>
+
+<apt-view
+    class="dash-container selection-info fade-in col-xs-12"
+    ng-if="!!apartmentSelected"
+    individually-selected-apartment="apartmentSelected">
+</apt-view>

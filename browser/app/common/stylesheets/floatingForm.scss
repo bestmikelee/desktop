@@ -1,0 +1,82 @@
+.floating-form {
+    padding: 0 3px;
+    background-color: rgba(0,0,0,0);
+    
+    .form-group {
+        background-color: rgba(0,0,0,0);
+    }
+
+    .form-control {
+        color: #888;
+        border: 0;
+        background-color: rgba(0,0,0,0);
+    }
+
+    &-inverse {
+        color: #ddd;
+        
+        .form-control {
+            color: #ddd;
+            border: 0;
+            background-color: rgba(0,0,0,0);
+        }
+
+        input,
+        input:focus,
+        select,
+        select:focus {
+            color: #ddd;
+        }
+    }
+
+    input,
+    input:focus,
+    select,
+    select:focus {
+        @include vend(box-shadow, none);
+        background-color: rgba(0,0,0,0);
+        border: 0;
+        border-bottom: 1px solid #ccc;
+        border-radius: 0;
+    }
+
+    select,
+    select:focus {
+        border: none;
+        outline: 3px inset #ccc;
+        outline-offset: -2px;
+    }
+
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+        
+        input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter:alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            cursor: pointer;
+            display: block;
+        }
+    }
+
+    .input-file {
+        border-bottom: 1px solid;
+        transition: opacity 0.4s ease-in-out;
+        
+        &.ng-enter {
+            opacity: 0;
+        }
+
+        &.ng-enter.ng-enter-active {
+            opacity: 1;
+        }
+    }
+}

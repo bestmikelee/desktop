@@ -4,7 +4,8 @@
     padding-right: 15px;
     height: $nav-height;
     background-color: $nav-background;
-
+    z-index: 1;
+    
     &>* {
         position: relative;
         top: 50%;
@@ -25,149 +26,160 @@
     }
 
     .navbar {
-      &-toggle {
-          background-color: inherit;
-          border: none;
+        &-toggle {
+            background-color: inherit;
+            border: none;
+            
+            &:hover,
+            &:focus,
+            &:focus:hover {
+                background-color: inherit;
+                
+                .icon-bar {
+                    background-color: $nav-text-hover;
+                }
+            }
 
-          &:hover, &:focus, &:focus:hover {
-              background-color: inherit;
-              .icon-bar {
-                background-color: $nav-text-hover;
-              }
-          }
+            .icon-bar {
+                @include vend(transition, (all .35s ease-in-out));
+                background-color: $nav-text;
+            }
+        }
 
-          .icon-bar {
-              @include vend(transition, (all .35s ease-in-out));
-              background-color: $nav-text;
-          }
-      }
+        &-collapse {
+            border-top: none;
+            
+            &.in,
+            &.collapsing {
+                width: 100vw;
+                box-shadow: none;
+                top: 29px;
+                transform: initial;
+                background-color: inherit;
+                border-bottom: solid 1px $border-color;
+                
+                .nav-button {
+                    padding-left: 25px;
+                }
+            }
+        }
 
-      &-collapse {
-          border-top: none;
+        &-brand,
+        &-brand:visited,
+        &-brand:focus {
+            color: $nav-brand-text;
+            font-size: 40px;
+            font-weight: 200;
+            margin-right: 52px;
+            transition: 0.2s ease-in-out;
+            font-family: $theme-font;
+            
+            .navbar-brand-bolded {
+                font-weight: 500;
+                font-family: inherit;
+            }
 
-          &.in,
-          &.collapsing {
-              width: 100vw;
-              box-shadow: none;
-              top: 29px;
-              transform: initial;
-              background-color: inherit;
-              border-bottom: solid 1px $border-color;
+            &:hover,
+            &:focus:hover {
+                color: $nav-brand-text;
+            }
+        }
 
-              .nav-button {
-                  padding-left: 25px;
-              }
-          }
-      }
+        &-nav {
+            &.nav-buttons {
+                margin-right: 71px;
+            }
 
-      &-brand, &-brand:visited, &-brand:focus {
-          color: $nav-brand-text;
-          font-size: 40px;
-          font-weight: 200;
-          margin-right: 52px;
-          transition: 0.2s ease-in-out;
-          font-family: $theme-font;
+            &-list-item {
+                cursor: pointer;
+                transition: color 0.3s ease-in-out;
+                
+                &-link:hover,
+                &-link:focus {
+                    color: $nav-text-hover !important;
+                }
 
-          .navbar-brand-bolded {
-              font-weight: 500;
-              font-family: inherit;
-          }
+                &-link {
+                    color: $nav-text !important;
+                    font-size: 14px;
+                    float: right;
+                    border: 1px solid black;
+                    background: none;
+                    outline: none !important;
+                }
+            }
+        }
 
-          &:hover,
-          &:focus:hover {
-              color: $nav-brand-text;
-          }
-      }
+        &-left {
+            width: 100%;
+        }
 
-      &-nav {
-          li {
-              cursor: pointer;
-              transition: color 0.3s ease-in-out;
-
-              a:hover,
-              a:focus {
-                  color: $nav-text-hover !important;
-              }
-
-              a {
-                  color: $nav-text !important;
-                  font-size: 14px;
-              }
-          }
-      }
-
-      &-button {
-          float: right;
-          border: 1px solid black;
-          margin-top: 10px;
-          background: none;
-          outline: none !important;
-      }
-
-      &-left {
-          width: 100%;
-      }
-
-      &-form {
-          border: none;
-          padding-right: 0;
-          box-shadow: none;
-      }
+        &-form {
+            border: none;
+            padding-right: 0;
+            box-shadow: none;
+        }
     }
 
     .search {
-      &, &:focus, &:hover, &:active, &:active:focus, &:active:hover {
-          color: $nav-text;
-          border: none;
-          -webkit-box-shadow: none;
-          box-shadow: none;
-          outline: 0;
-          background-color: initial;
-          box-shadow: none;
-      }
+        &,
+        &:focus,
+        &:hover,
+        &:active,
+        &:active:focus,
+        &:active:hover {
+            color: $nav-text;
+            border: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            outline: 0;
+            background-color: initial;
+            box-shadow: none;
+        }
 
-      &-icon {
-        color: $nav-text;
-        width: 1%;
-        vertical-align: middle;
-        display: table-cell;
-        padding: 6px 12px;
-        font-size: 15px;
-      }
+        &-icon {
+            color: $nav-text;
+            width: 1%;
+            vertical-align: middle;
+            display: table-cell;
+            padding: 6px 12px;
+            font-size: 15px;
+        }
 
-      &-form {
-          min-width: 157px;
-          width: calc(100% - 700px) !important;
-          overflow: hidden;
-          padding: 10px 0;
-      }
+        &-form {
+            min-width: 157px;
+            width: calc(100% - 700px) !important;
+            overflow: hidden;
+            padding: 10px 0;
+        }
 
-      &-input {
-        font-weight: 200;
-        width: 100%;
-        padding: 6px 12px;
-      }
+        &-input {
+            font-weight: 200;
+            width: 100%;
+            padding: 6px 12px;
+        }
 
-      &-results {
-          background-color: white;
-          position: fixed;
-          width: 100%;
-          padding-top: 60px;
-          z-index: 10;
-          border-bottom: solid 1px $border-color;
-      }
-
-      &-result {
-          width: 100%;
-          font-size: 15px;
-          padding-left: 30px;
-          padding-bottom: 5px;
-
-          &:hover {
-              background-color: #f7fafa;
-              text-decoration: none;
-          }
-      }
+        //// for search results
+        // &-results {
+        //     background-color: white;
+        //     position: fixed;
+        //     width: 100%;
+        //     padding-top: 60px;
+        //     z-index: 10;
+        //     border-bottom: solid 1px $border-color;
+        // }
+        //
+        // &-result {
+        //     width: 100%;
+        //     font-size: 15px;
+        //     padding-left: 30px;
+        //     padding-bottom: 5px;
+        //
+        //     &:hover {
+        //         background-color: #f7fafa;
+        //         text-decoration: none;
+        //     }
+        // }
     }
 
     .user-photo-link {
@@ -182,5 +194,9 @@
         border-radius: 50%;
         border: 1px solid $nav-text;
         background: #000 no-repeat center /contain;
+    }
+
+    .fa-cog {
+        padding-top: 2px;
     }
 }

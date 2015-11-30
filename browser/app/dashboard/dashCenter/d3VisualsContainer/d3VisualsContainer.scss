@@ -1,0 +1,51 @@
+.chart_headline {
+    padding: 16px 0;
+    font-size: 28px;
+}
+
+.chart_headline,
+.chart_sub_headline {
+    text-align: center;
+    position: relative;
+    margin-top: 0;
+    font-weight: 100;
+    color: #444;
+}
+
+.chart_callout_container {
+    padding: 0 2% 1.75%;
+    
+    .chart_callout {
+        text-align: center;
+        padding: 0;
+        
+        .val {
+            font-size: 150%;
+            font-weight: 400;
+            padding-right: 0.6%;
+        }
+
+        .text {
+            color: $alt-text;
+            font-size: 100%;
+            font-style: italic;
+        }
+    }
+}
+
+.chart {
+    padding: 0 0 2% 20px;
+    
+    &_sub_headline {
+        font-size: 18px;
+        padding: 0 0 2.85%;
+    }
+
+    &_container {
+        padding: 0;
+        
+        svg:not(:root) {
+            overflow: visible;
+        }
+    }
+}
