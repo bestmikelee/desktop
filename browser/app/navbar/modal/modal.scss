@@ -6,20 +6,23 @@
     bottom: 0;
     right: 0;
     left: 0;
-    z-index: 9998;
-    display: none;
+    z-index: -100;
+    display: block;
     overflow-y: scroll;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.3s ease, z-index 0s 0.3s linear;
     
     &-show {
+        z-index: 9998;
         opacity: 1;
+        transition: opacity 0.3s ease, z-index 0s 0s linear;
     }
 }
 
 .modal-button {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    z-index: 2;
+    top: 11px;
+    right: 15px;
     width: 56px;
     height: 56px;
     border-radius: 100%;

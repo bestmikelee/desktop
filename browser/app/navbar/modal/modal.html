@@ -1,6 +1,6 @@
 <div class="modal-controller"> <!--ng-controller="modalController" -->
     <div class="modal-button" ng-click="modalToggle()"><i class="modal-icon fa fa-plus"></i></div>
-    <div class="modal-fade" ng-click="modalToggle()">
+    <div class="modal-fade" ng-class="showModal? 'modal-fade-show' : ''" ng-click="modalToggle()">
         <div class="modal-layout modal-body" ng-click="$event.stopPropagation()">
             <div class="modal-header">
                 <span class="modal-form-header">Add New Building/Apartment</span>

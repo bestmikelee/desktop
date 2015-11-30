@@ -2,27 +2,23 @@ app.directive('modal', function() {
     // Runs during compile
     return {
         scope: {},
-        templateUrl:'app/dashboard/modal/modal.html',
+        templateUrl:'app/navbar/modal/modal.html',
         restrict: 'E',
         controller: 'modalController'
     };
 });
 
 app.controller('modalController',['$scope','Session','$http','$timeout', function($scope, Session, $http, $timeout){
-  var modal = $('.modal-fade');
 
-  $scope.buildings = Session.user.data.building_ids;
+  $scope.showModal = false;
 
   // toggle showing modal + form (allow callback after fade)
   $scope.modalToggle = function(cb) {
-    var fadeTime = 400;
-    if(modal.hasClass('visible')) {
-      modal.removeClass('visible').fadeOut(fadeTime, cb);
-    } else {
-      modal.addClass('visible').fadeIn(fadeTime, cb);
-    }
+      $scope.showModal = !$scope.showModal;
+      if(cb) setTimeout(cb, 300); //transition animation takes 300ms at present
   };
 
+  $scope.buildings = Session.user.data.building_ids;
 
   var newLease = {};
   $scope.leaseName = '';

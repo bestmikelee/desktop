@@ -23,7 +23,6 @@
             width: 100%;
             font-size: 16px;
             cursor: pointer;
-            transition: 0.3s ease-in-out;
             overflow: auto;
             
             &:hover,
@@ -36,8 +35,10 @@
                 top: 2px;
                 position: relative;
                 transition: 200ms ease;
-                
-                &.active {
+            }
+
+            &.active {
+                .accordion-list-building-header-caret {
                     @include vend(transform, rotate(180deg));
                 }
             }
@@ -81,9 +82,9 @@
         }
 
         .accordion-collapse {
-            position: relative;
             max-height: 0;
             overflow: hidden;
+            position: relative;
         }
     }
 }

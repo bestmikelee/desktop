@@ -7,8 +7,8 @@
     class="dash-aside-list accordion-list">
     <li class="accordion-list-building ng-isolate-scope" ng-repeat="building in buildings">
         <header class="accordion-list-building-header" ng-class="!building.open ? '' : 'active'" ng-click="selectBuilding(building)">
-            <i class="fa fa-chevron-down accordion-list-building-header-caret" ng-class="!building.open ? '' : 'active'"></i>
             <span class="accordion-list-building-header-text"> {{ building.street_number + ' ' + building.street_name }} </span>
+            <i class="fa fa-chevron-down accordion-list-building-header-caret"></i>
         </header>
         <ul class="accordion-sublist-apartments accordion-collapse" ng-class="!building.open ? '' : 'accordion-collapse-show'">
             <li class="btn-apartment" ng-click="selectApartment(apartment)" ng-repeat="apartment in building.apartments">
