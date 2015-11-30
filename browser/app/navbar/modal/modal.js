@@ -1,4 +1,4 @@
-app.directive('modal', function() {
+app.directive('modal',['Session', function(Session) {
     // Runs during compile
     return {
         scope: {},
@@ -6,7 +6,7 @@ app.directive('modal', function() {
         restrict: 'E',
         controller: 'modalController'
     };
-});
+}]);
 
 app.controller('modalController',['$scope','Session','$http','$timeout', function($scope, Session, $http, $timeout){
 
@@ -16,9 +16,8 @@ app.controller('modalController',['$scope','Session','$http','$timeout', functio
   $scope.modalToggle = function(cb) {
       $scope.showModal = !$scope.showModal;
       if(cb) setTimeout(cb, 300); //transition animation takes 300ms at present
+      if(!$scope.buildings) $scope.buildings = Session.user.data.building_ids;
   };
-
-  $scope.buildings = Session.user.data.building_ids;
 
   var newLease = {};
   $scope.leaseName = '';
