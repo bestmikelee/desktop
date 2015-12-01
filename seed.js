@@ -91,7 +91,12 @@ var apartmentSeed = function(llId, tenantId, buildingId, counter) {
         lease_ids: [],
         brokers: [],
         brokerages: [],
-        landlord_id: llId
+        landlord_id: llId,
+        status: chance.pick(['FNT','Renewal','NotRenewing','Rented']),
+        floor: chance.integer({
+            min: 0,
+            max: 20
+        })
     });
 };
 /////////////////////////////////////// Building Utilities /////////////////////////////////////////
