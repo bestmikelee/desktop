@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.Types.ObjectId;
-var apt_status = ['FNT','Renewal','NotRenewing','Rented'];
+var status = ['FNT','Renewal','NotRenewing','Rented'];
 
 var ApartmentSchema = new mongoose.Schema({
 	lock_id: String,
@@ -13,7 +13,7 @@ var ApartmentSchema = new mongoose.Schema({
 	sq_ft: Number,
 	type: String,
 	floor: Number,
-	status: {type: String, enum: apt_status},
+	status: {type: String, enum: status},
 	lease_ids: [{type: ObjectId, ref: 'Lease'}],
 	brokers: [{type: ObjectId, ref: 'Broker'}],
 	brokerages: [{type: ObjectId, ref: 'Brokerage'}],
