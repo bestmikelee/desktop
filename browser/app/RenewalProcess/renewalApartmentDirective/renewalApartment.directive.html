@@ -1,7 +1,22 @@
-<div class="apartmentName">{{apartment.buildingName + " " + apartment.unit_number}}</div>
-<input class="newRent form-inline" ng-model="newRent" type="number" min="0" max="10000"></input>
-<span class="glyphicon glyphicon-plus" aria-hidden="true" ng-click="initiateRenewal(apartment)"></span>
+<td class="renewalList">
+	{{apartment.buildingName + " " + apartment.unit_number}}
+</td>
+<td class="renewalList">
+	Alex Holman
+</td>
+<td class="renewalList">
+	{{apartment.lease_ids[0].rent}}
+</td>
+<td class="renewalList">
+	<input class="newRent form-inline" ng-model="newRent" type="number" min="0" max="10000"></input>
+</td>
+
+
+
+
+<td>
+	<span class="glyphicon glyphicon-plus" aria-hidden="true" ng-click="initiateRenewal(apartment)"></span>
+</td>
 <!-- <button class="addRenewal btn btn-info" ng-click="initiateRenewal(apartment)">Renewal?</button> -->
-<img src="http://www.clipartbest.com/cliparts/pc5/eya/pc5eyaGMi.png" height="20" width="20"ng-show="renewed">
+<!-- <img src="http://www.clipartbest.com/cliparts/pc5/eya/pc5eyaGMi.png" height="20" width="20"ng-show="renewed"> -->
 <div ng-show="wrongRent" class="alert alert-danger">Please Enter a number between 0 - 9999</div>
-<br>

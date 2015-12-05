@@ -6,8 +6,10 @@ app.config(['$stateProvider',function($stateProvider) {
 	})
 }])
 
+
 app.controller('RenewalStartPageCtrl', ['$scope','$http','Session','expiration','renewalStorage', function($scope,$http,Session,expiration,renewalStorage){
 		$scope.renewalList = expiration.portAptFilter(function(apt){
+			console.log(apt);
 			return apt.daysToLxd < 100 && apt.lease_ids[0].status == "rented"})
 
 		$scope.aptSelected = [];

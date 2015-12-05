@@ -1,9 +1,19 @@
 <button ng-click="printScope()">Print Scope</button>
 <div>Renewal Start Dashboard. There are currently {{renewalList.count}} apartments that are within the renewal threshold.</div>
 
-
 <div class="col-sm-6 dash-aside dash-aside-list">
-	<renewalapartment ng-repeat="apt in renewalList" apartment="apt"></renewalapartment>
+
+<!-- <renewalapartment ng-repeat="apt in renewalList" apartment="apt"></renewalapartment> -->
+	<table>
+		<tr>
+			<td class="renewalList listColumnHeader">Apartment Name</td>
+			<td class="renewalList listColumnHeader">Tenant Name</td>
+			<td class="renewalList listColumnHeader">Current Rent</td>
+			<td class="renewalList listColumnHeader">New Rent</td>
+		</tr>
+			<tr class="renewalList listRow" renewalapartment ng-repeat="apt in renewalList" apartment="apt">
+			</tr>
+	</table>
 </div>
 
 

@@ -24,7 +24,7 @@ app.directive('renewalapartment', ['renewalStorage',function(renewalStorage){
 			}
 		},
 		// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
-		restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
+		restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
 		// template: '',
 		templateUrl: 'app/RenewalProcess/renewalApartmentDirective/renewalApartment.directive.html',
 		// replace: true,
