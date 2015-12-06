@@ -19,5 +19,6 @@ module.exports = function(app) {
     require('./authentication')(app);
     require('./s3Storage')(app);
     require('./lockitronActions')(app);
+    require('./cronUpdate')(app);
     //require('./stripe')(app);
 };

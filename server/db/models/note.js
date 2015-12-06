@@ -8,6 +8,7 @@ var NoteSchema = new Schema({
   date_created: { type: Date, default: Date.now },
   title: String,
   body: String,
+  payload: [{type: ObjectId, ref: 'Lease'}],
   start_date: Date,
   end_date: Date,
   status_new: { type: Boolean, default: true },
