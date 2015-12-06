@@ -27,10 +27,8 @@ $theme-font: 'Dosis', sans-serif;
 
 // Aside colors
 $title-blue: #263238;
-$aside-header: #801010;
-$aside-header-hover: rgba(69,90,100,1);
-$aside-sect: rgba(69, 90, 100, 0.75);
-$aside-sect-hover: rgba(69,90,100,.9);
+$aside-header-text: rgba(69, 90, 100, 0.75);
+$aside-active-bg: $white;
 
 * {
     box-sizing: border-box;
@@ -42,7 +40,7 @@ html,
 body {
     width: 100%;
     height: 100%;
-    background: #fff;
+    background: #f8F8F8;
 }
 
 li {
@@ -130,7 +128,7 @@ input[type=date]::-webkit-outer-spin-button {
 @function sqrt($r) {
     $x0: 1;
     $x1: $x0;
-    
+
     @for $i from 1 through 10 {
         $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
         $x0: $x1;

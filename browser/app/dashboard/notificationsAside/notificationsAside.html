@@ -1,7 +1,12 @@
-<div ng-cloak
-    class="dash-aside-header">
-    Notifications
-</div>
+<ul
+    class="notifications-toggle">
+    <li class="notifications-toggle-option">
+      To-Do
+    </li>
+    <li class="notifications-toggle-option">
+      Everything
+    </li>
+</ul>
 <div ng-cloak
     class="dash-aside-list notifications-list">
     <lock-request accept="onAccept()" job="request.job" name="request.name" ng-repeat="request in requests" where="request.where"></lock-request>
