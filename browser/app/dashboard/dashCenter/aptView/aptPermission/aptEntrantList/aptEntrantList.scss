@@ -4,10 +4,9 @@
 }
 
 .existing-entrant-container {
-    position: absolute;
-    top: calc(54% + 60px);
-    bottom: 0;
+    padding-right: 1px;
     overflow-y: auto;
+    max-height: 192px;
 
     .existing-entrant {
         border-top: 1px solid #ccc;

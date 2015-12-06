@@ -1,6 +1,9 @@
+<div class="map-container">
+  <div class="map building-placeholder"></div>
+</div>
 <header ng-cloak
     class="dash-aside-header accordion-header"
-    ng-class="buildingSelected ? 'clickable' : ''"
+    ng-class="!!buildingSelected ? 'clickable' : ''"
     ng-click="selectPortfolio()">
     Properties
     <i class="fa fa-chevron-up accordion-header-caret"></i>

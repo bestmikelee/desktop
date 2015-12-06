@@ -1,13 +1,13 @@
 .dash-container {
     height: auto;
     padding: 0px 15px 15px 15px;
-    margin: 0 30px 30px 30px;
+    margin: 0 0px 30px 0px;
     position: relative;
     box-shadow: 2px 2px 16px 0 rgba(0, 0, 0, 0.3);
     background-color: $white;
 
     &.d3-container {
-        width: calc(100% - 60px); //guess I need to do this for margin...
+        width: calc(100%);
     }
 
     .prop-info {

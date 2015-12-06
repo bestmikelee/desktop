@@ -31,6 +31,7 @@ app.controller('dashboardCtrl', ['$scope','$timeout', 'Session', 'llRestService'
 
     $scope.selectPortfolio = function() {
         $scope.buildings.forEach((val) => val.open = false);
+        $scope.buildingSelected = null;
         $scope.currentAddress = 'Portfolio';
         $scope.updatePies();
     };

@@ -1,3 +1,5 @@
+$map-container-side-length: 140px;
+$map-container-margin: 15px;
 $list-header-height: 39px;
 
 .building-accordion {
@@ -7,14 +9,31 @@ $list-header-height: 39px;
     width: 16.66666667%;
     max-width: 260px;
 
+    .map-container {
+      margin: $map-container-margin auto;
+      width: $map-container-side-length;
+      height: $map-container-side-length;
+      padding: 40px;
+      display: block;
+      background-color: #EAEAEA;
+      border-radius: 50%;
+
+      .building-placeholder {
+        height: 100%;
+        width: 100%;
+        background-image: url("/images/building-icon-grey.svg");
+        background-size: cover;
+      }
+    }
+
     .accordion-header {
-      padding: 0 15px 3px 13px;
+      padding: 0 14px 3px 29px;
       font-size: 25px;
       height: $list-header-height;
       color: $aside-header-text;
       font-weight: 200;
       font-family: $theme-font;
-      // if hover class is added, change colors on hover
+      text-align: center;
 
       &-caret {
           float: right;
@@ -29,13 +48,15 @@ $list-header-height: 39px;
           transition: 200ms ease;
           cursor: pointer;
 
+          .accordion-header-caret {
+            opacity: 1;
+          }
+
           &:hover {
               border-color: #ddd;
               background-color: #fff;
+              padding-left: calc(2% + 13px);
 
-              .accordion-header-caret {
-                opacity: 1;
-              }
           }
       }
     }
@@ -51,7 +72,7 @@ $list-header-height: 39px;
     }
 
     .accordion-list {
-        height: calc(100% - #{$list-header-height});
+        height: calc(100% - #{$list-header-height} - #{$map-container-side-length} - #{$map-container-margin*2});
 
         .accordion-list-building {
             transition: 200ms ease;
@@ -68,7 +89,11 @@ $list-header-height: 39px;
                     float: right;
                     top: 2px;
                     position: relative;
-                    transition: 200ms ease;
+                }
+
+                &-caret,
+                &-text {
+                  transition: 200ms ease;
                 }
 
                 &-text {
@@ -80,13 +105,17 @@ $list-header-height: 39px;
             &.active {
               background-color: $aside-active-bg;
               border-color: #ddd;
-              font-weight: 600;
               padding: 2px 0 2px 2%;
             }
 
             &.active {
-              .accordion-list-building-header-caret {
+              .accordion-list-building-header {
+                &-text {
+                  font-weight: 600;
+                }
+                &-caret{
                   @include vend(transform, rotate(180deg));
+                }
               }
               .accordion-sublist-apartments {
                   padding: 0 14px 10px 14px;
