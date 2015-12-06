@@ -1,7 +1,7 @@
 .floating-form {
     padding: 0 3px;
     background-color: rgba(0,0,0,0);
-    
+
     .form-group {
         background-color: rgba(0,0,0,0);
     }
@@ -14,7 +14,7 @@
 
     &-inverse {
         color: #ddd;
-        
+
         .form-control {
             color: #ddd;
             border: 0;
@@ -50,7 +50,7 @@
     .btn-file {
         position: relative;
         overflow: hidden;
-        
+
         input[type=file] {
             position: absolute;
             top: 0;
@@ -70,7 +70,7 @@
     .input-file {
         border-bottom: 1px solid;
         transition: opacity 0.4s ease-in-out;
-        
+
         &.ng-enter {
             opacity: 0;
         }
@@ -78,5 +78,13 @@
         &.ng-enter.ng-enter-active {
             opacity: 1;
         }
+    }
+
+    .submit-btn {
+        border: 0;
+        border-radius: 300px;
+        text-transform: uppercase;
+        background-color: #eee;
+        transition: all 0.35s ease-in-out;
     }
 }
