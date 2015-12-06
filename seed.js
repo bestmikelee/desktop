@@ -20,6 +20,7 @@ var Broker = Promise.promisifyAll(mongoose.model('Broker'));
 var Brokerage = Promise.promisifyAll(mongoose.model('Brokerage'));
 var Visit = Promise.promisifyAll(mongoose.model('Visit'));
 var Lease = Promise.promisifyAll(mongoose.model('Lease'));
+var Note = Promise.promisifyAll(mongoose.model('Note'));
 
 Promise.promisifyAll(Building.prototype);
 Promise.promisifyAll(Apartment.prototype);
@@ -30,6 +31,7 @@ Promise.promisifyAll(Broker.prototype);
 Promise.promisifyAll(Brokerage.prototype);
 Promise.promisifyAll(Visit.prototype);
 Promise.promisifyAll(Lease.prototype);
+
 //////////connect to the database
 
 
@@ -208,7 +210,7 @@ var leaseSeed = function(config){
     return new Lease({
         pdf: chance.word(),
         rent: chance.integer({min: 1000, max: 5000}),
-        status: chance.pick(['rented','renewal','fnt']),
+        status: chance.pick(['notified','extended','expired','current','declined']),
         end_date: leaseEnd,
         start_date: leaseStart,
         tenant_ids: config.tenantIds,
@@ -366,7 +368,7 @@ var seedOneLandLord = function() {
                 var leaseConfig = {
                         tenant_ids: [chance.pick(tenants)._id, chance.pick(tenants)._id],
                         apartment_id: apt._id,
-                        landlord_id: landlord.user_id,
+                        landlord_id: landlord._id,
                         broker_id: brokers[chanceBroker]._id
                     }
                     var lease = Promise.promisifyAll(leaseSeed(leaseConfig))
@@ -409,7 +411,8 @@ var seedOneLandLord = function() {
                 Broker.remove({}).exec(),
                 Visit.remove({}).exec(),
                 User.remove({}).exec(),
-                Lease.remove({}).exec()
+                Lease.remove({}).exec(),
+                Note.remove({}).exec()
             ]);
         }
 
