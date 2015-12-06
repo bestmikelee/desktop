@@ -5,7 +5,6 @@ app.config(['$stateProvider',function($stateProvider) {
             onEnter: ['$state','$timeout','AuthService', function($state, $timeout, AuthService) {
                 AuthService.getLoggedInUser().then(function(user) {
                     if (user) {
-                        console.log('going dash');
                         $timeout(function() {
                             $state.go('home.dashboard');
                         });

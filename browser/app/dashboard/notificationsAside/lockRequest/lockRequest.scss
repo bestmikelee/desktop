@@ -7,7 +7,6 @@ div.alert {
 }
 
 .requestFrom {
-    ;
     float: left;
     text-align: center;
     padding-bottom: 5px;
@@ -28,7 +27,7 @@ div.alert {
 }
 
 .alert.alert-info.requestBox {
-    background-color: $aside-sect;
+    background-color: rgba(69, 90, 100, 0.75);
 }
 
 .btn-success {
