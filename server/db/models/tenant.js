@@ -7,7 +7,8 @@ var validators = require('./validation');
 var TenantSchema = new Schema({
   apt_id: {type: ObjectId, ref: 'Apartment'},
   building_id: {type: ObjectId, ref: 'Building'},
-  user_id: {type: ObjectId, ref: 'User'}
+  user_id: {type: ObjectId, ref: 'User'},
+  landlord_id: {type: ObjectId, ref: 'Landlord'}
 });
 
 // TenantSchema.path('email').validate(validators.email, 'Must be a valid email');

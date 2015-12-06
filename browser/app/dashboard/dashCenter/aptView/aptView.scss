@@ -1,0 +1,24 @@
+// lock-unlock apartment toggling icon
+.lock-container {
+    display: inline-block;
+    width: 23px;
+    text-align: center;
+    
+    .fa {
+        color: rgba(0,0,0,.63);
+        transition: 0.3s ease-in-out;
+        
+        &.fa-spinner {
+            font-size: 10px;
+        }
+
+        &.fa-lock,
+        &.fa-unlock {
+            cursor: pointer;
+            
+            &:hover {
+                color: rgba(0,0,0,.4);
+            }
+        }
+    }
+}

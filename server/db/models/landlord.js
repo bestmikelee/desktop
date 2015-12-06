@@ -12,7 +12,7 @@ var LandlordSchema = new Schema({
   state: String,
   gender: String,
   building_ids: [{type: ObjectId, ref: 'Building'}],
-  notifications: [ObjectId]
+  notifications: [{type: ObjectId, ref: 'Note'}]
 });
 
 mongoose.model('Landlord', LandlordSchema);

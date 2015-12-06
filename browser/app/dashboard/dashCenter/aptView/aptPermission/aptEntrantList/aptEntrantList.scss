@@ -1,0 +1,53 @@
+.existing-entrant-head {
+    height: 30px;
+    padding-left: 19px;
+}
+
+.existing-entrant-container {
+    position: absolute;
+    top: calc(54% + 60px);
+    bottom: 0;
+    overflow-y: auto;
+
+    .existing-entrant {
+        border-top: 1px solid #ccc;
+        padding: 7px 15px;
+        padding-right: 8px;
+        width: calc(100% - 48px);
+
+        .entrant-header {
+            margin-top: 0;
+        }
+
+        .glyphicon {
+            float: right;
+            color: #999;
+            font-size: 18px;
+            transition: 0.3s ease-in-out;
+            cursor: pointer;
+
+            &:hover {
+                color: #bbb;
+            }
+        }
+    }
+}
+
+.existing-entrant,
+.existing-entrant-head {
+    padding: 7px 15px;
+
+    &,
+    &.ng-move {
+        transition: 0.5s ease-in-out;
+    }
+
+    &.ng-enter {
+        transition: 0.5s ease-in-out;
+        opacity: 0;
+    }
+
+    &.ng-enter.ng-enter-active {
+        opacity: 1;
+    }
+}

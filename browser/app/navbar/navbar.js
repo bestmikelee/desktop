@@ -1,5 +1,3 @@
-var globalVar2;
-
 app.directive('navbar',['$rootScope', '$state', 'AuthService', 'AUTH_EVENTS', function($rootScope, $state, AuthService, AUTH_EVENTS) {
 
     var NavbarCtrl = ['$scope', function($scope) {

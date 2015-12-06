@@ -20,6 +20,7 @@ var Broker = Promise.promisifyAll(mongoose.model('Broker'));
 var Brokerage = Promise.promisifyAll(mongoose.model('Brokerage'));
 var Visit = Promise.promisifyAll(mongoose.model('Visit'));
 var Lease = Promise.promisifyAll(mongoose.model('Lease'));
+var Note = Promise.promisifyAll(mongoose.model('Note'));
 
 Promise.promisifyAll(Building.prototype);
 Promise.promisifyAll(Apartment.prototype);
@@ -30,6 +31,7 @@ Promise.promisifyAll(Broker.prototype);
 Promise.promisifyAll(Brokerage.prototype);
 Promise.promisifyAll(Visit.prototype);
 Promise.promisifyAll(Lease.prototype);
+
 //////////connect to the database
 
 
@@ -73,7 +75,7 @@ function leaseExpireGen() {
     return month + "/1/" + year
 };
 
-var apartmentSeed = function(tenantId, buildingId, counter) {
+var apartmentSeed = function(llId, tenantId, buildingId, counter) {
     return new Apartment({
         unit_number: counter + chance.pick(arryOfAptLetters),
         tenant_ids: [],
@@ -90,7 +92,13 @@ var apartmentSeed = function(tenantId, buildingId, counter) {
         sq_ft: chance.pick(arryOfSquareFootage),
         lease_ids: [],
         brokers: [],
-        brokerages: []
+        brokerages: [],
+        landlord_id: llId,
+        status: chance.pick(['FNT','Renewal','NotRenewing','Rented']),
+        floor: chance.integer({
+            min: 0,
+            max: 20
+        })
     });
 };
 /////////////////////////////////////// Building Utilities /////////////////////////////////////////
@@ -176,7 +184,8 @@ var brokerageSeed = function(config){
         city: chance.city(),
         state: chance.state(),
         buildings: config.building_ids,
-        brokers: []
+        brokers: [],
+        landlords: []
     });
 };
 
@@ -197,15 +206,11 @@ var leaseSeed = function(config){
     var leaseEnd = leaseStart.clone().add(12, 'months');
     var now = moment(),
         status;
-    if (leaseEnd.diff(now, 'days') > 75)
-        status = 'inactive';
-    else
-        status = chance.pick(['renewed','pending','declined']);
 
     return new Lease({
         pdf: chance.word(),
         rent: chance.integer({min: 1000, max: 5000}),
-        renewal_status: status,
+        status: chance.pick(['notified','extended','expired','current','declined']),
         end_date: leaseEnd,
         start_date: leaseStart,
         tenant_ids: config.tenantIds,
@@ -231,9 +236,6 @@ var seedOneLandLord = function() {
         var leases = [];
 
         masterUser.userTypeIds.landlord = landlord._id;
-        
-
-        
 
         var saveModel = function(el){
             return el.saveAsync()
@@ -255,7 +257,7 @@ var seedOneLandLord = function() {
                 max: 60
             })
             for (var i = 0; i < randNumOfApartments; i++) {
-                apartments.push(Promise.promisifyAll(apartmentSeed(null, blding._id, i)))
+                apartments.push(Promise.promisifyAll(apartmentSeed(masterUser.userTypeIds.landlord, null, blding._id, i)))
             }
         })
 
@@ -317,7 +319,8 @@ var seedOneLandLord = function() {
         for (var i = 1; i <= randomNumberOfBrokerages; i++){
             var config = {
                 user_ids: [chance.pick(users)._id],
-                building_ids: [chance.pick(buildings)._id]
+                building_ids: [chance.pick(buildings)._id],
+                landlords: [masterUser.userTypeIds.landlord]
             }
             brokerages.push(Promise.promisifyAll(brokerageSeed(config)))
         }
@@ -337,17 +340,15 @@ var seedOneLandLord = function() {
         }
 
 
-        
+
 
         //console.log(apartments)
         // var chanceLL = chance.pick(users)
         return masterUser.saveAsync().then(function(savedMasterUser){
-            console.log('roger saved')
             landlord.user_id = savedMasterUser[0]._id;
-            return landlord.saveAsync(); 
+            return landlord.saveAsync();
         })
         .then(function(llord){
-            console.log('made it')
             return Promise.map(apartments,function(apt){
                 var tempLeaseIds = [];
 
@@ -367,7 +368,7 @@ var seedOneLandLord = function() {
                 var leaseConfig = {
                         tenant_ids: [chance.pick(tenants)._id, chance.pick(tenants)._id],
                         apartment_id: apt._id,
-                        landlord_id: landlord.user_id,
+                        landlord_id: landlord._id,
                         broker_id: brokers[chanceBroker]._id
                     }
                     var lease = Promise.promisifyAll(leaseSeed(leaseConfig))
@@ -382,7 +383,6 @@ var seedOneLandLord = function() {
 
         })
         .then(function(llord){
-            console.log('everything else')
             return Promise.all([
                     Promise.all(buildings.map(saveModel.bind(this))),
                     Promise.all(tenants.map(saveModel.bind(this))),
@@ -392,11 +392,12 @@ var seedOneLandLord = function() {
                     Promise.all(visits.map(saveModel.bind(this)))
                     ])
         }).then(function(all){
-            console.log('im done')
+            console.log("seed done")
+            mongoose.connection.close();
         }).catch(function(err){
             console.log(err)
         })
-        
+
     }
 
         var wipeDB = function() {
@@ -410,31 +411,22 @@ var seedOneLandLord = function() {
                 Broker.remove({}).exec(),
                 Visit.remove({}).exec(),
                 User.remove({}).exec(),
-                Lease.remove({}).exec()
+                Lease.remove({}).exec(),
+                Note.remove({}).exec()
             ]);
         }
-
-        
-
 
         var seedDatabase = function() {
             for (var i = 0; i < numOfSeededLandlords; i++) {
                 seedOneLandLord();
             }
-            return;
         }
 
-    db.then(function(err){
-        if (err)
-            console.log('database message says = ',err)
-    }).then(function(db){
-        console.log('getting to wipe');
+    db.then(function(db){
         return wipeDB()
     }).then(function(){
-        console.log('getting to seedDB');
-        return seedDatabase();
-    }).then(function(){
-        console.log('getting to done')
+        console.log('DB wiped');
+        return seedDatabase(); // can't fingure out how to wait until the returned promise chain is done out here (vs inside there), but it works so whatev
     }).catch(function(err){
         console.log(err);
     })

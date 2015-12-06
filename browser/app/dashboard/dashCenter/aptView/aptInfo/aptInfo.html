@@ -1,0 +1,22 @@
+<h3 class="prop-info-head">Apartment info
+    <span class="lock-container">
+        <i ng-class="individuallySelectedApartment.spinner? 'fa fa-spinner fa-pulse' : individuallySelectedApartment.lockInfo.state==='lock'? 'fa fa-lock' : 'fa fa-unlock'"
+           ng-click="individuallySelectedApartment.lockInfo && lockAction(individuallySelectedApartment)">
+        </i>
+    </span>
+</h3>
+<ul class="prop-info-list">
+    <li class="prop-info-list-item {{iconMap[key]}}"
+        ng-repeat="(key, value) in individuallySelectedApartment | presentableVals">
+        <b>{{key | capitalize}}:</b>
+        {{value | capitalize}}
+    </li>
+</ul>
+<h3 class="prop-info-head">Lease Info</h3>
+<ul class="prop-info-list">
+    <li class="prop-info-list-item {{iconMap[key]}}"
+        ng-repeat="(key, value) in individuallySelectedApartment.lease_ids[0] | presentableVals">
+        <b>{{key | capitalize}}:</b>
+        {{value | capitalize}}
+    </li>
+</ul>

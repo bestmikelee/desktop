@@ -1,0 +1,134 @@
+$list-header-height: 39px;
+
+.building-accordion {
+    padding: 0;
+    margin: 0;
+    z-index: 1;
+    width: 16.66666667%;
+    max-width: 260px;
+
+    .accordion-header {
+      padding: 0 15px 3px 13px;
+      font-size: 25px;
+      height: $list-header-height;
+      color: $aside-header-text;
+      font-weight: 200;
+      font-family: $theme-font;
+      // if hover class is added, change colors on hover
+
+      &-caret {
+          float: right;
+          opacity: 0;
+          top: 6px;
+          position: relative;
+          font-size: 16px;
+          transition: opacity 200ms ease;
+      }
+
+      &.clickable {
+          transition: 200ms ease;
+          cursor: pointer;
+
+          &:hover {
+              border-color: #ddd;
+              background-color: #fff;
+
+              .accordion-header-caret {
+                opacity: 1;
+              }
+          }
+      }
+    }
+
+    .accordion-header,
+    .accordion-list-building {
+        border: solid 1px #f8f8f8;
+    }
+
+    .accordion-list-building,
+    .accordion-list-building-header {
+        margin: 0;
+    }
+
+    .accordion-list {
+        height: calc(100% - #{$list-header-height});
+
+        .accordion-list-building {
+            transition: 200ms ease;
+
+            .accordion-list-building-header {
+                padding: 9px 14px 9px 14px;
+                color: $aside-header-text;
+                width: 100%;
+                font-size: 16px;
+                cursor: pointer;
+                overflow: auto;
+
+                &-caret {
+                    float: right;
+                    top: 2px;
+                    position: relative;
+                    transition: 200ms ease;
+                }
+
+                &-text {
+                    float: left;
+                }
+            }
+
+            &:hover,
+            &.active {
+              background-color: $aside-active-bg;
+              border-color: #ddd;
+              font-weight: 600;
+              padding: 2px 0 2px 2%;
+            }
+
+            &.active {
+              .accordion-list-building-header-caret {
+                  @include vend(transform, rotate(180deg));
+              }
+              .accordion-sublist-apartments {
+                  padding: 0 14px 10px 14px;
+              }
+            }
+
+            .accordion-sublist-apartments {
+                text-align: center;
+                height: auto;
+
+                .btn-apartment {
+                    background-color: #222;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    display: inline-block;
+                    display: -webkit-inline-box;
+                    height: 35px;
+                    margin: 3px;
+                    position: relative;
+                    transition: 0.3s ease-in-out;
+                    width: 35px;
+
+                    &:hover {
+                        background-color: #444;
+                    }
+
+                    .btn-apartment-inside {
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        display: block;
+                        transform: translate(-50%,-50%);
+                        color: white;
+                    }
+                }
+            }
+
+            .accordion-collapse {
+                max-height: 0;
+                overflow: hidden;
+                position: relative;
+            }
+        }
+    }
+}
