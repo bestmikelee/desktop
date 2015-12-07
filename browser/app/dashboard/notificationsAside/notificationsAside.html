@@ -1,11 +1,17 @@
 <ul class="notifications-toggle">
     <li class="notifications-toggle-option" ng-class="activeNotificationType === 'renewals' ? 'active' : ''" ng-click="activeNotificationType = 'renewals'">
-        Renewals
-        <span class="notifications-count">{{requests.length}}</span>
+        <span class="notifications-toggle-option-text"> Renewals
+            <span class="notifications-toggle-option-count">
+                {{requests.length}}
+            </span>
+        </span>
     </li>
     <li class="notifications-toggle-option" ng-class="activeNotificationType === 'repairs' ? 'active' : ''" ng-click="activeNotificationType = 'repairs'">
-        Repairs
-        <span class="notifications-count">{{requests.length}}</span>
+        <span class="notifications-toggle-option-text"> Repairs
+            <span class="notifications-toggle-option-count">
+                {{requests.length}}
+            </span>
+        </span>
     </li>
 </ul>
 <div ng-cloak
