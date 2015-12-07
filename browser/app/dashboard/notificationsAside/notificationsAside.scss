@@ -1,12 +1,15 @@
-$toggle-height: 32px;
+$notifications-toggle-list-height: 32px;
+$notifications-toggle-list-margin: 10px;
+$notifications-toggle-list-padding-top: 5px;
+$notifications-toggle-list-border-width: 1px;
 
 .notifications {
     &-toggle {
-        height: $toggle-height;
+        height: $notifications-toggle-list-height;
         width: 100%;
-        margin-top: 10px;
-        padding-top: 5px;
-        border-bottom: 1px solid #EAEAEA;
+        margin-top: $notifications-toggle-list-margin;
+        padding-top: $notifications-toggle-list-padding-top;
+        border-bottom: $notifications-toggle-list-border-width solid #EAEAEA;
 
         &-option {
             @include vend(transition, ((font-weight, border-bottom-width, padding-bottom) (.4s, .2s, .2s) (ease-in-out, ease-in-out, ease-in-out)));
@@ -51,7 +54,7 @@ $toggle-height: 32px;
     }
 
     &-list {
-        height: calc(100% - #{$toggle-height});
+        height: calc(100% - #{$notifications-toggle-list-height} - #{$notifications-toggle-list-margin} - #{$notifications-toggle-list-padding-top} - #{$notifications-toggle-list-border-width});
         overflow-y: auto;
     }
 }
