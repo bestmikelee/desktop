@@ -56,14 +56,13 @@ $list-header-height: 39px;
               border-color: #ddd;
               background-color: #fff;
               padding-left: calc(2% + 13px);
-
           }
       }
     }
 
     .accordion-header,
     .accordion-list-building {
-        border: solid 1px #f8f8f8;
+        border: solid 1px transparent;
     }
 
     .accordion-list-building,

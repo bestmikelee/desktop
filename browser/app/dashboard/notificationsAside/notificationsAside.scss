@@ -1,0 +1,40 @@
+$toggle-height: 32px;
+
+.notifications {
+  &-toggle {
+    height: $toggle-height;
+    width: 100%;
+    margin-top: 10px;
+    padding-top: 5px;
+    border-bottom: 1px solid #EAEAEA;
+
+    &-option {
+      display: inline-block;
+      font-weight: 500;
+      font-size: 16px;
+      padding: 0 10px;
+      border-bottom: solid 4px transparent;
+      height: 100%;
+      width: 96px;
+      text-align: center;
+
+      &:not(.active) {
+        cursor: pointer;
+      }
+
+      &.active {
+        font-weight: 900;
+        border-color: #EAEAEA;
+      }
+    }
+
+    &-count {
+      position: absolute;
+    }
+  }
+
+    &-list {
+    height: calc(100% - #{$toggle-height});
+    overflow-y: auto;
+  }
+}
