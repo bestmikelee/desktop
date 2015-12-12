@@ -34,6 +34,12 @@
                     <i ng-class="user && user.photo ? 'nav user-photo' : 'fa fa-cog'" ng-style="user && user.photo ? 'background-image:url(' + user.photo + ')' : ''"></i>
                 </a>
             </li>
+            <li class="navbar-nav-list-item">
+                <a ng-if="user" class="navbar-nav-list-item-link" href="#" ui-sref="RenewalStartPage">
+                    <i class='fa fa-bell-o'></i>
+                    <span ng-if='newNotes.length' class='notification-label notification-label-blue'>{{ newNotes.length }}</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

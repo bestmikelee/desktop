@@ -1,10 +1,12 @@
-app.directive('renewalNoticeNotification', [function(){
+app.directive('renewalNoticeNotification', [function(Socket){
 	return {
 		// name: 'renewalNoticeNotification',
 		// priority: 1,
 		// terminal: true,
 		// scope: {}, // {} = isolate, true = child, false/undefined = no change
-		controller: function($scope, $element, $attrs, $transclude) {},
+		controller: function($scope, $element, $attrs, $transclude) {
+			
+		},
 		// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
 		restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
 		// template: '',
