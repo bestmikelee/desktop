@@ -1,0 +1,102 @@
+$notifications-padding-top: 10px;
+$notifications-toggle-height: 32px;
+$notifications-toggle-padding-top: 5px;
+$notifications-toggle-border-width: 1px;
+$notifications-list-padding: 9px;
+
+.notifications {
+    padding: $notifications-padding-top 20px 0 0px;
+
+    &-toggle {
+        height: $notifications-toggle-height;
+        width: 100%;
+        padding-top: $notifications-toggle-padding-top;
+        border-bottom: $notifications-toggle-border-width solid #EAEAEA;
+
+        &-option {
+            @include vend(transition, ((font-weight, border-bottom-width, padding-bottom) (.4s, .2s, .2s) (ease-in-out, ease-in-out, ease-in-out)));
+            display: inline-block;
+            height: 100%;
+            width: 96px;
+            padding: 0 10px;
+            text-align: center;
+            padding-bottom: 4px;
+            border: solid 0px #EAEAEA;
+
+            &:not(.active) {
+                cursor: pointer;
+            }
+
+            &-text {
+                font-weight: 500;
+                font-size: 16px;
+                position: relative;
+            }
+
+            &-count {
+                position: absolute;
+                top: -7px;
+                right: -12px;
+                height: 16px;
+                font-size: 11px;
+                font-weight: 600;
+                padding: 0 4px;
+                border-radius: 5px;
+                color: $white;
+                background-color: red;
+            }
+
+            &.active {
+                .notifications-toggle-option-text {
+                    font-weight: 900;
+                }
+                border-bottom-width: 4px;
+            }
+        }
+    }
+
+    &-list {
+        max-height: calc(100% - #{$notifications-toggle-height} - #{$notifications-padding-top} - #{$notifications-toggle-padding-top} - #{$notifications-toggle-border-width});
+        overflow-y: auto;
+        padding: $notifications-list-padding $notifications-list-padding 0 $notifications-list-padding;
+        border-bottom: 1px solid #DDDDDD;
+
+        .notification {
+            padding-bottom: 20px;
+            display: block;
+
+            &-header {
+                color: #333;
+                font-weight: 300;
+            }
+
+            &-header,
+            &-details {
+                font-weight: 300;
+            }
+
+            .notification-check {
+                outline: none;
+                position: relative;
+                top: -1px;
+            }
+
+            &-details,
+            .notification-complete {
+              color: #A7A7A7;
+            }
+
+            &-details {
+              margin-bottom: 5px
+            }
+
+            .notification-complete {
+                text-decoration: line-through;
+            }
+
+            &:last-of-type {
+              padding-bottom: 11px;
+            }
+        }
+    }
+}

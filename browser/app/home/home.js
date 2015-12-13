@@ -6,7 +6,6 @@ app.config(['$stateProvider',function($stateProvider) {
                 console.log('is this hitting')
                 AuthService.getLoggedInUser().then(function(user) {
                     if (user) {
-                        console.log('going dash');
                         $timeout(function() {
                             $state.go('home.dashboard');
                         });

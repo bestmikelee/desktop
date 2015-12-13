@@ -10,7 +10,7 @@
   "scripts": {
     "debug": "node-inspector -p 5000 & nodemon --debug server/start.js --watch server -e js,css,html,json",
     "start": "nodemon server/start.js --watch server -e js,css,html,json",
-    "postinstall": "gulp build"
+    "postinstall": "gulp build; npm rebuild node-sass"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,8 @@
   "dependencies": {
     "angular": "^1.4.0",
     "angular-animate": "^1.4.7",
+    "angular-aria": "^1.4.8",
+    "angular-material": "^0.11.4",
     "angular-socket-io": "^0.7.0",
     "angular-ui-bootstrap": "^0.14.3",
     "angular-ui-router": "^0.2.15",

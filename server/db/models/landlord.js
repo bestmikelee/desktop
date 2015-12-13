@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.Types.ObjectId;
-
 var validators = require('./validation');
 
 var LandlordSchema = new Schema({
@@ -12,7 +11,7 @@ var LandlordSchema = new Schema({
   state: String,
   gender: String,
   building_ids: [{type: ObjectId, ref: 'Building'}],
-  notifications: [ObjectId]
+  notifications: [{type: ObjectId, ref: 'Note'}]
 });
 
 mongoose.model('Landlord', LandlordSchema);

@@ -9,6 +9,9 @@ app.config(['$stateProvider',function($stateProvider) {
 
 app.controller('dashboardCtrl', ['$scope','$timeout', 'Session', 'llRestService', function ($scope, $timeout, Session, llRestService) {
 
+    // set initial active notification type
+    $scope.activeNotificationType = 'renewals';
+
     // show one building at a time
     $scope.oneAtATime = true;
 
@@ -31,6 +34,7 @@ app.controller('dashboardCtrl', ['$scope','$timeout', 'Session', 'llRestService'
 
     $scope.selectPortfolio = function() {
         $scope.buildings.forEach((val) => val.open = false);
+        $scope.buildingSelected = null;
         $scope.currentAddress = 'Portfolio';
         $scope.updatePies();
     };

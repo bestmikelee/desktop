@@ -1,0 +1,9 @@
+<label>
+  <input class="notification-check" name="complete" type="checkbox" ng-click="completeFunc({type:'renewal', notification: notification})">
+  <span class="notification-header" ng-class="{'notification-complete' : notification.complete}">Lease Expires on {{notification.end_date | dateSlashes}}</span>
+</label>
+<div class="notification-info">
+  <span class="notification-details">
+    {{notification.address}}, {{notification.city}}, {{notification.state}}
+  </span>
+</div>

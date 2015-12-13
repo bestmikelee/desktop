@@ -1,6 +1,6 @@
-app.directive('navbar',['$rootScope', '$state', 'AuthService', 'AUTH_EVENTS', function($rootScope, $state, AuthService, AUTH_EVENTS) {
+app.directive('navbar',['$rootScope', '$state', 'AuthService', 'AUTH_EVENTS', 'Socket',function($rootScope, $state, AuthService, AUTH_EVENTS, Socket) {
 
-    var NavbarCtrl = ['$scope', function($scope) {
+    var NavbarCtrl = ['$scope', 'Socket', function($scope, Socket) {
 
         // Search handling
         // $scope.search = "";
@@ -43,6 +43,16 @@ app.directive('navbar',['$rootScope', '$state', 'AuthService', 'AUTH_EVENTS', fu
                 $state.go('home.landing');
             });
         };
+
+        $scope.newNotes = [];
+
+        $scope.addUpdate = function(){
+            Socket.socket.on('dailyUpdate', function(data){
+                console.log(data);
+                $scope.newNotes = data;
+            })
+        }
+        
     }];
 
     return {
@@ -56,6 +66,7 @@ app.directive('navbar',['$rootScope', '$state', 'AuthService', 'AUTH_EVENTS', fu
                 // $timeout(function(){
                 AuthService.getLoggedInUser(false).then(function(user) {
                     scope.user = user;
+                    scope.addUpdate();
                 });
                 // },0);
             };

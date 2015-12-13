@@ -106,6 +106,12 @@
                     border: 1px solid black;
                     background: none;
                     outline: none !important;
+
+                    .notification-label {
+                        position: absolute;
+                        top: 0px;
+                        right: 5px;
+                    }
                 }
             }
         }
@@ -198,5 +204,25 @@
 
     .fa-cog {
         padding-top: 2px;
+    }
+
+    .notification-label {
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        color: #fff;
+        font-size: 1rem;
+        animation: bounceIn 700ms;
+        text-align: center;
+        box-shadow: 2px 2px 2px #888888;
+
+        &.notification-label-red {
+            background: #FC3768;
+        }
+
+        &.notification-label-blue {
+            background: #4285f4;
+        }
     }
 }

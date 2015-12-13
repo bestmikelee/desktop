@@ -63,7 +63,7 @@ module.exports = function(app) {
             Admin.isAdmin(req.session.user).then(function(isAnAdmin) {
                 var example;
 
-                var test = sio().getNamespace(req.session.user._id, function(socket){
+                var test = sio().setNamespace(req.session.user._id, function(socket){
 
                         socket.emit('another',{example: 'hello'})
                     socket.on('disconnect', function(){

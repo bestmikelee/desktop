@@ -1,90 +1,162 @@
+$map-container-side-length: 140px;
+$map-container-margin: 15px;
+$list-header-height: 39px;
+
 .building-accordion {
     padding: 0;
     margin: 0;
     z-index: 1;
-    
+    width: 16.66666667%;
+    max-width: 260px;
+
+    .map-container {
+      margin: $map-container-margin auto;
+      width: $map-container-side-length;
+      height: $map-container-side-length;
+      padding: 40px;
+      display: block;
+      background-color: #EAEAEA;
+      border-radius: 50%;
+
+      .building-placeholder {
+        height: 100%;
+        width: 100%;
+        background-image: url("/images/building-icon-grey.svg");
+        background-size: cover;
+      }
+    }
+
+    .accordion-header {
+      padding: 0 14px 3px 29px;
+      font-size: 25px;
+      height: $list-header-height;
+      color: $aside-header-text;
+      font-weight: 200;
+      font-family: $theme-font;
+      text-align: center;
+
+      &-caret {
+          float: right;
+          opacity: 0;
+          top: 6px;
+          position: relative;
+          font-size: 16px;
+          transition: opacity 200ms ease;
+      }
+
+      &.clickable {
+          transition: 200ms ease;
+          cursor: pointer;
+
+          .accordion-header-caret {
+            opacity: 1;
+          }
+
+          &:hover {
+              border-color: #ddd;
+              background-color: #fff;
+              padding-left: calc(2% + 13px);
+          }
+      }
+    }
+
+    .accordion-header,
+    .accordion-list-building {
+        border: solid 1px transparent;
+    }
+
     .accordion-list-building,
     .accordion-list-building-header {
         margin: 0;
     }
 
-    .accordion-list-building {
-        border: none;
-        background-color: $white;
-        box-shadow: 0 1px 1px rgba(0,0,0,.05);
-        
-        .accordion-list-building-header {
-            
-            // text-align: right;
-            background-color: $aside-sect;
-            color: white;
-            padding: 10px 15px;
-            border-top: 1px solid #ddd;
-            width: 100%;
-            font-size: 16px;
-            cursor: pointer;
-            overflow: auto;
-            
+    .accordion-list {
+        height: calc(100% - #{$list-header-height} - #{$map-container-side-length} - #{$map-container-margin*2});
+
+        .accordion-list-building {
+            transition: 200ms ease;
+
+            .accordion-list-building-header {
+                padding: 9px 14px 9px 14px;
+                color: $aside-header-text;
+                width: 100%;
+                font-size: 16px;
+                cursor: pointer;
+                overflow: auto;
+
+                &-caret {
+                    float: right;
+                    top: 2px;
+                    position: relative;
+                }
+
+                &-caret,
+                &-text {
+                  transition: 200ms ease;
+                }
+
+                &-text {
+                    float: left;
+                }
+            }
+
             &:hover,
             &.active {
-                background-color: $aside-sect-hover;
-            }
-
-            &-caret {
-                float: right;
-                top: 2px;
-                position: relative;
-                transition: 200ms ease;
+              background-color: $aside-active-bg;
+              border-color: #ddd;
+              padding: 2px 0 2px 2%;
             }
 
             &.active {
-                .accordion-list-building-header-caret {
-                    @include vend(transform, rotate(180deg));
+              .accordion-list-building-header {
+                &-text {
+                  font-weight: 600;
+                }
+                &-caret{
+                  @include vend(transform, rotate(180deg));
+                }
+              }
+              .accordion-sublist-apartments {
+                  padding: 0 14px 10px 14px;
+              }
+            }
+
+            .accordion-sublist-apartments {
+                text-align: center;
+                height: auto;
+
+                .btn-apartment {
+                    background-color: #222;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    display: inline-block;
+                    display: -webkit-inline-box;
+                    height: 35px;
+                    margin: 3px;
+                    position: relative;
+                    transition: 0.3s ease-in-out;
+                    width: 35px;
+
+                    &:hover {
+                        background-color: #444;
+                    }
+
+                    .btn-apartment-inside {
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        display: block;
+                        transform: translate(-50%,-50%);
+                        color: white;
+                    }
                 }
             }
 
-            &-text {
-                float: left;
-            }
-        }
-
-        .accordion-sublist-apartments {
-            text-align: center;
-            padding: 0;
-            background-color: $white;
-            height: auto;
-            
-            .btn-apartment {
-                background-color: #222;
-                border-radius: 50%;
-                cursor: pointer;
-                display: inline-block;
-                display: -webkit-inline-box;
-                height: 35px;
-                margin: 3px;
+            .accordion-collapse {
+                max-height: 0;
+                overflow: hidden;
                 position: relative;
-                transition: 0.3s ease-in-out;
-                width: 35px;
-                
-                &:hover {
-                    background-color: #444;
-                }
-
-                .btn-apartment-inside {
-                    position: absolute;
-                    left: 50%;
-                    top: 50%;
-                    display: block;
-                    transform: translate(-50%,-50%);
-                    color: white;
-                }
             }
-        }
-
-        .accordion-collapse {
-            max-height: 0;
-            overflow: hidden;
-            position: relative;
         }
     }
 }

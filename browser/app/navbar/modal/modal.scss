@@ -10,7 +10,7 @@
     display: block;
     overflow-y: scroll;
     transition: opacity 0.3s ease, z-index 0s 0.3s linear;
-    
+
     &-show {
         z-index: 9998;
         opacity: 1;
@@ -32,7 +32,7 @@
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
     cursor: pointer;
     transition: box-shadow 0.2s ease-in-out;
-    
+
     &:hover {
         box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
     }
@@ -56,8 +56,9 @@
     padding-left: 3px;
 }
 
-.modal-layout {
-    font-size: 1.5em;
+.modal-form-header,
+.building-select-header {
+  font-size: 1.5em;
 }
 
 .modal-body {
@@ -67,7 +68,7 @@
     width: 40%;
     margin: 10% auto 0;
     z-index: 9999;
-    
+
     .form-group {
         margin: 20px;
     }

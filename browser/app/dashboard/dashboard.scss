@@ -1,37 +1,17 @@
-$list-header-height: 36px;
-
 .dash-aside {
     height: 100%;
-    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.4);
     padding: 0;
-    
-    &-header {
-        background-color: $aside-header;
-        text-align: center;
-        font-size: 25px;
-        height: $list-header-height;
-        color: white;
-        font-weight: 200;
-        font-family: $theme-font;
-        
-        // if hover class is added, change colors on hover
-        &.hover {
-            transition: background-color 0.3s ease-in-out;
-            
-            &:hover {
-                background-color: $aside-header-hover;
-            }
-        }
-    }
 
     &-list {
         overflow-y: auto;
-        height: calc(100% - #{$list-header-height});
     }
 }
 
 .dash-center {
-    background-color: #fff;
+    position: relative;
+    padding: 15px 30px 0 30px;
+    width: 7/12*100%;
+    min-width: calc(9/12*100% - 260px);
     z-index: 0;
     overflow-y: auto;
     height: 100%;

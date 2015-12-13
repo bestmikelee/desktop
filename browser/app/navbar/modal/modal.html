@@ -7,7 +7,7 @@
             </div>
             <div class="form floating-form floating-form-inverse">
                 <div class="form-group">
-                    <label for="building-select">Select/Add Building</label>
+                    <label class="building-select-header" for="building-select">Select/Add Building</label>
                     <select class="form-control" id="building-select" ng-model="addingType">  <!--ng-options="building.street_name for building in buildings"-->
                         <option value="addbuilding">Add New Building</option>
                         <option value="{{building._id}}" ng-repeat="building in buildings">{{building.street_number}} {{building.street_name}}</option>
@@ -222,7 +222,7 @@
                                 </div>
                             </div>
 
-                            <button class="btn btn-default login-btn" type="submit">Submit</button>
+                            <button class="submit-btn" type="submit">Submit</button>
                         </form>
                     </div>
                 </div>
