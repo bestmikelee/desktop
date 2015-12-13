@@ -25,7 +25,8 @@
 			<td class="renewalList listColumnHeader">Current Rent</td>
 			<td class="renewalList listColumnHeader">New Rent</td>
 		</tr>
-		<tr class="renewalList listRow" renewalapartment ng-repeat="obj in aptSelected" apartment="obj">
+		<tr ng-repeat="obj in aptSelected">
+			<td>{{obj.buildingName + " " + obj.unit_number}}</td>
 		</tr>
 		<!-- <span class="glyphicon glyphicon-trash" ng-click="removeApt(apt2)"></span> -->
 	</table>

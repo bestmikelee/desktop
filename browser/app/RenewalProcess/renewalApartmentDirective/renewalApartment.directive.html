@@ -8,12 +8,8 @@
 	{{apartment.lease_ids[0].rent}}
 </td>
 <td class="renewalList">
-	<input ng-if="!showNewRent" class="newRent form-inline" ng-model="newRent" type="number" min="0" max="10000"></input>
-	<div ng-if="showNewRent">{{newRent}}</div>
+	<input class="newRent form-inline" ng-model="newRent" type="number" min="0" max="10000"></input>
 </td>
-
-
-
 
 <td>
 	<span class="glyphicon glyphicon-plus" aria-hidden="true" ng-click="initiateRenewal(apartment)"></span>
