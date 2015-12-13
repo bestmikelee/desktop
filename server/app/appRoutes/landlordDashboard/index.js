@@ -12,6 +12,7 @@ var Landlord = Promise.promisifyAll(mongoose.model('Landlord'));
 var Building = Promise.promisifyAll(mongoose.model('Building'));
 var Apartment = Promise.promisifyAll(mongoose.model('Apartment'));
 var Lease = Promise.promisifyAll(mongoose.model('Lease'));
+var Note = Promise.promisifyAll(mongoose.model('Note'));
 
 var llHelper = require('../dbHelper')(Landlord);
 
@@ -29,20 +30,24 @@ Router.get('/:user_id', function(req, res, next) {
                 },
                 Buildings: function(cb){
                     Building.findAsync({landlord_id: llord[0]._id}).then(function(result){
-                        cb(null, result)
+                        cb(null, result);
                     })
                 },
                 Apartments: function(cb){
                     Apartment.findAsync({landlord_id: llord[0]._id}).then(function(result){
-                        cb(null, result)
+                        cb(null, result);
                     })
                 },
                 Leases: function(cb){
                     Lease.findAsync({landlord_id:llord[0]._id}).then(function(result){
-                        cb(null, result)
+                        cb(null, result);
+                    })
+                },
+                Notifications: function(cb){
+                    Note.findAsync({ to: llord[0].user_id }).then(function(result){
+                        cb(null,result);
                     })
                 }
-                
             }, function(err,results){
 
                 // Begin Deprecate
