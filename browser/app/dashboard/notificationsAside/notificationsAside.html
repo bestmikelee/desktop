@@ -15,12 +15,17 @@
     </li>
 </ul>
 <ul class="dash-aside-list notifications-list" ng-if="activeNotificationType === 'renewals'" ng-cloak>
-    <renewal-notification class="notification" notification="notification" complete="completeFunc(type, notification)" ng-repeat="notification in renewalNotifications">
+    <renewal-notification
+      class="notification"
+      notification="notification"
+      complete-func="completeFunc(type, notification)"
+      ng-repeat="notification in renewalNotifications | orderBy:['complete','-end_date']">
     </renewal-notification>
 </ul>
 <ul class="dash-aside-list notifications-list" ng-if="activeNotificationType === 'repairs'" ng-cloak>
-    <repair-notification class="notification"
+    <repair-notification
+      class="notification"
       notification="notification"
-      completeFunc="completeFunc(type, notification)"
-      ng-repeat="notification in repairNotifications" />
+      complete-func="completeFunc(type, notification)"
+      ng-repeat="notification in repairNotifications | orderBy:['complete','-end_date']" />
 </ul>

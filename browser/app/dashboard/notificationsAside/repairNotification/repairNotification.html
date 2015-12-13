@@ -1,10 +1,10 @@
 <label>
-  <input class="notification-check" name="complete" type="checkbox" ng-click="completeFunc({type:'renewal', notification: notification})">
-  <span class="notification-header" ng-class="{'notification-complete' : notification.complete}">Shit broke on {{apartment.end_date | dateSlashes}}</span>
+  <input class="notification-check" name="complete" type="checkbox" ng-click="completeFunc({type:'repair', notification: notification})">
+  <span class="notification-header" ng-class="{'notification-complete' : notification.complete}">Shit broke on {{notification.end_date | dateSlashes}}</span>
 </label>
 <div class="notification-info">
   <div class="notification-details">
-    {{apartment.address}}, {{apartment.city}}, {{apartment.state}}
+    {{notification.address}}, {{notification.city}}, {{notification.state}}
   </div>
   <div class="notification-details">
     {{notification.contractor.name}}, {{notification.contractor.phone}}, {{notification.contractor.email}}
