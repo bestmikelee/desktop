@@ -15,6 +15,7 @@ app.controller('RenewalStartPageCtrl', ['$scope','$http','Session','expiration',
 		$scope.aptSelected = [];
 		$scope.$on("renewalCommunication",function(event,apt){
 			$scope.aptSelected.push(apt);
+			console.log($scope.aptSelected)
 			$scope.renewalList = $scope.renewalList.filter(function(obj){
 				return !(obj._id === apt._id) 
 			})

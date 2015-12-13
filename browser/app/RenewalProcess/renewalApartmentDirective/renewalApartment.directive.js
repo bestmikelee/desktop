@@ -10,13 +10,19 @@ app.directive('renewalapartment', ['renewalStorage',function(renewalStorage){
 			initiateRenewal:"&"
 		}, // {} = isolate, true = child, false undefined = no change
 		controller: function($scope, $element, $attrs, $transclude) {
+			$scope.showNewRent = false;
 			$scope.renewed = false;
 			$scope.initiateRenewal = function(apt){
-				console.log(apt);	
+				// console.log(apt);
+				console.log($scope.newRent < 0)
+				console.log($scope.newRent > 9999)
+				console.log($scope.newRent === undefined)
+				console.log($scope.newRent)
 				if($scope.newRent < 0 || $scope.newRent > 9999 || $scope.newRent === undefined) 
 					{$scope.wrongRent = true}
 				else {
 					apt['newRent'] = $scope.newRent
+					$scope.showNewRent = true;
 					$scope.wrongRent = false;
 					$scope.renewed = true;
 					$scope.$emit("renewalCommunication",apt)
