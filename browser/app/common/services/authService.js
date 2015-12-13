@@ -1,4 +1,4 @@
-app.service('AuthService', function($http, Session, $rootScope, AUTH_EVENTS, $q, socketFactory) {
+app.service('AuthService', function($http, Session, $rootScope, AUTH_EVENTS, $q, Socket) {
 
     function onSuccessfulAuth(response) {
         var user = response.data.user;
@@ -9,21 +9,28 @@ app.service('AuthService', function($http, Session, $rootScope, AUTH_EVENTS, $q,
         user.isTenant = user.userType.indexOf('tenant') > -1;
         user.isContractor = user.userType.indexOf('contractor') > -1;
 
-        var testSocket = socketFactory({
-            ioSocket: io.connect(location.host + '/' + user._id)
-        })
-        console.log(testSocket)
+        // var testSocket = socketFactory({
+        //     ioSocket: io.connect(location.host + '/' + user._id)
+        // })
+        // console.log(testSocket)
         
-        testSocket.on('another', function(data){
-            console.log(data);
-        }) 
+        // testSocket.on('another', function(data){
+        //     console.log(data);
+        // }) 
 
-        testSocket.on('auth', function(data){
+        // testSocket.on('auth', function(data){
+        //     console.log(data);
+        // })
+        // testSocket.emit('hello', {mydata: 'mydata'})
+        var userSocket = Socket.init(user._id)
+        userSocket.on('another', function(data){
             console.log(data);
-        })
-        testSocket.emit('hello', {mydata: 'mydata'})
-            
+        });
 
+        userSocket.on('dailyUpdate', function(data){
+            console.log(data);
+        });
+        console.log(userSocket)
         return $http.get('api/landlord/' + user._id)
 		.then(function(buildingResponse){
             
