@@ -14,10 +14,6 @@ app.directive('renewalapartment', ['renewalStorage',function(renewalStorage){
 			$scope.renewed = false;
 			$scope.initiateRenewal = function(apt){
 				// console.log(apt);
-				console.log($scope.newRent < 0)
-				console.log($scope.newRent > 9999)
-				console.log($scope.newRent === undefined)
-				console.log($scope.newRent)
 				if($scope.newRent < 0 || $scope.newRent > 9999 || $scope.newRent === undefined) 
 					{$scope.wrongRent = true}
 				else {
