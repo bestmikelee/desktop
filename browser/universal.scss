@@ -34,6 +34,10 @@ $aside-active-bg: $white;
     box-sizing: border-box;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 100;
+
+    &:focus {
+        outline: none;
+    }
 }
 
 html,
@@ -58,10 +62,6 @@ a:hover,
 a:visited,
 a:focus {
     text-decoration: none;
-}
-
-.btn:focus {
-    outline: 0;
 }
 
 #main {

@@ -101,14 +101,15 @@ app.directive('hollowPie', function($timeout, $interval, $rootScope) {
     }
 
     // Manages actual incrementing
-    function incrementTo(startVal, endVal, prop){
+    function incrementTo(startObj, endObj, prop){
+        const endVal = Math.round(endObj[prop]);
         const interval = $interval(() =>
-            startVal[prop] < endVal[prop] ?
-            startVal[prop]++ :
-            startVal[prop] > endVal[prop] ?
-            startVal[prop]-- :
+            startObj[prop] < endVal ?
+            startObj[prop]++ :
+            startObj[prop] > endVal ?
+            startObj[prop]-- :
             $interval.cancel(interval),
-            300/Math.abs(startVal[prop] - endVal[prop])); //make full increment time = 500ms
+            300/Math.abs(startObj[prop] - endVal)); //make full increment time = 500ms
     }
 
     // Build chart

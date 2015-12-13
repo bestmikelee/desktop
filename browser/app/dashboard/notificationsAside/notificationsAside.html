@@ -2,19 +2,25 @@
     <li class="notifications-toggle-option" ng-class="activeNotificationType === 'renewals' ? 'active' : ''" ng-click="activeNotificationType = 'renewals'">
         <span class="notifications-toggle-option-text"> Renewals
             <span class="notifications-toggle-option-count">
-                {{requests.length}}
+                {{renewalNotifications.length}}
             </span>
         </span>
     </li>
     <li class="notifications-toggle-option" ng-class="activeNotificationType === 'repairs' ? 'active' : ''" ng-click="activeNotificationType = 'repairs'">
         <span class="notifications-toggle-option-text"> Repairs
             <span class="notifications-toggle-option-count">
-                {{requests.length}}
+                {{repairNotifications.length}}
             </span>
         </span>
     </li>
 </ul>
-<div ng-cloak
-    class="dash-aside-list notifications-list">
-    <lock-request requests="requests" accept="onAccept()" job="request.job" name="request.name" ng-repeat="request in requests" where="request.where"></lock-request>
-</div>
+<ul class="dash-aside-list notifications-list" ng-if="activeNotificationType === 'renewals'" ng-cloak>
+    <renewal-notification class="notification" notification="notification" complete="completeFunc(type, notification)" ng-repeat="notification in renewalNotifications">
+    </renewal-notification>
+</ul>
+<ul class="dash-aside-list notifications-list" ng-if="activeNotificationType === 'repairs'" ng-cloak>
+    <repair-notification class="notification"
+      notification="notification"
+      completeFunc="completeFunc(type, notification)"
+      ng-repeat="notification in repairNotifications" />
+</ul>
