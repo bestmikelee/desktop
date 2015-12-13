@@ -3,31 +3,68 @@ app.directive('notificationsAside', function(){
 		restrict: 'E',
 		templateUrl: 'app/dashboard/notificationsAside/notificationsAside.html',
 		controller: ['$scope', function($scope){
-			$scope.requests = [{
-					name: "Alex Holman",
-					job: "Broker",
-					where: "119 Wykoff St",
-					time: "sample time needed",
-					email: "mike.sj.lee@gmail.com"
+
+			$scope.completeFunc = function(type, notification) {
+				notification.complete = !notification.complete;
+			};
+
+			$scope.renewalNotifications = [{
+					aptId: "5647f77e9d7b02b459efd49b",
+					complete: false
 			}, {
-					name: "Rodger Beaman",
-					job: "Broker",
-					where: "182 N 10th St",
-					time: "sample time needed",
-					email: "mike.sj.lee@gmail.com"
+					aptId: "5647f77e9d7b02b459efd4a0",
+					complete: false
 			}, {
-					name: "Mike Lee",
-					job: "Tenant",
-					where: "581 Warren St",
-					time: "sample time needed",
-					email: "mike.sj.lee@gmail.com"
+					aptId: "5647f77e9d7b02b459efd49b",
+					complete: false
 			}, {
-					name: "Max Baldwin",
-					job: "Broker",
-					where: "324 Bergen St",
-					time: "sample time needed",
-					email: "mike.sj.lee@gmail.com"
+					aptId: "5647f77e9d7b02b459efd4a0",
+					complete: false
 			}];
+
+			$scope.repairNotifications = [{
+					aptId: "5647f77e9d7b02b459efd4a0",
+					complete: false,
+					contractor: {
+						name: "Example LLC",
+						phone: "(212)555-555",
+						email: "example@example.com"
+					}
+			}, {
+					aptId: "5647f77e9d7b02b459efd49b",
+					complete: false,
+					contractor: {
+						name: "Example LLC",
+						phone: "(212)555-555",
+						email: "example@example.com"
+					}
+			}, {
+					aptId: "5647f77e9d7b02b459efd4a0",
+					complete: false,
+					contractor: {
+						name: "Example LLC",
+						phone: "(212)555-555",
+						email: "example@example.com"
+					}
+			}, {
+					aptId: "5647f77e9d7b02b459efd49b",
+					complete: false,
+					contractor: {
+						name: "Example LLC",
+						phone: "(212)555-555",
+						email: "example@example.com"
+					}
+			}, {
+					aptId: "5647f77e9d7b02b459efd4a0",
+					complete: false,
+					contractor: {
+						name: "Example LLC",
+						phone: "(212)555-555",
+						email: "example@example.com"
+					}
+			}];
+
+
 		}]
 	};
 });
