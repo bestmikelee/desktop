@@ -63,18 +63,26 @@ module.exports = function(app) {
 				}));
 			})
 			.then(function(results){
-				console.log('results', results);
+				//console.log('results', results);
 				var users = results.map(function(el){
 					return Object.keys(el)[0];
 				});
 				console.log(users);
 				users.forEach(function(userId){
-					var sio = sockets().setNamespace(userId, function(socket){
-						socket.emit('dailyUpdate', results);
-						socket.on('disconnect', function(){
-	                        console.log('disconnected in notifications')
-	                    })
-					});
+					// var sio = sockets().setNamespace(userId, function(socket){
+					// 	console.log(socket);
+					// 	socket.emit('dailyUpdate', results);
+					// 	socket.on('disconnect', function(){
+	    //                     console.log('disconnected in notifications')
+	    //                 })
+					// });
+
+					var result = results.filter(function(el){
+						console.log(el);
+						return el[userId];
+					})
+					sockets().getNamespace(userId).emit('dailyUpdate', result[0]);
+					//console.log(sio);
 
 				})
 				

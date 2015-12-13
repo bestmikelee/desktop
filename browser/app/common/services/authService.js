@@ -9,20 +9,9 @@ app.service('AuthService', function($http, Session, $rootScope, AUTH_EVENTS, $q,
         user.isTenant = user.userType.indexOf('tenant') > -1;
         user.isContractor = user.userType.indexOf('contractor') > -1;
 
-        // var testSocket = socketFactory({
-        //     ioSocket: io.connect(location.host + '/' + user._id)
-        // })
-        // console.log(testSocket)
-        
-        // testSocket.on('another', function(data){
-        //     console.log(data);
-        // }) 
+        console.log(user._id)
+        var userSocket = Socket.init(user._id);
 
-        // testSocket.on('auth', function(data){
-        //     console.log(data);
-        // })
-        // testSocket.emit('hello', {mydata: 'mydata'})
-        var userSocket = Socket.init(user._id)
         userSocket.on('another', function(data){
             console.log(data);
         });
@@ -30,18 +19,10 @@ app.service('AuthService', function($http, Session, $rootScope, AUTH_EVENTS, $q,
         userSocket.on('dailyUpdate', function(data){
             console.log(data);
         });
-        console.log(userSocket)
+
         return $http.get('api/landlord/' + user._id)
 		.then(function(buildingResponse){
             
-            
-            // lordSocket.on('call', function(data){
-            //     console.log(data);
-            // })
-            // lordSocket.on('another', function(data){
-            //     console.log(data)
-            // })
-            // console.log(lordSocket)
              Session.create(response.data.id, user, buildingResponse.data, response.data.access_token);
              $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
 			 return user;
