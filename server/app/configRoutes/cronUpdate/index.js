@@ -31,31 +31,26 @@ module.exports = function(app) {
 				return Promise.all(landlord_ids.map(function(id){
 					var llord_leases = _.pluck(leases.filter(function(el){
 						return el.landlord_id.toString() === id;
-					}), '_id')
+					}), '_id');
+
 					var landlord_userId;
 
-					return Note.createAsync({
-						to: id,
-						title: 'Lease Report - ' + thismoment.format('dddd, MMMM Do YYYY'),
-						body: llord_leases.length !== 1 ? 
-							llord_leases.length + ' leases need your attention' 
-							: llord_leases.length + ' lease needs your attention',
-						start_date: thismoment.toDate(),
-						payload: llord_leases
-					})
-					.then(function(note){
-						console.log('note', note)
-						//.log(id)
-						return Landlord.findByIdAndUpdateAsync(id, {$addToSet: { notifications : note._id } }, { new: true})	
-					})
-					.then(function(llord){
-						console.log('landlord updated', llord);
+					return Landlord.findByIdAsync(id).then(function(llord){
 						landlord_userId = llord.user_id;
-						return Promise.all(llord_leases.map(function(leaseid){
-							return Lease.findByIdAndUpdateAsync(leaseid, {status : 'current'}, { new : true })
-						}));
+
+						return Note.createAsync({
+							to: landlord_userId,
+							title: 'Lease Report - ' + thismoment.format('dddd, MMMM Do YYYY'),
+							body: llord_leases.length !== 1 ? 
+								llord_leases.length + ' leases need your attention' 
+								: llord_leases.length + ' lease needs your attention',
+							start_date: thismoment.toDate(),
+							payload: llord_leases
+						})
 					})
-					.then(function(lease_arr){
+					.then(() => Promise.all(llord_leases.map((leaseid) => 
+							Lease.findByIdAndUpdateAsync(leaseid, {status : 'current'}, { new : true }))))
+					.then((lease_arr) => {
 						var finalObj = {};
 						finalObj[landlord_userId] = lease_arr;
 						return Promise.resolve(finalObj);
@@ -81,7 +76,10 @@ module.exports = function(app) {
 						console.log(el);
 						return el[userId];
 					})
-					sockets().getNamespace(userId).emit('dailyUpdate', result[0]);
+
+					var socket = sockets().getNamespace(userId);
+					if (socket)
+						socket.emit('dailyUpdate', result[0]);
 					//console.log(sio);
 
 				})
