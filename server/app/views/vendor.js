@@ -4,7 +4,6 @@ require('angular-ui-router');
 require('angular-ui-bootstrap');
 require('d3');
 require('lodash');
-
-require('angular-socket-io')
-//require("socket.io");
-io = require("socket.io-client");
+require('angular-material');
+require('angular-socket-io');
+var io = require("socket.io-client");
