@@ -17,7 +17,7 @@ app.controller('RenewalStartPageCtrl', ['$scope','$http','Session','expiration',
 			$scope.aptSelected.push(apt);
 			console.log($scope.aptSelected)
 			$scope.renewalList = $scope.renewalList.filter(function(obj){
-				return !(obj._id === apt._id) 
+				return !(obj._id === apt._id)
 			})
 		})
 		$scope.printScope = function(){
@@ -26,12 +26,13 @@ app.controller('RenewalStartPageCtrl', ['$scope','$http','Session','expiration',
 
 		$scope.removeApt = function(apt){
 			$scope.aptSelected = $scope.aptSelected.filter(function(obj){
-				return !(obj._id === apt._id) 
+				return !(obj._id === apt._id)
 			})
-			$scope.renewalList.unshift(apt);		
+			$scope.renewalList.unshift(apt);
 		}
 
 		$scope.submit = function(){
+			console.log('submit hit')
 			var r = confirm("Emails will be sent to every tenant listed for confirmation of the renewals.  Please Confirm the list and click ok")
 			if(r === true) {
 				$http.post('api/mandrill/renewalEmails', $scope.aptSelected).then(function(confirmed){

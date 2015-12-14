@@ -1,15 +1,15 @@
 <ul class="notifications-toggle">
     <li class="notifications-toggle-option" ng-class="activeNotificationType === 'renewals' ? 'active' : ''" ng-click="activeNotificationType = 'renewals'">
         <span class="notifications-toggle-option-text"> Renewals
-            <span class="notifications-toggle-option-count">
-                {{renewalNotifications.length}}
+            <span class="notifications-toggle-option-count" ng-show="incompleteRenewalCount = (renewalNotifications | filter: {complete:false}).length">
+                {{incompleteRenewalCount}}
             </span>
         </span>
     </li>
     <li class="notifications-toggle-option" ng-class="activeNotificationType === 'repairs' ? 'active' : ''" ng-click="activeNotificationType = 'repairs'">
         <span class="notifications-toggle-option-text"> Repairs
-            <span class="notifications-toggle-option-count">
-                {{repairNotifications.length}}
+            <span class="notifications-toggle-option-count" ng-show="incompleteRepairCount = (repairNotifications | filter: {complete:false}).length">
+                {{incompleteRepairCount}}
             </span>
         </span>
     </li>

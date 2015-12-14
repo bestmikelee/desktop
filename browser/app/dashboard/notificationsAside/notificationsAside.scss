@@ -62,8 +62,13 @@ $notifications-list-padding: 9px;
         border-bottom: 1px solid #DDDDDD;
 
         .notification {
-            padding-bottom: 20px;
+            padding-bottom: 16px;
             display: block;
+
+            &-label,
+            &-details {
+              margin-bottom: 3px;
+            }
 
             &-header {
                 color: #333;
@@ -79,15 +84,12 @@ $notifications-list-padding: 9px;
                 outline: none;
                 position: relative;
                 top: -1px;
+                margin: 0;
             }
 
             &-details,
             .notification-complete {
               color: #A7A7A7;
-            }
-
-            &-details {
-              margin-bottom: 5px
             }
 
             .notification-complete {
