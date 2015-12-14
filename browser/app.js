@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('Effektiv', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'btford.socket-io']);
+var app = angular.module('Effektiv', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngMaterial', 'btford.socket-io']);
 
 
 app.config(function($urlRouterProvider, $locationProvider) {

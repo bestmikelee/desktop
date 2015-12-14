@@ -32,17 +32,18 @@
 .landing-img {
     height: calc(100vh - #{$nav-height});
     background: #000 url("/images/nyc_skyline.png") center center /cover;
-    background-blend-mode: hard-light;
+    // background-blend-mode: hard-light;
     .landing-header {
         @include text-trace(#000, 7px);
-        padding-top: 10px;
+        padding-top: 3%;
+        width: 80%;
     }
     .imagine-scroll {
       .hr-imagine-scroll {
         width: 50px;
         border-color: #f05f40;
         border-width: 3px;
-        margin: 30px auto;
+        margin: 4px auto 30px;
       }
       .btn-imagine-scroll {
           @include vend(transition, (all 0.35s))

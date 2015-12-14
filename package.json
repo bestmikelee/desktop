@@ -10,7 +10,7 @@
   "scripts": {
     "debug": "node-inspector -p 5000 & nodemon --debug server/start.js --watch server -e js,css,html,json",
     "start": "nodemon server/start.js --watch server -e js,css,html,json",
-    "postinstall": "gulp build"
+    "postinstall": "gulp build; npm rebuild node-sass"
   },
   "repository": {
     "type": "git",

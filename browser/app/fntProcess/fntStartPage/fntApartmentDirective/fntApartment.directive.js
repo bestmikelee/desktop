@@ -5,9 +5,7 @@ app.directive('fntapartment', ['fntStorage',function(fntStorage){
 			building:'=',
 			apartment:'=',
 			oldrent:'=',
-			newrent:'=',
-			postpone:'&',
-			initiate:'&'
+			newrent:'='
 		},
 		controller: function($scope, $element, $attrs, $transclude) {
 		},

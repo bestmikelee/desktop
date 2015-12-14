@@ -6,4 +6,4 @@ require('d3');
 require('lodash');
 require('angular-material');
 require('angular-socket-io');
-var io = require("socket.io-client");
+io = require("socket.io-client");
