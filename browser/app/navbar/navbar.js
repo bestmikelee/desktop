@@ -38,6 +38,8 @@ app.directive('navbar',['$rootScope', '$state', 'AuthService', 'AUTH_EVENTS', 'S
             return AuthService.isAuthenticated();
         };
 
+        console.log($scope.isLoggedIn());
+
         $scope.logout = function() {
             AuthService.logout().then(function() {
                 $state.go('home.landing');
@@ -52,7 +54,7 @@ app.directive('navbar',['$rootScope', '$state', 'AuthService', 'AUTH_EVENTS', 'S
                 $scope.newNotes = data;
             })
         }
-        
+
     }];
 
     return {

@@ -15,8 +15,9 @@
             <i class="search-icon" ng-class="loading? 'fa fa-spinner fa-pulse' : 'glyphicon glyphicon-search'"></i>
             <input class="search search-input" name="srch-term" ng-change="runSearch()" ng-model="search" placeholder="Search Name" type="text">
         </div>
-        <ul ng-cloak
-            class="nav-buttons nav navbar-nav navbar-right">
+        <ul class="nav-buttons nav navbar-nav navbar-right"
+            ng-class="{'slide-in': !!user}"
+            ng-cloak>
             <li class="navbar-nav-list-item">
                 <a ng-if="!user" class="navbar-nav-list-item-link" ng-click="collapseNav()" ng-href="/lockitron-redirect?state=login" target="_self">LOG IN</a>
             </li>
@@ -38,7 +39,7 @@
     </div>
 </nav>
 
-<modal></modal>
+<modal logged-in="!!user"></modal>
 
 <!-- <div class="search-results" ng-show="searchResults[0] && search">
         <ul class="list-unstyled">

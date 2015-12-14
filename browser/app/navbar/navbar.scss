@@ -88,7 +88,7 @@
 
         &-nav {
             &.nav-buttons {
-                margin-right: 71px;
+                @include vend(transition, (transform .3s 0s linear));
             }
 
             &-list-item {
