@@ -31,21 +31,29 @@
 // landing section
 .landing-img {
     height: calc(100vh - #{$nav-height});
-    background: #000 url("/images/nyc_skyline.png") center center /cover;
-    background-blend-mode: hard-light;
+    background: #000 url("/images/nyc_skyline_compressed.png") center center /cover;
+    // background-blend-mode: hard-light;
     .landing-header {
         @include text-trace(#000, 7px);
-        padding-top: 10px;
+        padding-top: 3%;
+        width: 80%;
     }
     .imagine-scroll {
+      display: table;
+      margin: 0 auto;
+
+      .hr-imagine-scroll,
+      .btn-imagine-scroll {
+        @include vend(transition, (all 0.35s));
+      }
+
       .hr-imagine-scroll {
         width: 50px;
         border-color: #f05f40;
         border-width: 3px;
-        margin: 30px auto;
+        margin: 4px auto 30px;
       }
       .btn-imagine-scroll {
-          @include vend(transition, (all 0.35s))
           border-color: #f05f40;
           color: #fff;
           background-color: #f05f40;
@@ -53,9 +61,16 @@
           border-radius: 300px;
           text-transform: uppercase;
           font-weight: 700;
-          &:hover {
-            color: inherit;
-            background-color: #D44324;
+        //   &:hover {
+        //     color: inherit;
+        //   }
+      }
+      &:hover {
+          .hr-imagine-scroll {
+              border-color: #D44324;
+          }
+          .btn-imagine-scroll {
+              background-color: #D44324;
           }
       }
     }

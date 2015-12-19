@@ -3,6 +3,7 @@ app.config(['$stateProvider',function($stateProvider) {
             url: '/',
             template: '<ui-view></ui-view>',
             onEnter: ['$state','$timeout','AuthService', function($state, $timeout, AuthService) {
+                console.log('is this hitting')
                 AuthService.getLoggedInUser().then(function(user) {
                     if (user) {
                         $timeout(function() {

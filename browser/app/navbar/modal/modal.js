@@ -1,14 +1,16 @@
 app.directive('modal',function() {
     // Runs during compile
     return {
-        scope: {},
+        scope: {
+            loggedIn: '='
+        },
         templateUrl:'app/navbar/modal/modal.html',
         restrict: 'E',
-        controller: 'modalController'
+        controller: 'modalCtrl'
     };
 });
 
-app.controller('modalController',['$scope','Session','$http','$timeout', function($scope, Session, $http, $timeout){
+app.controller('modalCtrl',['$scope','Session','$http','$timeout', function($scope, Session, $http, $timeout){
 
   $scope.showModal = false;
 

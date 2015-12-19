@@ -1,5 +1,5 @@
 $map-container-side-length: 140px;
-$map-container-margin: 15px;
+$map-container-margin: 20px;
 $list-header-height: 39px;
 
 .building-accordion {
@@ -18,7 +18,7 @@ $list-header-height: 39px;
       background-color: #EAEAEA;
       border-radius: 50%;
 
-      .building-placeholder {
+      .logo-placeholder {
         height: 100%;
         width: 100%;
         background-image: url("/images/building-icon-grey.svg");

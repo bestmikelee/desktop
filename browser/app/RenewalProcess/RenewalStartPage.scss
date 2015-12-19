@@ -1,13 +1,26 @@
 /*this styling sheet is for the renewal start page as well as the renewal apartmenr directive*/
 
+.renewalList {
+
+	&.ListColumnHeader {
+		font-weight: bold; 
+	}
+	&.listRow {
+		padding:0px 10px;
+		margin:20px 0px;
+		&:hover{
+			background-color: #DDD;
+		}
+	}
+}
+
 input.newRent{
 	width:75px;
 }
-div.apartmentName {
-	display: inline;
+td.renewalList{
+	padding: 0px 10px;
 }
 
 button.addRenewal{
 	display: block;
 }
-

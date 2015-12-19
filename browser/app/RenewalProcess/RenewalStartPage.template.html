@@ -1,18 +1,35 @@
 <button ng-click="printScope()">Print Scope</button>
 <div>Renewal Start Dashboard. There are currently {{renewalList.count}} apartments that are within the renewal threshold.</div>
 
+<div class="col-sm-6 dashContainer">
 
-<div class="col-sm-6 dash-aside dash-aside-list">
-	<renewalapartment ng-repeat="apt in renewalList" apartment="apt"></renewalapartment>
+<!-- <renewalapartment ng-repeat="apt in renewalList" apartment="apt"></renewalapartment> -->
+	<table>
+		<tr>
+			<td class="renewalList listColumnHeader">Apartment Name</td>
+			<td class="renewalList listColumnHeader">Tenant Name</td>
+			<td class="renewalList listColumnHeader">Current Rent</td>
+			<td class="renewalList listColumnHeader">New Rent</td>
+		</tr>
+			<tr class="renewalList listRow" renewalapartment ng-repeat="apt in renewalList" apartment="apt">
+			</tr>
+	</table>
 </div>
 
 
-<div class="col-sm-6">
-	<div ng-repeat="apt2 in aptSelected">
-		{{apt2.buildingName + " " + apt2.unit_number + " " + apt2.newRent}}
-		<span class="glyphicon glyphicon-trash" ng-click="removeApt(apt2)"></span>
-
-	</div>
+<div class="col-sm-6 dashContainer">
+	<table>
+		<tr>
+			<td class="renewalList listColumnHeader">Apartment Name</td>
+			<td class="renewalList listColumnHeader">Tenant Name</td>
+			<td class="renewalList listColumnHeader">Current Rent</td>
+			<td class="renewalList listColumnHeader">New Rent</td>
+		</tr>
+		<tr ng-repeat="obj in aptSelected">
+			<td>{{obj.buildingName + " " + obj.unit_number}}</td>
+		</tr>
+		<!-- <span class="glyphicon glyphicon-trash" ng-click="removeApt(apt2)"></span> -->
+	</table>
 </div>
 
 <button ng-click="submit()">Initiate Renewal Process</button>

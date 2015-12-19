@@ -23,12 +23,12 @@ function findTenantEmail(tenantId){
 Router.post('/renewalEmails',function(req,res) { 
 // console log out the data coming in from the HTTP post
   // console.log(req.body)
-  var mandrillArry = [];
+  const mandrillArry = [];
   req.body.forEach(function(obj){
   	var mandrillObj = {};
   	obj
   	.tenant_ids
-  	.forEach(function(tenant){
+  	.forEach((tenant) => {
   		findTenantEmail(tenant)
   		.then(function(email){console.log(email)})
   	})
