@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var Promise = require('bluebird');
 var async = require('async');
 var _ = require('lodash');
+var env = require('../../../env');
 
 //closure for mandrill
 var mandrill = require('mandrill-api/mandrill');
@@ -20,45 +21,13 @@ function findTenantEmail(tenantId){
 
 
 
-Router.post('/renewalEmails',function(req,res) { 
-// console log out the data coming in from the HTTP post
-  // console.log(req.body)
-  const mandrillArry = [];
-  req.body.forEach(function(obj){
-  	var mandrillObj = {};
-  	obj
-  	.tenant_ids
-  	.forEach((tenant) => {
-  		findTenantEmail(tenant)
-  		.then(function(email){console.log(email)})
-  	})
-  })
-  var message = {
-  	"html": "<p>This is a test renewal email using the mandrill node API</p>",
-    "text": "Renewal Text Content",
-    "subject": "Renew Your Apartment",
-    "from_email": "renewals@effektiv.com",
-    "from_name": "Effektiv.Property",
-    "to": [
-        {
-            "email": "rwcbeaman@gmail.com",
-            "name": "Roger Beaman",
-            "type": "to"
-        },
-        {
-            "email": "mike.sj.lee@gmail.com",
-            "name": "Mike Lee",
-            "type": "to"
-        },
-        {
-            "email": "alexander.holman@gmail.com",
-            "name": "Alexander Holman",
-            "type": "to"
-        }]
-  }
-
-  mandrill_clients.messages.send({'message':message},function(success){console.log(success)},function(e){console.log(e)})
+Router.get('/accept',function(req,res) { 
+  var userId = req.query.userId;
+  var leaseId = req.query.leaseId;
+  
 });
+
+
 
 module.exports = Router
 

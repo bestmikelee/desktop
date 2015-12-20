@@ -20,5 +20,6 @@ module.exports = function(app) {
     require('./s3Storage')(app);
     require('./lockitronActions')(app);
     require('./cronUpdate')(app);
+    require('./tenantRenewal')(app);
     //require('./stripe')(app);
 };

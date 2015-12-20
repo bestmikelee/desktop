@@ -23,5 +23,8 @@ var UserSchema = new mongoose.Schema({
 
 UserSchema.path('email').validate(validators.email, 'Must be a valid email');
 UserSchema.path('phone').validate(validators.phone, 'Must be a valid phone number');
+UserSchema.virtual('fullName').get(function(){
+  return this.firstName + " " + this.lastName;
+})
 
 mongoose.model('User', UserSchema);
