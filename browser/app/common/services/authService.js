@@ -2,19 +2,13 @@ app.service('AuthService', function($http, Session, $rootScope, AUTH_EVENTS, $q,
 
     function onSuccessfulAuth(response) {
         var user = response.data.user;
-        console.log('user',user)
         user.admin = response.data.admin;
         user.isLandlord = user.userType.indexOf('landlord') > -1;
         user.isBroker = user.userType.indexOf('broker') > -1;
         user.isTenant = user.userType.indexOf('tenant') > -1;
         user.isContractor = user.userType.indexOf('contractor') > -1;
 
-        console.log(user._id)
         var userSocket = Socket.init(user._id);
-
-        userSocket.on('another', function(data){
-            console.log(data);
-        });
 
         userSocket.on('dailyUpdate', function(data){
             console.log(data);
@@ -22,7 +16,7 @@ app.service('AuthService', function($http, Session, $rootScope, AUTH_EVENTS, $q,
 
         return $http.get('api/landlord/' + user._id)
 		.then(function(buildingResponse){
-            
+
              Session.create(response.data.id, user, buildingResponse.data, response.data.access_token);
              $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
 			 return user;

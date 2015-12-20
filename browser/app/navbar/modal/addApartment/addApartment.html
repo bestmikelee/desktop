@@ -1,0 +1,73 @@
+<form class="floating-form" id="" name="apartmentForm" ng-submit="apartmentForm.$valid && addApartment(apartment)" novalidate>
+
+    <div class="form-group">
+        <input class="form-control" id="lock_id" name="lock_id" ng-model="apartment.lock_id" placeholder="Lockitron Lock ID" required type="text">
+    </div>
+    <div class="form-group">
+        <input class="form-control" id="unit_number" name="unit_number" ng-model="apartment.unit_number" placeholder="Enter Apartment Unit" required type="text">
+    </div>
+    <div class="form-group">
+        <div class="form-control">
+        <label>
+            Bedrooms
+            <input class="" id="bedroom_count" name="bedroom_count" ng-model="apartment.bedroom_count" required type="number">
+        </label>
+    </div>
+    </div>
+    <div class="form-group">
+        <div class="form-control">
+            <label>Bathrooms
+                <input id="bathroom_count" name="bathroom_count" ng-model="apartment.bathroom_count" required type="number">
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-control">
+            <label>Total Rooms
+                <input id="total_room_count" name="total_room_count" ng-model="apartment.total_room_count" required type="number">
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-control">
+            <label>Square Feet
+                <input id="sq_ft" name="sq_ft" ng-model="apartment.sq_ft" required type="number">
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="form-control">
+            <label>Rent
+                <input id="rent" name="rent" ng-model="apartment.rent" required type="number">
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="form-control">
+            <label>Start Date
+                <input id="start_date" name="start_date" ng-model="apartment.start_date" required type="date">
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="form-control">
+            <label>End Date
+                <input id="end_date" name="end_date" ng-model="apartment.end_date" required type="date">
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="form-control">
+            <span class="lease-btn btn-file">
+                Upload Lease PDF<input id="photo" name="lease" onchange="angular.element(this).scope().readFile(this)" type="file"/>
+            </span>&nbsp;
+            <span class="input-file" ng-if="leaseName">&nbsp;<i class="fa fa-file-pdf-o"></i>&nbsp;{{leaseName}}&nbsp;</span>
+        </div>
+    </div>
+
+    <button class="submit-btn" type="submit">Submit</button>
+</form>

@@ -2,7 +2,9 @@ var gulp = require('gulp'),
     globbing = require('gulp-css-globbing'),
     rename = require('gulp-rename'),
     sass = require('gulp-sass'),
-    minifyCSS = require('gulp-minify-css');
+    minifyCSS = require('gulp-minify-css'),
+    config = require('../config/sass'),
+    _ = require('lodash');
 
 gulp.task('buildCSSProduction', function() {
   return gulp.src('./browser/universal.scss')
@@ -10,9 +12,9 @@ gulp.task('buildCSSProduction', function() {
           // Configure it to use SCSS files
           extensions: ['.scss']
       }))
-      .pipe(sass({
-          errLogToConsole: true
-      }))
+      .pipe(sass(_.merge({
+          outputStyle: 'compressed'
+      }, config.settings)))
       .pipe(rename('style.css'))
       .pipe(minifyCSS())
       .pipe(gulp.dest('./public'));
