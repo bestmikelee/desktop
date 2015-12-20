@@ -8,10 +8,16 @@
     Properties
     <i class="fa fa-chevron-up accordion-header-caret"></i>
 </header>
+<style>
+    .active ~ .accordion-list-building,
+    .active ~ .cover {
+        transform: translateY(-{{accordionAdjust}}px);
+    }
+</style>
 <ul ng-cloak
     class="dash-aside-list accordion-list">
     <li class="accordion-list-building" ng-class="!building.open ? '' : 'active'" ng-repeat="building in buildings" ng-style="{'z-index': $index}">
-        <header class="accordion-list-building-header" ng-click="selectBuilding(building)">
+        <header class="accordion-list-building-header" ng-click="selectBuilding(building) || animateAccordion($index)">
             <span class="accordion-list-building-header-text"> {{ building.street_number + ' ' + building.street_name }} </span>
             <i class="fa fa-chevron-down accordion-list-building-header-caret"></i>
         </header>
@@ -23,4 +29,5 @@
             </li>
         </ul>
     </li>
+    <footer class="cover"></footer>
 </ul>

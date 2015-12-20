@@ -1,19 +1,23 @@
 app.directive('buildingAccordionAside', () => ({
 	restrict: 'E',
 	templateUrl: 'app/dashboard/buildingAccordionAside/buildingAccordionAside.html',
+	controller: ['$scope', ($scope) => {
+		$scope.accordionAdjust = 0;
+	}],
 	link: (scope) => {
 		var accordion = angular.element(document.querySelector('.accordion-list'))[0].children;
-		// var accordion2 = accordion[0].children;
-		var scrollTotal;
 		setTimeout(() => {
-			Array.prototype.forEach.call(accordion, (val, index, arr) =>
-				index > 0
-				&&
-				(val = angular.element(val))
-				&&
-				val.css('transform','translateY(' + (arr[index-1].scrollHeight * -1 + 40) + 'px)')
-				&&
-				val.addClass('enable-transition'));
+			var accordionCollapse = angular.element(document.querySelectorAll('.accordion-collapse'));
+			scope.animateAccordion = (index) => {
+				scope.accordionAdjust = accordionCollapse[index].scrollHeight;
+				setTimeout(() => {
+					angular.element(accordion[index]).addClass('animate');
+				});
+				setTimeout(() => {
+					scope.$apply(scope.accordionAdjust = 0);
+					angular.element(accordion[index]).removeClass('animate');
+				}, 300);
+			};
 		});
 	}
 }));
