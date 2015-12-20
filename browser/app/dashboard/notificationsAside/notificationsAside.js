@@ -113,3 +113,62 @@ app.directive('notificationsAside', function(){
 		}]
 	};
 });
+
+
+var app = angular.module('app', []);
+
+app.value('config', {
+	'OFFSET_Y': 50
+});
+
+app.controller('MainController', ['$scope','$rootScope','config','$window',
+
+	function ($scope, $rootScope, $config, $window) {
+		$scope.sorter = 'id';
+
+		$scope.timer = 0;
+
+		$rootScope.currItemIndex = 0;
+
+		$scope.$watch('sorter', function(){
+			$window.clearTimeout($scope.timer);
+			$scope.timer = $window.setTimeout(rearrange, 100);
+		});
+
+		function rearrange(){
+			$('.item').each(function(idx, el){
+				var $el = $(el);
+				var newTop = idx * $config.OFFSET_Y;
+
+				if (newTop != parseInt($el.css('top'))) {
+					$el.css({
+						'top': newTop
+					})
+					.one('webkitTransitionEnd', function (evt){
+						$(evt.target).removeClass('moving');
+					})
+					.addClass('moving');
+				}
+
+			});
+		}
+
+	}
+]);
+
+app.controller('jdController', ['$element','$rootScope','config', function($element, $rootScope, $config){
+		$element.css({
+			'top': $rootScope.currItemIndex * $config.OFFSET_Y
+		});
+		$rootScope.currItemIndex++;
+	}
+]);
+
+app.directive('jdScript', [
+	function(){
+		return {
+			restrict: 'EA',
+			controller: 'jdController'
+		};
+	}
+]);
