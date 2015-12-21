@@ -21,6 +21,7 @@ var Brokerage = Promise.promisifyAll(mongoose.model('Brokerage'));
 var Visit = Promise.promisifyAll(mongoose.model('Visit'));
 var Lease = Promise.promisifyAll(mongoose.model('Lease'));
 var Note = Promise.promisifyAll(mongoose.model('Note'));
+var Renewal = Promise.promisifyAll(mongoose.model('Renewal'));
 
 Promise.promisifyAll(Building.prototype);
 Promise.promisifyAll(Apartment.prototype);
@@ -31,7 +32,7 @@ Promise.promisifyAll(Broker.prototype);
 Promise.promisifyAll(Brokerage.prototype);
 Promise.promisifyAll(Visit.prototype);
 Promise.promisifyAll(Lease.prototype);
-
+Promise.promisifyAll(Renewal.prototype);
 //////////connect to the database
 
 
@@ -158,7 +159,7 @@ var userSeed = function(config) {
         lastName: chance.name().split(' ')[1],
         photo: null,
         phone: chance.phone(),
-        email: chance.email()
+        email: 'mike.sj.lee@gmail.com'    
     })
 }
 
@@ -199,10 +200,12 @@ var visitSeed = function(config){
     });
 };
 var leaseSeed = function(config){
-    var leaseStart = moment(chance.date({
-        month: chance.integer({min: 0, max: 4}),
-        year: chance.integer({min: 2015, max: 2015})
-    }));
+    
+
+    var leaseStart = moment().add(chance.integer({
+        min: 1,
+        max: 100
+    }), 'days').subtract(12,'months');
     var leaseEnd = leaseStart.clone().add(12, 'months');
     var now = moment(),
         status;
@@ -210,7 +213,7 @@ var leaseSeed = function(config){
     return new Lease({
         pdf: chance.word(),
         rent: chance.integer({min: 1000, max: 5000}),
-        status: chance.pick(['notified','extended','expired','current','declined']),
+        status: chance.pick(['notified','extended','expired','current','declined','pending']),
         end_date: leaseEnd,
         start_date: leaseStart,
         tenant_ids: config.tenantIds,
@@ -266,7 +269,7 @@ var seedOneLandLord = function() {
             var currentUser;
             var randNumOfTenants = chance.integer({
                 min: 1,
-                max: 4
+                max: 2
             })
             for (var i = 0; i < randNumOfTenants; i++) {
                 currentTenant = Promise.promisifyAll(tenantSeed(apartment._id, apartment.building_id));
@@ -412,7 +415,8 @@ var seedOneLandLord = function() {
                 Visit.remove({}).exec(),
                 User.remove({}).exec(),
                 Lease.remove({}).exec(),
-                Note.remove({}).exec()
+                Note.remove({}).exec(),
+                Renewal.remove({}).exec()
             ]);
         }
 

@@ -9,8 +9,9 @@ app.config(['$stateProvider',function($stateProvider) {
 
 app.controller('RenewalStartPageCtrl', ['$scope','$http','Session','expiration','renewalStorage', function($scope,$http,Session,expiration,renewalStorage){
 		$scope.renewalList = expiration.portAptFilter(function(apt){
-			console.log(apt);
-			return apt.daysToLxd < 100 && apt.lease_ids[0].status == "rented"})
+			//console.log('expiration', apt);
+			return apt.daysToLxd < 100 && apt.lease_ids[0].status == "notified"
+		})
 
 		$scope.aptSelected = [];
 		$scope.$on("renewalCommunication",function(event,apt){
@@ -34,10 +35,13 @@ app.controller('RenewalStartPageCtrl', ['$scope','$http','Session','expiration',
 		$scope.submit = function(){
 			console.log('submit hit')
 			var r = confirm("Emails will be sent to every tenant listed for confirmation of the renewals.  Please Confirm the list and click ok")
+			
 			if(r === true) {
-				$http.post('api/mandrill/renewalEmails', $scope.aptSelected).then(function(confirmed){
+				$http.post('tenantRenewal', $scope.aptSelected).then(function(confirmed){
 					console.log(confirmed)
 				});
+			}else{
+				console.log($scope.aptSelected)
 			}
 		}
 	}

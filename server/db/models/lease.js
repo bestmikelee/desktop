@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.Types.ObjectId;
-var lease_status = ['notified','extended','expired','current','declined'];
+var lease_status = ['notified','extended','expired','current','declined','pending'];
 // current = currently active (not in 90 day window)
 // expired = not renewed, not current
 // notified = in 90 day window and tenant notified

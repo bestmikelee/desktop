@@ -33,6 +33,7 @@ app.service('expiration', ['Session', function(Session) {
                 filteredArray.push(obj)
             })
         })
+        console.log(filteredArray)
         return filteredArray;
     }
 
